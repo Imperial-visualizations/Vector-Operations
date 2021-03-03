@@ -13,7 +13,7 @@ function convertToSVGSmall(number, xOry) {
         value += 100;
         return value;
     } else if (xOry == "y") {
-        alert(number);
+        //alert(number);
         let v1 = number * scale;
         let v2 = v1 + 100;
         let value = 200 - v2;
@@ -63,6 +63,7 @@ function convertToVectorBig(number, xOry) {
     }
     return value    
 }    
+
 
 
 function createVector() {
@@ -142,58 +143,45 @@ try {
         //alert(v1xSVGStr); alert(v1ySVGStr);
         //alert(v2xSVGStr); alert(v2ySVGStr);
 
-        let line1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        let line1 = elID("line1");
 
         line1.setAttribute("x1", "100");
         line1.setAttribute("y1", "100");
         line1.setAttribute("x2", v1xSVGStr);
         line1.setAttribute("y2", v1ySVGStr);
         line1.setAttribute("stroke", "red");
-        line1.setAttribute("id", "line1");
 
-        let line2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        let line2 = elID("line2");
 
         line2.setAttribute("x1", "100");
         line2.setAttribute("y1", "100");
         line2.setAttribute("x2", v2xSVGStr);
         line2.setAttribute("y2", v2ySVGStr);
         line2.setAttribute("stroke", "blue");
-        line2.setAttribute("id", "line2");
         
-        let line3 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        let line3 = elID("line3");
 
         line3.setAttribute("x1", "200");
         line3.setAttribute("y1", "200");
         line3.setAttribute("x2", v1xBStr);
         line3.setAttribute("y2", v1yBStr);
         line3.setAttribute("stroke", "red");
-        line3.setAttribute("id", "line3");
 
-        let line4 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        let line4 = elID("line4");
 
         line4.setAttribute("x1", v1xBStr);
         line4.setAttribute("y1", v1yBStr);
         line4.setAttribute("x2", v2xBStr);
         line4.setAttribute("y2", v2yBStr);
         line4.setAttribute("stroke", "blue");
-        line4.setAttribute("class", "newline");
-        line4.setAttribute("id", "line4");
 
-        let line5 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        let line5 = elID("line5");
 
         line5.setAttribute("x1", "200");
         line5.setAttribute("y1", "200");
         line5.setAttribute("x2", v2xBStr);
         line5.setAttribute("y2", v2yBStr);
-        line5.setAttribute("stroke", "green");
-        line5.setAttribute("id", "line5");
 
-
-        document.getElementById("canvas1").appendChild(line1);
-        document.getElementById("canvas2").appendChild(line2);
-        document.getElementById("canvas3").appendChild(line3);
-        document.getElementById("canvas3").appendChild(line4);
-        document.getElementById("canvas3").appendChild(line5);
 
 
     } catch(error) {
@@ -201,3 +189,4 @@ try {
     }
 
 }
+

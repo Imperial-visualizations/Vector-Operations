@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" href="design.css">
     </head>
-
+    
     <h1>Subtracting Vectors</h1>
     <div id="vectsects">
         <div id="vectsect" class="smallVect">
@@ -20,10 +20,14 @@
                         <line x1="100" y1="0" x2="100" y2="200" stroke="black"></line>
                         
                         <line x1="0" y1="100" x2="200" y2="100" stroke="black"></line>
+                        
+                        <line x1="100" y1="100" x2="120" y2="100" stroke="red" id="line1"></line>
+
                     </svg>
                     <div class="">
-                        x-Component: <input type="text" class="component" id="v1x"><br>
-                        y-Component: <input type="text" class="component" id="v1y">
+                        x-Component: <input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
+                        <br>
+                        y-Component: <input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="0" onkeyup="createVector()" onchange="createVector()">
                     </div>
                 </div>
                 <div class="vector2div" id="vectordivssmall">
@@ -39,10 +43,15 @@
                         <line x1="100" y1="0" x2="100" y2="200" stroke="black"></line>
                         
                         <line x1="0" y1="100" x2="200" y2="100" stroke="black"></line>
+
+                        <line x1="100" y1="100" x2="100" y2="120" stroke="blue" id="line2"></line>
                     </svg>
                     <div class="">
-                        x-Component: <input type="text" class="component" id="v2x"><br>
-                        y-Component: <input type="text" class="component" id="v2y">
+                        x-Component: <input type="number" min="-5" max="5" step="1" value="0" class="component" id="v2x" onkeyup="createVector()"
+                        onchange="createVector()">
+                        <br>
+                        y-Component: <input type="number" min="-5" max="5" step="1" value="1" class="component" id="v2y" onkeyup="createVector()"
+                        onchange="createVector()">
                     </div>
                 </div>
             </div>
@@ -66,14 +75,14 @@
                 " stroke="gray"></path>
                 <line x1="200" y1="0" x2="200" y2="400" stroke="black"></line>
                 <line x1="0" y1="200" x2="400" y2="200" stroke="black"></line>
+
+                <line x1="200" y1="200" x2="220" y2="200" stroke="red" id="line3"></line>
+                <line x1="220" y1="200" x2="220" y2="220" stroke="blue" id="line4"></line>
+                <line x1="200" y1="200" x2="220" y2="220" stroke="green" id="line5"></line>
+
             </svg>
-            <p></p><button type="button" class="createbtn" onclick="createVector()">
-                Create Vector
-            </button>
         </div>
     </div>
-    <script src="addition2.js"></script>
+    <script src="addition.js"></script>
 </html>
-
-
 
