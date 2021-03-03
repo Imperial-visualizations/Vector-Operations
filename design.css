@@ -1,0 +1,18 @@
+.component {
+    width: 50px;
+}
+#smallvectors {
+    display: flex;
+    padding: 10px;
+    
+} #vectordivsmall {
+    display: inline-block;
+    padding: 5px;
+}
+.vector1div {
+    margin:0;
+}
+.vector2div {
+    margin-left: 5px;
+    flex: 1;
+}
