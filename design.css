@@ -1,12 +1,23 @@
+.createbtn {
+    padding: 5px;
+    cursor: pointer;
+}
+#vectsect  {
+    float: left;
+   
+}
+.smallvect {
+    width: 250px;
+}
 .component {
     width: 50px;
 }
 #smallvectors {
-    display: flex;
+    
     padding: 10px;
     
 } #vectordivsmall {
-    display: inline-block;
+    
     padding: 5px;
 }
 .vector1div {
@@ -14,5 +25,5 @@
 }
 .vector2div {
     margin-left: 5px;
-    flex: 1;
+    
 }
