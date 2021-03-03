@@ -119,8 +119,8 @@ try {
 
         let v1xB = convertToSVGBig(v1xA, "x");
         let v1yB = convertToSVGBig(v1yA, "y");
-        let v2xB = convertToSVGBig(v2xA - v1xA, "x");
-        let v2yB = convertToSVGBig(v2yA - v1yA, "y");
+        let v2xB = convertToSVGBig(-v2xA + v1xA, "x");
+        let v2yB = convertToSVGBig(-v2yA + v1yA, "y");
         
 
         //v2xB += v1xB;
