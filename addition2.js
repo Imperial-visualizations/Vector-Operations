@@ -1,3 +1,12 @@
+function elClass(className) {
+    return document.getElementsByClassName(className);
+}
+
+
+function elID(id) {
+    return document.getElementById(id);
+}
+
 function convertToSVGSmall(number, xOry) {
     let scale = 20;
     if (xOry == "x") {
