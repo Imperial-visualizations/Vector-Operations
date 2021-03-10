@@ -185,7 +185,7 @@ try {
 
 
     } catch(error) {
-        alert(error);
+        console.log(error);
     }
 
 }
