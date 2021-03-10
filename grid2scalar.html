@@ -1,23 +1,14 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
         <link rel="stylesheet" href="design.css">
     </head>
     
-    <h1>Subtracting Vectors</h1>
+    <h1>Scaling Vectors</h1>
     <div id="vectsects">
         <div id="vectsect" class="smallVect">
             <div id="smallvectors">
                 <div class="vector1div" id="vectordivssmall">
-                    <div class="">
-                        x-Component: <input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
-                        <br>
-                        y-Component: <input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="0" onkeyup="createVector()" onchange="createVector()">
-                    </div>
-                </div>
-                <div class="vector2div" id="vectordivssmall">
-                    <svg height="200" width="200" id="canvas2">
+                    <svg height="200" width="200" id="canvas1">
                         <path d="M 0 20 H 200 M 0 40 H 200 M 0 60
                         H 200 M 0 80 H 200 M 0 100 H 200 M 0 120
                         H 200 M 0 140 H 200 M 0 160 H 200 M 0 180
@@ -29,14 +20,20 @@
                         <line x1="100" y1="0" x2="100" y2="200" stroke="black"></line>
                         
                         <line x1="0" y1="100" x2="200" y2="100" stroke="black"></line>
+                        
+                        <line x1="100" y1="100" x2="120" y2="100" stroke="red" id="line1"></line>
 
-                        <line x1="100" y1="100" x2="100" y2="120" stroke="blue" id="line2"></line>
                     </svg>
                     <div class="">
-                        x-Component: <input type="number" min="-5" max="5" step="1" value="0" class="component" id="v2x" onkeyup="createVector()"
-                        onchange="createVector()">
+                        x-Component: <input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
                         <br>
-                        y-Component: <input type="number" min="-5" max="5" step="1" value="1" class="component" id="v2y" onkeyup="createVector()"
+                        y-Component: <input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="0" onkeyup="createVector()" onchange="createVector()">
+                    </div>
+                </div>
+                <div class="vector2div" id="vectordivssmall">
+              
+                    <div class="">
+                        Scale: <input type="number" min="-5" max="5" step="1" value="0" class="component" id="v2x" onkeyup="createVector()"
                         onchange="createVector()">
                     </div>
                 </div>
@@ -63,12 +60,12 @@
                 <line x1="0" y1="200" x2="400" y2="200" stroke="black"></line>
 
                 <line x1="200" y1="200" x2="220" y2="200" stroke="red" id="line3"></line>
-                <line x1="220" y1="200" x2="220" y2="220" stroke="blue" id="line4"></line>
+
                 <line x1="200" y1="200" x2="220" y2="220" stroke="green" id="line5"></line>
 
             </svg>
         </div>
     </div>
-    <script src="addition.js"></script>
+    <script src="scalar.js"></script>
 </html>
 
