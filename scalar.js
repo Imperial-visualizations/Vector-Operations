@@ -13,7 +13,7 @@ function convertToSVGSmall(number, xOry) {
         value += 100;
         return value;
     } else if (xOry == "y") {
-        //alert(number);
+        //console.log(number);
         let v1 = number * scale;
         let v2 = v1 + 100;
         let value = 200 - v2;
@@ -83,42 +83,44 @@ try {
     //c3.remove(l5);
     
 } catch (error){
-    //alert(error);
+    //console.log(error);
 }
 
     let v1xStr = document.getElementById("v1x").value;
     let v1yStr = document.getElementById("v1y").value;
     let scalef = document.getElementById("sf").value;
 
-    //alert(v1xStr); //alert(v1yStr); //alert(v2xStr); //alert(v2yStr);
+    //console.log(v1xStr); //console.log(v1yStr); //console.log(v2xStr); //console.log(v2yStr);
      
     try {
-        let v1xC = parseInt(v1xStr);
-        let v1yC = parseInt(v1yStr);
-        let sf = parseInt(scalef);
+        let v1xC = parseFloat(v1xStr);
+        let v1yC = parseFloat(v1yStr);
+        let sf = parseFloat(scalef);
 
         let v1xA = v1xC; 
         let v1yA = v1yC;
-        let vx2C = v1xA * sf;
+        console.log(1);
+        let v2xC = v1xA * sf;
         let v2yC = v1yA * sf;
+        console.log("Created variable v2xC");
         let v2xA = v2xC;
         let v2yA = v2yC;
         let v2xStr = v2xA.toString();
         let v2yStr = v2yA.toString();
 
-        alert(v1xC); //alert(v1yC);
+        //console.log(v1xC); //console.log(v1yC);
 
         let v1x = convertToSVGSmall(v1xC, "x");
-        alert("y component of first value");
-        alert(v1yC);
+        console.log("y component of first value");
+        console.log(v1yC);
         let v1y = convertToSVGSmall(v1yC, "y");
-        //alert("CONVERTED TO SVG")
-        //alert(v1y);
+        //console.log("CONVERTED TO SVG")
+        //console.log(v1y);
         let v2x = convertToSVGSmall(v2xC, "x");
         let v2y = convertToSVGSmall(v2yC, "y");
 
-        //alert("CONVERT TO SVGSMALL");
-        //alert(v1x); alert(v1y);
+        //console.log("CONVERT TO SVGSMALL");
+        //console.log(v1x); console.log(v1y);
 
         let v1xSVGStr = v1x.toString();
         let v1ySVGStr = v1y.toString();
@@ -139,8 +141,8 @@ try {
         let v2xBStr = v2xB.toString();
         let v2yBStr = v2yB.toString();
 
-        //alert(v1xSVGStr); alert(v1ySVGStr);
-        //alert(v2xSVGStr); alert(v2ySVGStr);
+        //console.log(v1xSVGStr); console.log(v1ySVGStr);
+        //console.log(v2xSVGStr); console.log(v2ySVGStr);
 
         let line1 = elID("line1");
 
@@ -157,6 +159,7 @@ try {
         line3.setAttribute("x2", v1xBStr);
         line3.setAttribute("y2", v1yBStr);
         line3.setAttribute("stroke", "red");
+        line3.setAttribute("stroke-width", "4");
 
 
         let line5 = elID("line5");
@@ -165,11 +168,12 @@ try {
         line5.setAttribute("y1", "200");
         line5.setAttribute("x2", v2xBStr);
         line5.setAttribute("y2", v2yBStr);
+        line5.setAttribute("stroke-width", "4");
 
 
 
     } catch(error) {
-        alert(error);
+        console.log(error);
     }
 
 }
