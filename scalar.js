@@ -91,7 +91,7 @@ try {
     let scalef = document.getElementById("sf").value;
 
     //alert(v1xStr); //alert(v1yStr); //alert(v2xStr); //alert(v2yStr);
-    
+     
     try {
         let v1xC = parseInt(v1xStr);
         let v1yC = parseInt(v1yStr);
@@ -101,7 +101,8 @@ try {
         let v1yA = v1yC;
         let vx2C = v1xA * sf;
         let v2yC = v1yA * sf;
-        let v2xC = v2xA;
+        let v2xA = v2xC;
+        let v2yA = v2yC;
         let v2xStr = v2xA.toString();
         let v2yStr = v2yA.toString();
 
