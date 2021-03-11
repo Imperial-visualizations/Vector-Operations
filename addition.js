@@ -1,5 +1,7 @@
-// Scale factor of the svg elements
+// Numbers for svg elements
 const scale = 20;
+const smallDisplace = 100;
+const bigDisplace = 200;
 
 // Store our vectors
 let vector1 = [1, 0];
@@ -31,8 +33,8 @@ const v2y = elID("v2y");
 function convertToSVGSmall(vector) {
     let svgVector = [];
 
-    svgVector.push(vector[0] * scale + 100);
-    svgVector.push(100 - vector[1] * scale);
+    svgVector.push(vector[0] * scale + smallDisplace);
+    svgVector.push(smallDisplace - vector[1] * scale);
 
     return svgVector;
 }
@@ -40,8 +42,8 @@ function convertToSVGSmall(vector) {
 function convertToSVGBig(vector) {
     let svgVector = [];
 
-    svgVector.push(vector[0] * scale + 200);
-    svgVector.push(200 - vector[1] * scale);
+    svgVector.push(vector[0] * scale + bigDisplace);
+    svgVector.push(bigDisplace - vector[1] * scale);
 
     return svgVector;
 }
@@ -49,8 +51,8 @@ function convertToSVGBig(vector) {
 function convertToVectorSmall(vector) {
     let realVector = [];
 
-    realVector.push((vector[0] - 100) / scale);
-    realVector.push((100 - vector[1]) / scale);
+    realVector.push((vector[0] - smallDisplace) / scale);
+    realVector.push((smallDisplace - vector[1]) / scale);
 
     return realVector;
 }
@@ -58,8 +60,8 @@ function convertToVectorSmall(vector) {
 function convertToVectorBig(vector) {
     let realVector = [];
 
-    realVector.push((vector[0] - 200) / scale);
-    realVector.push((200 - vector[1]) / scale);
+    realVector.push((vector[0] - bigDisplace) / scale);
+    realVector.push((bigDisplace - vector[1]) / scale);
 
     return vector;
 }
@@ -70,23 +72,23 @@ function updateVectorSvg() {
     // draw vector 1
     const smallVector1 = convertToSVGSmall(vector1);
 
-    line1.setAttribute("x1", "100");
-    line1.setAttribute("y1", "100");
+    line1.setAttribute("x1", smallDisplace.toString());
+    line1.setAttribute("y1", smallDisplace.toString());
     line1.setAttribute("x2", smallVector1[0].toString());
     line1.setAttribute("y2", smallVector1[1].toString());
 
     const bigVector1 = convertToSVGBig(vector1);
 
-    line3.setAttribute("x1", "200");
-    line3.setAttribute("y1", "200");
+    line3.setAttribute("x1", bigDisplace.toString());
+    line3.setAttribute("y1", bigDisplace.toString());
     line3.setAttribute("x2", bigVector1[0].toString());
     line3.setAttribute("y2", bigVector1[1].toString());
 
     // draw vector 2
     const smallVector2 = convertToSVGSmall(vector2);
 
-    line2.setAttribute("x1", "100");
-    line2.setAttribute("y1", "100");
+    line2.setAttribute("x1", smallDisplace.toString());
+    line2.setAttribute("y1", smallDisplace.toString());
     line2.setAttribute("x2", smallVector2[0].toString());
     line2.setAttribute("y2", smallVector2[1].toString());
 
@@ -94,14 +96,14 @@ function updateVectorSvg() {
 
     line4.setAttribute("x1", bigVector1[0].toString());
     line4.setAttribute("y1", bigVector1[1].toString());
-    line4.setAttribute("x2", (bigVector1[0] + bigVector2[0] - 200).toString());
-    line4.setAttribute("y2", (bigVector1[1] + bigVector2[1] - 200).toString());
+    line4.setAttribute("x2", (bigVector1[0] + bigVector2[0] - bigDisplace).toString());
+    line4.setAttribute("y2", (bigVector1[1] + bigVector2[1] - bigDisplace).toString());
 
     // draw vector 3
-    line5.setAttribute("x1", "200");
-    line5.setAttribute("y1", "200");
-    line5.setAttribute("x2", (bigVector1[0] + bigVector2[0] - 200).toString());
-    line5.setAttribute("y2", (bigVector1[1] + bigVector2[1] - 200).toString());
+    line5.setAttribute("x1", bigDisplace.toString());
+    line5.setAttribute("y1", bigDisplace.toString());
+    line5.setAttribute("x2", (bigVector1[0] + bigVector2[0] - bigDisplace).toString());
+    line5.setAttribute("y2", (bigVector1[1] + bigVector2[1] - bigDisplace).toString());
 
 }
 
