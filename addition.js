@@ -188,10 +188,11 @@ canvas1.onmousedown = function (event) {
 canvas2.onmousemove = function (event) {
 
     if(mousePressed) {
-        let canvas2X = canvas2.getBoundingClientRect().x,
-            canvas2Y = canvas2.getBoundingClientRect().y,
-            mouseX = event.clientX,
-            mouseY = event.clientY;
+        
+        let canvas2X = canvas2.getBoundingClientRect().x;
+        let canvas2Y = canvas2.getBoundingClientRect().y;
+        let mouseX = event.clientX;
+        let mouseY = event.clientY;
 
         vector2 = convertToVectorSmall([mouseX - canvas2X, mouseY - canvas2Y]);
 
