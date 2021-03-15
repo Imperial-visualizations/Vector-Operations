@@ -1,91 +1,148 @@
+<!doctype html>
 <html>
-    <head>
-        <link rel="stylesheet" href="design.css">
-    </head>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Vector Operations</title>
+    <link rel="stylesheet" href="design.css">
+</head>
+    <body>
+        <h1>Adding Vectors</h1>
+        <div id="vectsects">
+            <div id="vectsect" class="smallVect">
+                <div id="smallvectors">
+                    <div class="vector1div" id="vectordivssmall">
+                        <div class="">
+                            <table>
+                                <tr colspan=1>
+                                    <td rowspan=2 class="vectbracket"> (</td>
+                                    <td rowspan=1><input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                        <br><input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                    </td>
+                                    <td rowspan=2 class="vectbracket">) </td>
+                                </tr>
+                            </table>
+
     
-    <h1>Adding Vectors</h1>
-    <div id="vectsects">
-        <div id="vectsect" class="smallVect">
-            <div id="smallvectors">
-                <div class="vector1div" id="vectordivssmall">
-                    <svg height="200" width="200" id="canvas1">
-                        <path d="M 0 20 H 200 M 0 40 H 200 M 0 60
-                        H 200 M 0 80 H 200 M 0 100 H 200 M 0 120
-                        H 200 M 0 140 H 200 M 0 160 H 200 M 0 180
-                        H 200" stroke="gray"></path>
-                        <path d="M 20 0 V 200 M 40 0 V 200
-                        M 60 0 V 200 M 80 0 V 200 M 100 0 V 200
-                        M 120 0 V 200 M 140 0 V 200 M 160 0 V 200
-                        M 180 0 V 200" stroke="gray"></path>
-                        <line x1="100" y1="0" x2="100" y2="200" stroke="black"></line>
-                        
-                        <line x1="0" y1="100" x2="200" y2="100" stroke="black"></line>
-                        
-                        <line x1="100" y1="100" x2="120" y2="100" stroke="red" id="line1"></line>
+                        </div>
+                        <svg version="1.1" height="200" width="200" id="canvas1" xmlns="http://www.w3.org/2000/svg"
+                            style="background: linear-gradient(135deg,#7aaed7,#466589);"
+                        >
+                            <path d="M 0 20 H 200 M 0 40 H 200 M 0 60
+                            H 200 M 0 80 H 200 M 0 120
+                            H 200 M 0 140 H 200 M 0 160 H 200 M 0 180
+                            H 200" stroke="white" stroke-dasharray="1" id="gridlines"
+                            ></path>
+                            <path d="M 20 0 V 200 M 40 0 V 200
+                            M 60 0 V 200 M 80 0 V 200 
+                            M 120 0 V 200 M 140 0 V 200 M 160 0 V 200
+                            M 180 0 V 200" stroke="white" id="gridlines"></path>
+                            <line x1="100" y1="0" x2="100" y2="200" stroke="white" id="basislines"></line>
+                            
+                            <line x1="0" y1="100" x2="200" y2="100" stroke="white" id="basislines"></line>
+                            <marker id="arrowhead1" markerWidth="3" markerHeight="3"
+                            refX=0 refY=1.5 orient="auto">
+                                <polygon points="0 0, 3 1.5, 0, 3" fill="red"/>
+                            </marker>
+                            <line x1="100" y1="100" x2="120" y2="100" stroke="red" id="line1" stroke-width="2"
+                            marker-end="url(#arrowhead1)"/>
+                            <circle cx="100" cy="100" r="3" fill="red"></circle>
 
-                    </svg>
-                    <div class="">
-                        x-Component: <input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
-                        <br>
-                        y-Component: <input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="0" onkeyup="createVector()" onchange="createVector()">
+                        </svg>
+
                     </div>
-                </div>
-                <div class="vector2div" id="vectordivssmall">
-                    <svg height="200" width="200" id="canvas2">
-                        <path d="M 0 20 H 200 M 0 40 H 200 M 0 60
-                        H 200 M 0 80 H 200 M 0 100 H 200 M 0 120
-                        H 200 M 0 140 H 200 M 0 160 H 200 M 0 180
-                        H 200" stroke="gray"></path>
-                        <path d="M 20 0 V 200 M 40 0 V 200
-                        M 60 0 V 200 M 80 0 V 200 M 100 0 V 200
-                        M 120 0 V 200 M 140 0 V 200 M 160 0 V 200
-                        M 180 0 V 200" stroke="gray"></path>
-                        <line x1="100" y1="0" x2="100" y2="200" stroke="black"></line>
-                        
-                        <line x1="0" y1="100" x2="200" y2="100" stroke="black"></line>
+                    <br>
+                    <div class="vector2div" id="vectordivssmall">
+                        <div class="">
+                            <table>
+                                <tr colspan=1>
+                                    <td rowspan=2 class="vectbracket"> (</td>
+                                    <td rowspan=1><input type="number" class="component" id="v2x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                        <br><input type="number" class="component" id="v2y" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                    </td>
+                                    <td rowspan=2 class="vectbracket">) </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <svg version="1.1" height="200" width="200" id="canvas2" xmlns="http://www.w3.org/2000/svg"
+                            style="background: linear-gradient(135deg,#7aaed7,#466589);">
+                            <path d="M 0 20 H 200 M 0 40 H 200 M 0 60
+                            H 200 M 0 80 H 200 M 0 120
+                            H 200 M 0 140 H 200 M 0 160 H 200 M 0 180
+                            H 200" id="gridlines"></path>
+                            <path d="M 20 0 V 200 M 40 0 V 200
+                            M 60 0 V 200 M 80 0 V 200 
+                            M 120 0 V 200 M 140 0 V 200 M 160 0 V 200
+                            M 180 0 V 200" id="gridlines"></path>
+                            <line x1="100" y1="0" x2="100" y2="200" stroke="white" stroke-width="3"></line>
+                            
+                            <line x1="0" y1="100" x2="200" y2="100" stroke="white" stroke-width="3"></line>
 
-                        <line x1="100" y1="100" x2="100" y2="120" stroke="blue" id="line2"></line>
-                    </svg>
-                    <div class="">
-                        x-Component: <input type="number" min="-5" max="5" step="1" value="0" class="component" id="v2x" onkeyup="createVector()"
-                        onchange="createVector()">
-                        <br>
-                        y-Component: <input type="number" min="-5" max="5" step="1" value="1" class="component" id="v2y" onkeyup="createVector()"
-                        onchange="createVector()">
+                            <marker id="arrowhead" markerWidth="3" markerHeight="3"
+                            refX=0 refY=1.5 orient="auto">
+                                <polygon points="0 0, 3 1.5, 0, 3" fill="blue"/>
+                            </marker>
+
+                            <line x1="100" y1="100" x2="100" y2="120" stroke="blue" id="line2" stroke-width="2"
+                            marker-end="url(#arrowhead)">
+                        </line>
+                            <circle cx="100" cy="100" r="3" fill="blue"></circle>
+                        </svg>
+
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bigvector" id="vectorsect">
-            <svg height="400" width="400" id="canvas3">
-                <path d="M 0 20 H 400 M 0 40 H 400 M 0 60 H 400
-                M 0 80 H 400 M 0 100 H 400 M 0 120 H 400 
-                M 0 140 H 400 M 0 160 H 400 M 0 180 H 400 
-                M 0 200 H 400 M 0 220 H 400 M 0 240 H 400
-                M 0 260 H 400 M 0 280 H 400 M 0 300 H 400
-                M 0 320 H 400 M 0 340 H 400 M 0 360 H 400
-                M 0 380 H 400 M 0 400 H 400" 
-                stroke="gray"></path>
-                <path d="M 20 0 V 400 M 40 0 V 400 M 60 0 V 400
-                M 80 0 V 400 M 100 0 V 400 M 120 0 V 400 M 140 0
-                V 400 M 160 0 V 400 M 180 0 V 400 M 200 0 V 400
-                M 220 0 V 400 M 240 0 V 400 M 260 0 V 400 M 280 0
-                V 400 M 300 0 V 400 M 320 0 V 400 M 340 0 V 400 M
-                360 0 V 400 M 380 0 V 400
-                " stroke="gray"></path>
-                <line x1="200" y1="0" x2="200" y2="400" stroke="black"></line>
-                <line x1="0" y1="200" x2="400" y2="200" stroke="black"></line>
+            <div class="bigvector" id="vectorsect">
+                <svg version="1.1" height="400" width="400" id="canvas3" xmlns="http://www.w3.org/2000/svg"
 
-                <line x1="200" y1="200" x2="220" y2="200" stroke="red" id="line3"></line>
-                <line x1="220" y1="200" x2="220" y2="220" stroke="blue" id="line4"></line>
-                <line x1="200" y1="200" x2="220" y2="220" stroke="green" id="line5"></line>
+                >
+                    <path d="M 0 20 H 400 M 0 40 H 400 M 0 60 H 400
+                    M 0 80 H 400 M 0 100 H 400 M 0 120 H 400 
+                    M 0 140 H 400 M 0 160 H 400 M 0 180 H 400 
+                    M 0 220 H 400 M 0 240 H 400
+                    M 0 260 H 400 M 0 280 H 400 M 0 300 H 400
+                    M 0 320 H 400 M 0 340 H 400 M 0 360 H 400
+                    M 0 380 H 400 M 0 400 H 400" 
+                    stroke="white" id="gridlines"></path>
+                    <path d="M 20 0 V 400 M 40 0 V 400 M 60 0 V 400
+                    M 80 0 V 400 M 100 0 V 400 M 120 0 V 400 M 140 0
+                    V 400 M 160 0 V 400 M 180 0 V 400 
+                    M 220 0 V 400 M 240 0 V 400 M 260 0 V 400 M 280 0
+                    V 400 M 300 0 V 400 M 320 0 V 400 M 340 0 V 400 M
+                    360 0 V 400 M 380 0 V 400
+                    " id="gridlines"></path>
+                    <line x1="200" y1="0" x2="200" y2="400" stroke="white" stroke-width="3"></line>
+                    <line x1="0" y1="200" x2="400" y2="200" stroke="white" stroke-width="3"></line>
 
-            </svg>
-            
-            
-            
+                    <marker id="arrowhead3" markerWidth="3" markerHeight="3"
+                    refX=3 refY=1.5 orient="auto">
+                        <polygon points="0 0, 3 1.5, 0, 3" fill="red"/>
+                    </marker>
+                    <marker id="arrowhead4" markerWidth="3" markerHeight="3"
+                    refX=3 refY=1.5 orient="auto">
+                        
+                        <polygon points="0 0, 3 1.5, 0, 3" fill="blue"/>
+                        
+                    </marker>
+                    <marker id="arrowhead5" markerWidth="3" markerHeight="3"
+                    refX=3 refY=1.5 orient="auto">
+                        <polygon points="0 0, 3 1.5, 0, 3" fill="green"/>
+                    </marker>
+
+                    <line x1="200" y1="200" x2="220" y2="200" stroke="red" id="line3" stroke-width="2"
+                    marker-end="url(#arrowhead3)"></line>
+                    <line x1="220" y1="200" x2="220" y2="220" stroke="blue" id="line4" stroke-width="2"
+                    marker-end="url(#arrowhead4)"></line>
+                    <line x1="200" y1="200" x2="220" y2="220" stroke="green" id="line5" stroke-width="2"
+                    marker-end="url(#arrowhead5)"></line>
+
+                </svg>
+                
+                
+                
+            </div>
         </div>
-    </div>
-    <script src="addition.js"></script>
+        <script src="addition.js"></script>
+    </body>
 </html>
 

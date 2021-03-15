@@ -150,7 +150,7 @@ try {
         line1.setAttribute("y1", "100");
         line1.setAttribute("x2", v1xSVGStr);
         line1.setAttribute("y2", v1ySVGStr);
-        line1.setAttribute("stroke", "red");
+        line1.setAttribute("stroke", "blue");
 
         let line3 = elID("line3");
 
@@ -158,8 +158,8 @@ try {
         line3.setAttribute("y1", "200");
         line3.setAttribute("x2", v1xBStr);
         line3.setAttribute("y2", v1yBStr);
-        line3.setAttribute("stroke", "red");
-        line3.setAttribute("stroke-width", "4");
+        line3.setAttribute("stroke", "blue");
+        line3.setAttribute("stroke-width", "2");
 
 
         let line5 = elID("line5");

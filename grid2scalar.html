@@ -14,17 +14,17 @@
                         <path d="M 0 20 H 200 M 0 40 H 200 M 0 60
                         H 200 M 0 80 H 200 M 0 100 H 200 M 0 120
                         H 200 M 0 140 H 200 M 0 160 H 200 M 0 180
-                        H 200" stroke="gray"></path>
+                        H 200" id="gridlines"></path>
                         <path d="M 20 0 V 200 M 40 0 V 200
                         M 60 0 V 200 M 80 0 V 200 M 100 0 V 200
                         M 120 0 V 200 M 140 0 V 200 M 160 0 V 200
-                        M 180 0 V 200" stroke="gray"></path>
-                        <line x1="100" y1="0" x2="100" y2="200" stroke="black"></line>
+                        M 180 0 V 200" id="gridlines"></path>
+                        <line x1="100" y1="0" x2="100" y2="200" id="basislines"></line>
                         
-                        <line x1="0" y1="100" x2="200" y2="100" stroke="black"></line>
+                        <line x1="0" y1="100" x2="200" y2="100" id="basislines"></line>
                         
-                        <line x1="100" y1="100" x2="120" y2="100" stroke="red" id="line1"></line>
-
+                        <line x1="100" y1="100" x2="120" y2="100" stroke="blue" id="line1" stroke-width="2"></line>
+                        <circle cx="100" cy="100" r="3" fill="blue"></circle>
                     </svg>
                     <div class="">
                         x-Component: <input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
@@ -35,7 +35,7 @@
                 <div class="vector2div" id="vectordivssmall">
               
                     <div class="">
-                        Scale: <input type="number" min="-5" max="5" step="1" value="2" class="component" id="sf" onkeyup="createVector()"
+                        Scale Factor: <input type="number" min="-5" max="5" step="1" value="2" class="component" id="sf" onkeyup="createVector()"
                         onchange="createVector()">
                     </div>
                 </div>
@@ -46,21 +46,21 @@
                 <path d="M 0 20 H 400 M 0 40 H 400 M 0 60 H 400
                 M 0 80 H 400 M 0 100 H 400 M 0 120 H 400 
                 M 0 140 H 400 M 0 160 H 400 M 0 180 H 400 
-                M 0 200 H 400 M 0 220 H 400 M 0 240 H 400
+                M 0 220 H 400 M 0 240 H 400
                 M 0 260 H 400 M 0 280 H 400 M 0 300 H 400
                 M 0 320 H 400 M 0 340 H 400 M 0 360 H 400
                 M 0 380 H 400 M 0 400 H 400" 
-                stroke="gray"></path>
+                id="gridlines"></path>
                 <path d="M 20 0 V 400 M 40 0 V 400 M 60 0 V 400
                 M 80 0 V 400 M 100 0 V 400 M 120 0 V 400 M 140 0
-                V 400 M 160 0 V 400 M 180 0 V 400 M 200 0 V 400
+                V 400 M 160 0 V 400 M 180 0 V 400
                 M 220 0 V 400 M 240 0 V 400 M 260 0 V 400 M 280 0
                 V 400 M 300 0 V 400 M 320 0 V 400 M 340 0 V 400 M
                 360 0 V 400 M 380 0 V 400
-                " stroke="gray"></path>
-                <line x1="200" y1="0" x2="200" y2="400" stroke="black"></line>
-                <line x1="0" y1="200" x2="400" y2="200" stroke="black"></line>
-                <line x1="200" y1="200" x2="220" y2="220" stroke="green" id="line5"></line>
+                " id="gridlines"></path>
+                <line x1="200" y1="0" x2="200" y2="400" id="basislines"></line>
+                <line x1="0" y1="200" x2="400" y2="200" id="basislines"></line>
+                <line x1="200" y1="200" x2="240" y2="200" stroke="green" id="line5"></line>
                 <line x1="200" y1="200" x2="220" y2="200" stroke="red" id="line3"></line>
 
                 
