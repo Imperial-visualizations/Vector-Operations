@@ -1,5 +1,5 @@
 html {
-    font-family: OpenSans, sans-serif;
+    font-family: Cambria, serif;
 }
 
 .createbtn {
@@ -21,7 +21,7 @@ html {
     padding: 10px;
     
 } #vectordivsmall {
-    
+    background: linear-gradient(135deg,#7aaed7,#466589);
     padding: 5px;
 }
 .vector1div {
@@ -45,9 +45,43 @@ svg {
 }
 
 .vectbracket {
-    font-size: 200%;
+    font-size: 100%;
 }
 input {
     text-align: center;
     border: none;
+    size: 10;
+}
+input {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria Light, serif;
+    background: none;
+    color: white;
+}
+.vectInput {
+    background: linear-gradient(194deg,#466589,#7aaed7);
+    color: white;
+    height: 50px;
+}
+.vectInput2 {
+    background: linear-gradient(194deg,#466589,#7aaed7);
+    color: white;
+    height: 80px;
+    font-family: Cambria;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0%;
+}
+input:active {
+    border: none;
+    outline: none;
+    
+}
+input:focus {
+    border: none;
+    outline: none;
+    background: #7aaed780
 }

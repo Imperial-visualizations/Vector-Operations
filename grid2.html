@@ -12,12 +12,12 @@
             <div id="vectsect" class="smallVect">
                 <div id="smallvectors">
                     <div class="vector1div" id="vectordivssmall">
-                        <div class="">
+                        <div class="vectInput">
                             <table>
                                 <tr colspan=1>
                                     <td rowspan=2 class="vectbracket"> (</td>
-                                    <td rowspan=1><input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
-                                        <br><input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                    <td rowspan=1><input type="number" class="component" id="v1x" min="-5" max="5" step="0.1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                        <br><input type="number" class="component" id="v1y" min="-5" max="5" step="0.1" value="1" onkeyup="createVector()" onchange="createVector()">
                                     </td>
                                     <td rowspan=2 class="vectbracket">) </td>
                                 </tr>
@@ -37,11 +37,24 @@
                             M 60 0 V 200 M 80 0 V 200 
                             M 120 0 V 200 M 140 0 V 200 M 160 0 V 200
                             M 180 0 V 200" stroke="white" id="gridlines"></path>
-                            <line x1="100" y1="0" x2="100" y2="200" stroke="white" id="basislines"></line>
+
+                            <marker id="arrowhead1x" markerWidth="3" markerHeight="3"
+                            refX=3 refY=1.5 orient="auto">
+                                <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                            </marker>
+                            <marker id="arrowhead1y" markerWidth="3" markerHeight="3"
+                            refX=3 refY=1.5 orient="auto">
+                                <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                            </marker>
+
+                            <line x1="100" y1="200" x2="100" y2="0" stroke="white" id="basislines"
+                            marker-end="url(#arrowhead1x)"></line>
                             
-                            <line x1="0" y1="100" x2="200" y2="100" stroke="white" id="basislines"></line>
+                            <line x1="0" y1="100" x2="200" y2="100" stroke="white" id="basislines"
+                            marker-end="url(#arrowhead1y)"></line>
+
                             <marker id="arrowhead1" markerWidth="3" markerHeight="3"
-                            refX=0 refY=1.5 orient="auto">
+                            refX=3 refY=1.5 orient="auto">
                                 <polygon points="0 0, 3 1.5, 0, 3" fill="red"/>
                             </marker>
                             <line x1="100" y1="100" x2="120" y2="100" stroke="red" id="line1" stroke-width="2"
@@ -53,12 +66,12 @@
                     </div>
                     <br>
                     <div class="vector2div" id="vectordivssmall">
-                        <div class="">
+                        <div class="vectInput">
                             <table>
                                 <tr colspan=1>
                                     <td rowspan=2 class="vectbracket"> (</td>
-                                    <td rowspan=1><input type="number" class="component" id="v2x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
-                                        <br><input type="number" class="component" id="v2y" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                    <td rowspan=1><input type="number" class="component" id="v2x" min="-5" max="5" step="0.1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                        <br><input type="number" class="component" id="v2y" min="-5" max="5" step="0.1" value="1" onkeyup="createVector()" onchange="createVector()">
                                     </td>
                                     <td rowspan=2 class="vectbracket">) </td>
                                 </tr>
@@ -74,12 +87,24 @@
                             M 60 0 V 200 M 80 0 V 200 
                             M 120 0 V 200 M 140 0 V 200 M 160 0 V 200
                             M 180 0 V 200" id="gridlines"></path>
-                            <line x1="100" y1="0" x2="100" y2="200" stroke="white" stroke-width="3"></line>
+
+                            <marker id="arrowhead1x1" markerWidth="3" markerHeight="3"
+                            refX=3 refY=1.5 orient="auto">
+                                <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                            </marker>
+                            <marker id="arrowhead1y1" markerWidth="3" markerHeight="3"
+                            refX=3 refY=1.5 orient="auto">
+                                <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                            </marker>
+
+                            <line x1="100" y1="200" x2="100" y2="0" stroke="white" stroke-width="3"
+                            marker-end="url(#arrowhead1x1)"></line>
                             
-                            <line x1="0" y1="100" x2="200" y2="100" stroke="white" stroke-width="3"></line>
+                            <line x1="0" y1="100" x2="200" y2="100" stroke="white" stroke-width="3"
+                            marker-end="url(#arrowhead1y1)"></line>
 
                             <marker id="arrowhead" markerWidth="3" markerHeight="3"
-                            refX=0 refY=1.5 orient="auto">
+                            refX=3 refY=1.5 orient="auto">
                                 <polygon points="0 0, 3 1.5, 0, 3" fill="blue"/>
                             </marker>
 
@@ -111,8 +136,29 @@
                     V 400 M 300 0 V 400 M 320 0 V 400 M 340 0 V 400 M
                     360 0 V 400 M 380 0 V 400
                     " id="gridlines"></path>
-                    <line x1="200" y1="0" x2="200" y2="400" stroke="white" stroke-width="3"></line>
-                    <line x1="0" y1="200" x2="400" y2="200" stroke="white" stroke-width="3"></line>
+
+                    <marker id="arrowhead1x" markerWidth="3" markerHeight="3"
+                    refX=3 refY=1.5 orient="auto">
+                        <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                    </marker>
+                    <marker id="arrowhead1y" markerWidth="3" markerHeight="3"
+                    refX=3 refY=1.5 orient="auto">
+                        <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                    </marker>
+
+                    <marker id="arrowhead2x" markerWidth="3" markerHeight="3"
+                    refX=3 refY=1.5 orient="auto">
+                        <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                    </marker>
+                    <marker id="arrowhead2y" markerWidth="3" markerHeight="3"
+                    refX=3 refY=1.5 orient="auto">
+                        <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                    </marker>
+
+                    <line x1="200" y1="400" x2="200" y2="0" stroke="white" id="basislines"
+                    marker-end="url(#arrowhead2x)"></line>
+                    <line x1="0" y1="200" x2="400" y2="200" stroke="white" id="basislines"
+                    marker-end="url(#arrowhead2y)"></line>
 
                     <marker id="arrowhead3" markerWidth="3" markerHeight="3"
                     refX=3 refY=1.5 orient="auto">
@@ -137,9 +183,7 @@
                     marker-end="url(#arrowhead5)"></line>
 
                 </svg>
-                
-                
-                
+                                
             </div>
         </div>
         <script src="addition.js"></script>

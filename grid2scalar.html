@@ -10,6 +10,26 @@
         <div id="vectsect" class="smallVect">
             <div id="smallvectors">
                 <div class="vector1div" id="vectordivssmall">
+                    <div class="vectInput2">
+                        <table>
+                            <tr colspan=1>
+                                <td rowspan=2 class="vectbracket"> (</td>
+                                <td rowspan=1>
+                                    <input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                    <br><input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="0" onkeyup="createVector()" onchange="createVector()">
+                                </td>
+                                <td rowspan=2 class="vectbracket">) </td>
+                            </tr>
+                        </table>
+                        <div class="vector2div" id="vectordivssmall">
+              
+                            <div class="">
+                                Scale Factor: <input type="number" min="-5" max="5" step="1" value="2" class="component" id="sf" onkeyup="createVector()"
+                                onchange="createVector()">
+                            </div>
+                        </div>
+                        
+                    </div>
                     <svg height="200" width="200" id="canvas1">
                         <path d="M 0 20 H 200 M 0 40 H 200 M 0 60
                         H 200 M 0 80 H 200 M 0 100 H 200 M 0 120
@@ -19,26 +39,36 @@
                         M 60 0 V 200 M 80 0 V 200 M 100 0 V 200
                         M 120 0 V 200 M 140 0 V 200 M 160 0 V 200
                         M 180 0 V 200" id="gridlines"></path>
-                        <line x1="100" y1="0" x2="100" y2="200" id="basislines"></line>
                         
-                        <line x1="0" y1="100" x2="200" y2="100" id="basislines"></line>
                         
-                        <line x1="100" y1="100" x2="120" y2="100" stroke="blue" id="line1" stroke-width="2"></line>
+                        
+                        <marker id="arrowhead1" markerWidth="3" markerHeight="3"
+                        refX=3 refY=1.5 orient="auto">
+                            <polygon points="0 0, 3 1.5, 0, 3" fill="blue"/>
+                        </marker>
+
+                        <marker id="arrowhead1x" markerWidth="3" markerHeight="3"
+                        refX=3 refY=1.5 orient="auto">
+                            <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                        </marker>
+                        <marker id="arrowhead1y" markerWidth="3" markerHeight="3"
+                        refX=3 refY=1.5 orient="auto">
+                            <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                        </marker>
+
+                        <line x1="100" y1="200" x2="100" y2="0" id="basislines"
+                        marker-end="url(#arrowhead1y)"></line>
+
+                        <line x1="0" y1="100" x2="200" y2="100" id="basislines"
+                        marker-end="url(#arrowhead1x)"></line>
+                        
+                        <line x1="100" y1="100" x2="120" y2="100" stroke="blue" id="line1" stroke-width="2"
+                        marker-end="url(#arrowhead1)"></line>
                         <circle cx="100" cy="100" r="3" fill="blue"></circle>
                     </svg>
-                    <div class="">
-                        x-Component: <input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
-                        <br>
-                        y-Component: <input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="0" onkeyup="createVector()" onchange="createVector()">
-                    </div>
+
                 </div>
-                <div class="vector2div" id="vectordivssmall">
-              
-                    <div class="">
-                        Scale Factor: <input type="number" min="-5" max="5" step="1" value="2" class="component" id="sf" onkeyup="createVector()"
-                        onchange="createVector()">
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="bigvector" id="vectorsect">
@@ -58,10 +88,32 @@
                 V 400 M 300 0 V 400 M 320 0 V 400 M 340 0 V 400 M
                 360 0 V 400 M 380 0 V 400
                 " id="gridlines"></path>
-                <line x1="200" y1="0" x2="200" y2="400" id="basislines"></line>
-                <line x1="0" y1="200" x2="400" y2="200" id="basislines"></line>
-                <line x1="200" y1="200" x2="240" y2="200" stroke="green" id="line5"></line>
-                <line x1="200" y1="200" x2="220" y2="200" stroke="red" id="line3"></line>
+
+                <marker id="arrowhead2" markerWidth="3" markerHeight="3"
+                refX=3 refY=1.5 orient="auto">
+                    <polygon points="0 0, 3 1.5, 0, 3" fill="green"/>
+                </marker>
+                <marker id="arrowhead3" markerWidth="3" markerHeight="3"
+                refX=3 refY=1.5 orient="auto">
+                    <polygon points="0 0, 3 1.5, 0, 3" fill="blue"/>
+                </marker>
+                <marker id="arrowhead2x" markerWidth="3" markerHeight="3"
+                refX=3 refY=1.5 orient="auto">
+                    <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                </marker>
+                <marker id="arrowhead2y" markerWidth="3" markerHeight="3"
+                refX=3 refY=1.5 orient="auto">
+                    <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
+                </marker>
+
+                <line x1="200" y1="400" x2="200" y2="0" id="basislines"
+                marker-end="url(#arrowhead2x)"></line>
+                <line x1="0" y1="200" x2="400" y2="200" id="basislines"
+                marker-end="url(#arrowhead2y)"></line>
+                <line x1="200" y1="200" x2="240" y2="200" stroke="green" id="line5"
+                marker-end="url(#arrowhead2)"></line>
+                <line x1="200" y1="200" x2="220" y2="200" stroke="red" id="line3"
+                marker-end="url(#arrowhead3)"></line>
 
                 
 
