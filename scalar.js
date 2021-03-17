@@ -24,15 +24,15 @@ function convertToSVGSmall(number, xOry) {
 }
 
 function convertToSVGBig(number, xOry) {
-    let scale = 20;
+    let scale = 25;
     if (xOry == "x") {
         value = number * scale;
-        value += 200;
+        value += 250;
         return value;
     } else if (xOry == "y") {
         let v1 = number * scale;
-        let v2 = v1 + 200;
-        let value = 400 - v2;
+        let v2 = v1 + 250;
+        let value = 500 - v2;
         return value;
     }
     return value;
@@ -52,13 +52,13 @@ function convertToVectorSmall(number, xOry) {
 }
 
 function convertToVectorBig(number, xOry) {
-    let scale = 20;
+    let scale = 25;
     if (xOry == "x") {
-        let v1 = (number - 200) / scale;
+        let v1 = (number - 250) / scale;
         let value = v1 / scale;
     } else if (xOry == "y") {
-        let v1 = 400 - number;
-        let v2 = number - 200;
+        let v1 = 500 - number;
+        let v2 = number - 250;
         let value = v2 / scale;
     }
     return value    
@@ -150,25 +150,29 @@ try {
         line1.setAttribute("y1", "100");
         line1.setAttribute("x2", v1xSVGStr);
         line1.setAttribute("y2", v1ySVGStr);
-        line1.setAttribute("stroke", "blue");
+        
 
         let line3 = elID("line3");
 
-        line3.setAttribute("x1", "200");
-        line3.setAttribute("y1", "200");
+        line3.setAttribute("x1", "250");
+        line3.setAttribute("y1", "250");
         line3.setAttribute("x2", v1xBStr);
         line3.setAttribute("y2", v1yBStr);
-        line3.setAttribute("stroke", "blue");
+        
         line3.setAttribute("stroke-width", "2");
 
 
         let line5 = elID("line5");
 
-        line5.setAttribute("x1", "200");
-        line5.setAttribute("y1", "200");
+        line5.setAttribute("x1", "250");
+        line5.setAttribute("y1", "250");
         line5.setAttribute("x2", v2xBStr);
         line5.setAttribute("y2", v2yBStr);
         line5.setAttribute("stroke-width", "4");
+
+        elID("v1output").innerHTML = scalef.toString();
+        elID("v2output").innerHTML = v1xStr.toString() + "<br>" + v1yStr.toString();
+        elID("v3output").innerHTML = (Math.round( (v1xStr*scalef) * 100000 ) / 100000).toString() + "<br>" + (Math.round( (v1yStr*scalef) * 100000 ) / 100000).toString();
 
 
 

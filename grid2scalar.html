@@ -15,8 +15,8 @@
                             <tr colspan=1>
                                 <td rowspan=2 class="vectbracket"> (</td>
                                 <td rowspan=1>
-                                    <input type="number" class="component" id="v1x" min="-5" max="5" step="1" value="1" onkeyup="createVector()" onchange="createVector()">
-                                    <br><input type="number" class="component" id="v1y" min="-5" max="5" step="1" value="0" onkeyup="createVector()" onchange="createVector()">
+                                    <input type="number" class="component" id="v1x" min="-5" max="5" step="0.1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                    <br><input type="number" class="component" id="v1y" min="-5" max="5" step="0.1" value="1" onkeyup="createVector()" onchange="createVector()">
                                 </td>
                                 <td rowspan=2 class="vectbracket">) </td>
                             </tr>
@@ -24,7 +24,7 @@
                         <div class="vector2div" id="vectordivssmall">
               
                             <div class="">
-                                Scale Factor: <input type="number" min="-5" max="5" step="1" value="2" class="component" id="sf" onkeyup="createVector()"
+                                Scale Factor: <input type="number" min="-5" max="5" step="0.1" value="2" class="component" id="sf" onkeyup="createVector()"
                                 onchange="createVector()">
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         
                         <marker id="arrowhead1" markerWidth="3" markerHeight="3"
                         refX=3 refY=1.5 orient="auto">
-                            <polygon points="0 0, 3 1.5, 0, 3" fill="blue"/>
+                            <polygon points="0 0, 3 1.5, 0, 3" fill="#daab73"/>
                         </marker>
 
                         <marker id="arrowhead1x" markerWidth="3" markerHeight="3"
@@ -62,9 +62,9 @@
                         <line x1="0" y1="100" x2="200" y2="100" id="basislines"
                         marker-end="url(#arrowhead1x)"></line>
                         
-                        <line x1="100" y1="100" x2="120" y2="100" stroke="blue" id="line1" stroke-width="2"
+                        <line x1="100" y1="100" x2="120" y2="80" stroke=#daab73 id="line1" stroke-width="2"
                         marker-end="url(#arrowhead1)"></line>
-                        <circle cx="100" cy="100" r="3" fill="blue"></circle>
+                        <circle cx="100" cy="100" r="3" fill="#daab73"></circle>
                     </svg>
 
                 </div>
@@ -72,30 +72,47 @@
             </div>
         </div>
         <div class="bigvector" id="vectorsect">
-            <svg height="400" width="400" id="canvas3">
-                <path d="M 0 20 H 400 M 0 40 H 400 M 0 60 H 400
-                M 0 80 H 400 M 0 100 H 400 M 0 120 H 400 
-                M 0 140 H 400 M 0 160 H 400 M 0 180 H 400 
-                M 0 220 H 400 M 0 240 H 400
-                M 0 260 H 400 M 0 280 H 400 M 0 300 H 400
-                M 0 320 H 400 M 0 340 H 400 M 0 360 H 400
-                M 0 380 H 400 M 0 400 H 400" 
-                id="gridlines"></path>
-                <path d="M 20 0 V 400 M 40 0 V 400 M 60 0 V 400
-                M 80 0 V 400 M 100 0 V 400 M 120 0 V 400 M 140 0
-                V 400 M 160 0 V 400 M 180 0 V 400
-                M 220 0 V 400 M 240 0 V 400 M 260 0 V 400 M 280 0
-                V 400 M 300 0 V 400 M 320 0 V 400 M 340 0 V 400 M
-                360 0 V 400 M 380 0 V 400
-                " id="gridlines"></path>
+            <div class="vectInput3">
+                <table>
+                    <tr colspan=1>
+                        <td rowspan=1 id="v1output">2
+                        <td>✕</td>
+                        <td rowspan=2 class="vectbracket"> (</td>
+                        <td rowspan=1 id="v2output">1<br>1
+                        </td>
+                        <td rowspan=2 class="vectbracket">) </td>  
+                        <td rowspan=2 class="vectbracket"> = </td>    
+                        <td rowspan=2 class="vectbracket"> (</td>
+                        <td rowspan=1 id="v3output">2<br>2
+                        </td>
+                        <td rowspan=2 class="vectbracket">) </td>                                                    
+                    </tr>
+                </table>
+            </div>
+            <svg height="500" width="500" id="canvas3">
+                    <path d="M 0 25 H 500 M 0 50 H 500 M 0 75 H 500
+                    M 0 100 H 500 M 0 125 H 500 M 0 150 H 500 
+                    M 0 175 H 500 M 0 200 H 500 M 0 225 H 500 
+                    M 0 275 H 500 M 0 300 H 500
+                    M 0 325 H 500 M 0 350 H 500 M 0 375 H 500
+                    M 0 400 H 500 M 0 425 H 500 M 0 450 H 500
+                    M 0 475 H 500 M 0 500 H 500" 
+                    stroke="white" id="gridlines"></path>
+                    <path d="M 25 0 V 500 M 50 0 V 500 M 75 0 V 500
+                    M 100 0 V 500 M 125 0 V 500 M 150 0 V 500 M 175 0
+                    V 500 M 200 0 V 500 M 225 0 V 500 
+                    M 275 0 V 500 M 300 0 V 500 M 325 0 V 500 M 350 0
+                    V 500 M 375 0 V 500 M 400 0 V 500 M 425 0 V 500 M
+                    450 0 V 500 M 475 0 V 500
+                    " id="gridlines"></path>
 
                 <marker id="arrowhead2" markerWidth="3" markerHeight="3"
                 refX=3 refY=1.5 orient="auto">
-                    <polygon points="0 0, 3 1.5, 0, 3" fill="green"/>
+                    <polygon points="0 0, 3 1.5, 0, 3" fill="#afdb85"/>
                 </marker>
                 <marker id="arrowhead3" markerWidth="3" markerHeight="3"
                 refX=3 refY=1.5 orient="auto">
-                    <polygon points="0 0, 3 1.5, 0, 3" fill="blue"/>
+                    <polygon points="0 0, 3 1.5, 0, 3" fill="#daab73"/>
                 </marker>
                 <marker id="arrowhead2x" markerWidth="3" markerHeight="3"
                 refX=3 refY=1.5 orient="auto">
@@ -106,15 +123,17 @@
                     <polygon points="0 0, 3 1.5, 0, 3" fill="white"/>
                 </marker>
 
-                <line x1="200" y1="400" x2="200" y2="0" id="basislines"
+                <line x1="250" y1="500" x2="250" y2="0" id="basislines"
                 marker-end="url(#arrowhead2x)"></line>
-                <line x1="0" y1="200" x2="400" y2="200" id="basislines"
+                <line x1="0" y1="250" x2="500" y2="250" id="basislines"
                 marker-end="url(#arrowhead2y)"></line>
-                <line x1="200" y1="200" x2="240" y2="200" stroke="green" id="line5"
-                marker-end="url(#arrowhead2)"></line>
-                <line x1="200" y1="200" x2="220" y2="200" stroke="red" id="line3"
-                marker-end="url(#arrowhead3)"></line>
-
+                <line x1="250" y1="250" x2="300" y2="200" stroke=#afdb85 id="line5"
+                marker-end="url(#arrowhead2)" stroke-width="4"></line>
+                <circle cx="250" cy="250" r="5" fill="#afdb85"></circle>
+                <line x1="250" y1="250" x2="275" y2="225" stroke=#daab73 id="line3"
+                marker-end="url(#arrowhead3)" stroke-width="2"></line>
+                
+                <circle cx="250" cy="250" r="5" fill="#daab73"></circle>
                 
 
             </svg>

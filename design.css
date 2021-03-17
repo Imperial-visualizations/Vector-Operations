@@ -18,7 +18,7 @@ html {
 }
 #smallvectors {
     
-    padding: 10px;
+    padding: 0px;
     
 } #vectordivsmall {
     background: linear-gradient(135deg,#7aaed7,#466589);
@@ -61,13 +61,22 @@ input {
 .vectInput {
     background: linear-gradient(194deg,#466589,#7aaed7);
     color: white;
-    height: 50px;
+    height: 70px;
+    padding-left: 10px;
+    padding-top: 3px;
 }
 .vectInput2 {
     background: linear-gradient(194deg,#466589,#7aaed7);
     color: white;
     height: 80px;
     font-family: Cambria;
+}
+.vectInput3 {
+    background: linear-gradient(194deg,#466589,#7aaed7);
+    color: white;
+    height: 50px;
+    font-family: Cambria;
+    width: 500px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -83,5 +92,20 @@ input:active {
 input:focus {
     border: none;
     outline: none;
-    background: #7aaed780
+    background: #7aaed780;
+}
+input:hover {
+    background: #7aaed780;
+}
+input:checked {
+    outline: none;
+}
+.bigvector {
+    margin-left: 210px;
+}
+#v1output, #v2output, #v3output {
+    text-align: center;
+}
+.vectorlbls {
+    display: none;
 }
