@@ -1,7 +1,8 @@
 // Numbers for svg elements
 const scale = 20;
+const scale2 = 25;
 const smallDisplace = 100;
-const bigDisplace = 200;
+const bigDisplace = 250;
 
 // Store our vectors
 let vector1 = [1, 0];
@@ -24,10 +25,17 @@ const line2 = elID("line2");
 const line3 = elID("line3");
 const line4 = elID("line4");
 const line5 = elID("line5");
+
+const ptblue = elID("ptblue");
+
 const v1x = elID("v1x");
 const v1y = elID("v1y");
 const v2x = elID("v2x");
 const v2y = elID("v2y");
+
+const v1Output = elID("v1output");
+const v2Output = elID("v2output");
+const v3Output = elID("v3output");
 
 // Useful conversion functions
 function convertToSVGSmall(vector) {
@@ -42,8 +50,8 @@ function convertToSVGSmall(vector) {
 function convertToSVGBig(vector) {
     let svgVector = [];
 
-    svgVector.push(vector[0] * scale + bigDisplace);
-    svgVector.push(bigDisplace - vector[1] * scale);
+    svgVector.push(vector[0] * scale2 + bigDisplace);
+    svgVector.push(bigDisplace - vector[1] * scale2);
 
     return svgVector;
 }
@@ -60,8 +68,8 @@ function convertToVectorSmall(vector) {
 function convertToVectorBig(vector) {
     let realVector = [];
 
-    realVector.push((vector[0] - bigDisplace) / scale);
-    realVector.push((bigDisplace - vector[1]) / scale);
+    realVector.push((vector[0] - bigDisplace) / scale2);
+    realVector.push((bigDisplace - vector[1]) / scale2);
 
     return vector;
 }
@@ -78,6 +86,9 @@ function updateVectorSvg() {
     line1.setAttribute("y2", smallVector1[1].toString());
 
     const bigVector1 = convertToSVGBig(vector1);
+
+    ptblue.setAttribute("cx", bigVector1[0].toString());
+    ptblue.setAttribute("cy", bigVector1[1].toString());
 
     line3.setAttribute("x1", bigDisplace.toString());
     line3.setAttribute("y1", bigDisplace.toString());
@@ -118,6 +129,10 @@ function updateVectorInput() {
     v2x.value = vector2[0].toString();
     v2y.value = vector2[1].toString();
 
+    //Updates Equation    
+    v1Output.innerHTML = vector1[0].toString() + "<br>" + vector1[1].toString();
+    v2Output.innerHTML = vector2[0].toString() + "<br>" + vector2[1].toString();
+    v3Output.innerHTML = (Math.round((vector2[0]+vector1[0])*100) / 100).toString() + "<br>" + (Math.round((vector2[1]+vector1[1])*100000) / 100000).toString();
 }
 
 // Run the update functions when the page loads
