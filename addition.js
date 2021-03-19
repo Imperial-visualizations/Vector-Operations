@@ -1,3 +1,14 @@
+// Numbers for svg elements
+const scale = 20;
+const scale2 = 25;
+const smallDisplace = 100;
+const bigDisplace = 250;
+
+// Store our vectors
+let vector1 = [1, 0];
+let vector2 = [0, 1];
+
+// Helper functions for getting elements
 function elClass(className) {
     return document.getElementsByClassName(className);
 }
@@ -6,187 +17,212 @@ function elID(id) {
     return document.getElementById(id);
 }
 
-function convertToSVGSmall(number, xOry) {
-    let scale = 20;
-    if (xOry == "x") {
-        value = number * scale;
-        value += 100;
-        return value;
-    } else if (xOry == "y") {
-        //alert(number);
-        let v1 = number * scale;
-        let v2 = v1 + 100;
-        let value = 200 - v2;
-        return value;
-    }
-    
-    return value;
+// Store our various element ids
+const canvas1 = elID("canvas1");
+const canvas2 = elID("canvas2");
+const line1 = elID("line1");
+const line2 = elID("line2");
+const line3 = elID("line3");
+const line4 = elID("line4");
+const line5 = elID("line5");
+const ptblue = elID("ptblue");
+const v1x = elID("v1x");
+const v1y = elID("v1y");
+const v2x = elID("v2x");
+const v2y = elID("v2y");
+const v1Output = elID("v1output");
+const v2Output = elID("v2output");
+const v3Output = elID("v3output");
+
+// Useful conversion functions
+function convertToSVGSmall(vector) {
+    let svgVector = [];
+
+    svgVector.push(vector[0] * scale + smallDisplace);
+    svgVector.push(smallDisplace - vector[1] * scale);
+
+    return svgVector;
 }
 
-function convertToSVGBig(number, xOry) {
-    let scale = 20;
-    if (xOry == "x") {
-        value = number * scale;
-        value += 200;
-        return value;
-    } else if (xOry == "y") {
-        let v1 = number * scale;
-        let v2 = v1 + 200;
-        let value = 400 - v2;
-        return value;
-    }
-    return value;
+function convertToSVGBig(vector) {
+    let svgVector = [];
+
+    svgVector.push(vector[0] * scale2 + bigDisplace);
+    svgVector.push(bigDisplace - vector[1] * scale2);
+
+    return svgVector;
 }
 
-function convertToVectorSmall(number, xOry) {
-    let scale = 20;
-    if (xOry == "x") {
-        let v1 = (number - 100) / scale;
-        let value = v1 / scale;
-    } else if (xOry == "y") {
-        let v1 = 200 - number;
-        let v2 = number - 100;
-        let value = v2 / scale;
-    }
-    return value    
+function convertToVectorSmall(vector) {
+    let realVector = [];
+
+    realVector.push((vector[0] - smallDisplace) / scale);
+    realVector.push((smallDisplace - vector[1]) / scale);
+
+    return realVector;
 }
 
-function convertToVectorBig(number, xOry) {
-    let scale = 20;
-    if (xOry == "x") {
-        let v1 = (number - 200) / scale;
-        let value = v1 / scale;
-    } else if (xOry == "y") {
-        let v1 = 400 - number;
-        let v2 = number - 200;
-        let value = v2 / scale;
-    }
-    return value    
-}    
+function convertToVectorBig(vector) {
+    let realVector = [];
 
+    realVector.push((vector[0] - bigDisplace) / scale2);
+    realVector.push((bigDisplace - vector[1]) / scale2);
 
-
-function createVector() {
-try {
-    let c1 = document.getElementById("canvas1");
-    let c2 = document.getElementById("canvas2");
-    let c3 = document.getElementById("canvas3");
-
-    let l1 = document.getElementById("l1");
-    let l2 = document.getElementById("l2");
-    let l3 = document.getElementById("l3");
-    let l4 = document.getElementById("l4");
-    let l5 = document.getElementById("l5");
-
-    //c1.remove(l1);
-    //c2.remove(l2);
-    //c3.remove(l3);
-    //c3.remove(l4);
-    //c3.remove(l5);
-    
-} catch (error){
-    //alert(error);
+    return vector;
 }
 
+// Updates all drawings of vectors
+function updateVectorSvg() {
 
-    let v1xStr = document.getElementById("v1x").value;
-    let v1yStr = document.getElementById("v1y").value;
-    let v2xStr = document.getElementById("v2x").value;
-    let v2yStr = document.getElementById("v2y").value;
+    // draw vector 1
+    const smallVector1 = convertToSVGSmall(vector1);
 
-    //alert(v1xStr); //alert(v1yStr); //alert(v2xStr); //alert(v2yStr);
-    
-    try {
-        let v1xC = parseInt(v1xStr);
-        let v2xC = parseInt(v2xStr);
-        let v1yC = parseInt(v1yStr);
-        let v2yC = parseInt(v2yStr);
+    line1.setAttribute("x1", smallDisplace.toString());
+    line1.setAttribute("y1", smallDisplace.toString());
+    line1.setAttribute("x2", smallVector1[0].toString());
+    line1.setAttribute("y2", smallVector1[1].toString());
 
-        let v1xA = v1xC; 
-        let v1yA = v1yC;
-        let v2xA = v2xC;
-        let v2yA = v2yC;
+    const bigVector1 = convertToSVGBig(vector1);
 
-        //alert(v1xC); //alert(v1yC);
+    ptblue.setAttribute("cx", bigVector1[0].toString());
+    ptblue.setAttribute("cy", bigVector1[1].toString());
 
-        let v1x = convertToSVGSmall(v1xC, "x");
-        //alert("y component of first value");
-        //alert(v1yC);
-        let v1y = convertToSVGSmall(v1yC, "y");
-        //alert("CONVERTED TO SVG")
-        //alert(v1y);
-        let v2x = convertToSVGSmall(v2xC, "x");
-        let v2y = convertToSVGSmall(v2yC, "y");
+    line3.setAttribute("x1", bigDisplace.toString());
+    line3.setAttribute("y1", bigDisplace.toString());
+    line3.setAttribute("x2", bigVector1[0].toString());
+    line3.setAttribute("y2", bigVector1[1].toString());
 
-        //alert("CONVERT TO SVGSMALL");
-        //alert(v1x); alert(v1y);
+    // draw vector 2
+    const smallVector2 = convertToSVGSmall(vector2);
 
-        let v1xSVGStr = v1x.toString();
-        let v1ySVGStr = v1y.toString();
-        let v2xSVGStr = v2x.toString();
-        let v2ySVGStr = v2y.toString();
+    line2.setAttribute("x1", smallDisplace.toString());
+    line2.setAttribute("y1", smallDisplace.toString());
+    line2.setAttribute("x2", smallVector2[0].toString());
+    line2.setAttribute("y2", smallVector2[1].toString());
 
-        let v1xB = convertToSVGBig(v1xA, "x");
-        let v1yB = convertToSVGBig(v1yA, "y");
-        let v2xB = convertToSVGBig(v2xA + v1xA, "x");
-        let v2yB = convertToSVGBig(v2yA + v1yA, "y");
+    const bigVector2 = convertToSVGBig(vector2);
+
+    line4.setAttribute("x1", bigVector1[0].toString());
+    line4.setAttribute("y1", bigVector1[1].toString());
+    line4.setAttribute("x2", (bigVector1[0] + bigVector2[0] - bigDisplace).toString());
+    line4.setAttribute("y2", (bigVector1[1] + bigVector2[1] - bigDisplace).toString());
+
+    // draw vector 3
+    line5.setAttribute("x1", bigDisplace.toString());
+    line5.setAttribute("y1", bigDisplace.toString());
+    line5.setAttribute("x2", (bigVector1[0] + bigVector2[0] - bigDisplace).toString());
+    line5.setAttribute("y2", (bigVector1[1] + bigVector2[1] - bigDisplace).toString());
+
+}
+
+// Updates the numerical representations of the vectors
+function updateVectorInput() {
+
+    // update vector 1 input
+    v1x.value = vector1[0].toString();
+    v1y.value = vector1[1].toString();
+
+    // update vector 2 input
+    v2x.value = vector2[0].toString();
+    v2y.value = vector2[1].toString();
+
+    //Updates Equation    
+    v1Output.innerHTML = vector1[0].toString() + "<br>" + vector1[1].toString();
+    v2Output.innerHTML = vector2[0].toString() + "<br>" + vector2[1].toString();
+    v3Output.innerHTML = (Math.round((vector2[0]+vector1[0])*100) / 100).toString() + "<br>" + (Math.round((vector2[1]+vector1[1])*100000) / 100000).toString();
+}
+
+// Run the update functions when the page loads
+updateVectorSvg();
+updateVectorInput();
+
+// Handle inputs
+v1x.oninput = function() {
+
+    if(!isNaN(v1x.valueAsNumber)) {
+        vector1[0] = v1x.valueAsNumber;
+        updateVectorSvg();
+        updateVectorInput();
+    }
+
+}
+
+v1y.oninput = function() {
+
+    if(!isNaN(v1y.valueAsNumber)) {
+        vector1[1] = v1y.valueAsNumber;
+        updateVectorSvg();
+        updateVectorInput();
+    }
+}
+
+v2x.oninput = function() {
+
+    if(!isNaN(v2x.valueAsNumber)) {
+        vector2[0] = v2x.valueAsNumber;
+        updateVectorSvg();
+        updateVectorInput();
+    }
+}
+
+v2y.oninput = function() {
+
+    if(!isNaN(v2y.valueAsNumber)) {
+        vector2[1] = v2y.valueAsNumber;
+        updateVectorSvg();
+        updateVectorInput();
+    }
+}
+
+// Use the mouse to manipulate vectors
+let mousePressed = false;
+
+canvas1.onmousemove = function(event) {
+
+    if(mousePressed) {
+
+        let canvas1X = canvas1.getBoundingClientRect().x;
+        let canvas1Y = canvas1.getBoundingClientRect().y;
+        let mouseX = event.clientX;
+        let mouseY = event.clientY;
+
+        vector1 = convertToVectorSmall([mouseX - canvas1X, mouseY - canvas1Y]);
+
+        updateVectorSvg();
+        updateVectorInput();
+    }
+}
+
+canvas1.onmousedown = function (event) {
+    canvas1.style.cursor = "grabbing";
+    mousePressed = true;
+    canvas1.onmousemove(event);
+};
+
+canvas2.onmousemove = function (event) {
+
+    if(mousePressed) {
         
+        let canvas2X = canvas2.getBoundingClientRect().x;
+        let canvas2Y = canvas2.getBoundingClientRect().y;
+        let mouseX = event.clientX;
+        let mouseY = event.clientY;
 
-        //v2xB += v1xB;
-        //v2yB += v1yB;
+        vector2 = convertToVectorSmall([mouseX - canvas2X, mouseY - canvas2Y]);
 
-        let v1xBStr = v1xB.toString();
-        let v1yBStr = v1yB.toString();
-        let v2xBStr = v2xB.toString();
-        let v2yBStr = v2yB.toString();
-
-        //alert(v1xSVGStr); alert(v1ySVGStr);
-        //alert(v2xSVGStr); alert(v2ySVGStr);
-
-        let line1 = elID("line1");
-
-        line1.setAttribute("x1", "100");
-        line1.setAttribute("y1", "100");
-        line1.setAttribute("x2", v1xSVGStr);
-        line1.setAttribute("y2", v1ySVGStr);
-        line1.setAttribute("stroke", "red");
-
-        let line2 = elID("line2");
-
-        line2.setAttribute("x1", "100");
-        line2.setAttribute("y1", "100");
-        line2.setAttribute("x2", v2xSVGStr);
-        line2.setAttribute("y2", v2ySVGStr);
-        line2.setAttribute("stroke", "blue");
-        
-        let line3 = elID("line3");
-
-        line3.setAttribute("x1", "200");
-        line3.setAttribute("y1", "200");
-        line3.setAttribute("x2", v1xBStr);
-        line3.setAttribute("y2", v1yBStr);
-        line3.setAttribute("stroke", "red");
-
-        let line4 = elID("line4");
-
-        line4.setAttribute("x1", v1xBStr);
-        line4.setAttribute("y1", v1yBStr);
-        line4.setAttribute("x2", v2xBStr);
-        line4.setAttribute("y2", v2yBStr);
-        line4.setAttribute("stroke", "blue");
-
-        let line5 = elID("line5");
-
-        line5.setAttribute("x1", "200");
-        line5.setAttribute("y1", "200");
-        line5.setAttribute("x2", v2xBStr);
-        line5.setAttribute("y2", v2yBStr);
-
-
-
-    } catch(error) {
-        alert(error);
+        updateVectorSvg();
+        updateVectorInput();
     }
-
 }
 
+canvas2.onmousedown = function (event) {
+    canvas2.style.cursor = "grabbing";
+    mousePressed = true;
+    canvas2.onmousemove(event);
+};
+
+window.onmouseup = function () {
+    canvas1.style.cursor = "pointer";
+    canvas2.style.cursor = "pointer";
+    mousePressed = false;
+};
