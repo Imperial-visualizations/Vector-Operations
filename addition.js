@@ -25,11 +25,14 @@ const line2 = elID("line2");
 const line3 = elID("line3");
 const line4 = elID("line4");
 const line5 = elID("line5");
+
 const ptblue = elID("ptblue");
+
 const v1x = elID("v1x");
 const v1y = elID("v1y");
 const v2x = elID("v2x");
 const v2y = elID("v2y");
+
 const v1Output = elID("v1output");
 const v2Output = elID("v2output");
 const v3Output = elID("v3output");
