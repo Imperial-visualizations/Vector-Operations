@@ -109,3 +109,35 @@ input:checked {
 .vectorlbls {
     display: none;
 }
+.slider {
+    background: none;
+    cursor: pointer;
+}
+.vectInput2A {
+    background: linear-gradient(194deg,#466589,#7aaed7);
+    color: white;
+    height: 120px;
+    font-family: Cambria;
+    width: 200px;
+}
+#sliderN {
+    background: none;
+    width: 180px;
+}
+.svgvaluelabel {
+    font-family: 15px;
+    fill: white;
+}
+#slide {
+    fill: #466589;
+    rx: 50%;
+}
+#sliderhandle {
+    fill: none;
+    
+}
+#slider2 {
+    fill: #7aaed780;
+    rx: 3;
+    width: 180px;
+}
