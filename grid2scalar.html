@@ -10,13 +10,13 @@
         <div id="vectsect" class="smallVect">
             <div id="smallvectors">
                 <div class="vector1div" id="vectordivssmall">
-                    <div class="vectInput2">
+                    <div class="vectInput2A">
                         <table>
                             <tr colspan=1>
                                 <td rowspan=2 class="vectbracket"> (</td>
                                 <td rowspan=1>
-                                    <input type="number" class="component" id="v1x" min="-5" max="5" step="0.1" value="1" onkeyup="createVector()" onchange="createVector()">
-                                    <br><input type="number" class="component" id="v1y" min="-5" max="5" step="0.1" value="1" onkeyup="createVector()" onchange="createVector()">
+                                    <input type="number" class="component" id="v1x" min="-5" max="5" step="0.1" value="1" >
+                                    <br><input type="number" class="component" id="v1y" min="-5" max="5" step="0.1" value="1">
                                 </td>
                                 <td rowspan=2 class="vectbracket">) </td>
                             </tr>
@@ -24,9 +24,20 @@
                         <div class="vector2div" id="vectordivssmall">
               
                             <div class="">
-                                Scale Factor: <input type="number" min="-5" max="5" step="0.1" value="2" class="component" id="sf" onkeyup="createVector()"
-                                onchange="createVector()">
+                                Scale Factor: <input type="number" min="-5" max="5" step="0.1" value="2" class="component" id="sf">
                             </div>
+                            <svg height="10" width="186" class="slider" id="slidersvg">
+                                <rect x="3" y="2.5" height="5" width="180" rx="3" id="slider2"></rect>
+                                <rect x="3" y="2.5" height="5" width="20" rx="3" id="sliderhandle"></rect>
+                                <rect x="20" cy="5" width="10" height="10"  fill="#153458" id="slide"></rect>
+                                
+                            </svg>
+                            <svg height="30" width="180" id="sliderN">
+                                <text x="0" y="10" class="svgvaluelabel">-5</text>
+                                <text x="90" y="10" class="svgvaluelabel">0</text>
+                                <text x="172" y="10" class="svgvaluelabel">5</text>
+                            </svg>
+                            <p></p>
                         </div>
                         
                     </div>
@@ -77,10 +88,10 @@
                     <tr colspan=1>
                         <td rowspan=1 id="v1output">2
                         <td>✕</td>
-                        <td rowspan=2 class="vectbracket"> (</td>
+                        
                         <td rowspan=1 id="v2output">1<br>1
                         </td>
-                        <td rowspan=2 class="vectbracket">) </td>  
+                        
                         <td rowspan=2 class="vectbracket"> = </td>    
                         <td rowspan=2 class="vectbracket"> (</td>
                         <td rowspan=1 id="v3output">2<br>2
