@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vector Operations - Vector Projection</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="projection.css">
+    </head>
+    <h1>Vector Operations - Vector Projection</h1>
+
+    <div id="diagramandinfo">
+
+        <div class="section" id="vectorgraphdiv">
+            <svg id="vectorgraph">
+
+
+                <path d="M 0 25 H 500 M 0 50 H 500 M 0 75 H 500
+                M 0 100 H 500 M 0 125 H 500 M 0 150 H 500 M 0 175 H 500
+                M 0 200 H 500 M 0 225 H 500 M 0 275 H 500
+                M 0 300 H 500 M 0 325 H 500 M 0 350 H 500 M 0 375 H 500
+                M 0 400 H 500 M 0 425 H 500 M 0 450 H 500 M 0 475 H 500"
+                stroke="white" stroke-dasharray="1"></path>
+                <path d="M 25 0 V 500 M 50 0 V 500 M 75 0 V 500 M 100 0 V 500
+                M 125 0 V 500 M 150 0 V 500 M 175 0 V 500 M 200 0 V 500
+                M 225 0 V 500  M 275 0 V 500 M 300 0 V 500
+                M 325 0 V 500 M 350 0 V 500 M 375 0 V 500 M 400 0 V 500
+                M 425 0 V 500 M 450 0 V 500 M 475 0 V 500"
+                stroke="white" stroke-dasharray="1"></path>
+
+                <line x1="0" y1="250" x2="500" y2="250" stroke="white" class="axislines" stroke-width="4"></line>
+                <line x1="250" y1="0" x2="250" y2="500" stroke="white" class="axislines" stroke-width="4"></line>
+
+                <text x="12" y="270" class="axislabel">-9</text>
+                <text x="40" y="270" class="axislabel">-8</text>
+                <text x="65" y="270" class="axislabel">-7</text>
+                <text x="90" y="270" class="axislabel">-6</text>
+                <text x="115" y="270" class="axislabel">-5</text>
+                <text x="140" y="270" class="axislabel">-4</text>
+                <text x="165" y="270" class="axislabel">-3</text>
+                <text x="190" y="270" class="axislabel">-2</text>
+                <text x="215" y="270" class="axislabel">-1</text>
+                <text x="270" y="270" class="axislabel">1</text>
+                <text x="295" y="270" class="axislabel">2</text>
+                <text x="320" y="270" class="axislabel">3</text>
+                <text x="345" y="270" class="axislabel">4</text>
+                <text x="370" y="270" class="axislabel">5</text>
+                <text x="395" y="270" class="axislabel">6</text>
+                <text x="420" y="270" class="axislabel">7</text>
+                <text x="445" y="270" class="axislabel">8</text>
+                <text x="470" y="270" class="axislabel">9</text>
+
+                <text y="30" x="235" class="axislabel">9</text>
+                <text y="55" x="235" class="axislabel">8</text>
+                <text y="80" x="235" class="axislabel">7</text>
+                <text y="105" x="235" class="axislabel">6</text>
+                <text y="130" x="235" class="axislabel">5</text>
+                <text y="155" x="235" class="axislabel">4</text>
+                <text y="180" x="235" class="axislabel">3</text>
+                <text y="205" x="235" class="axislabel">2</text>
+                <text y="230" x="235" class="axislabel">1</text>
+                <text y="280" x="230" class="axislabel">-1</text>
+                <text y="305" x="230" class="axislabel">-2</text>
+                <text y="330" x="230" class="axislabel">-3</text>
+                <text y="355" x="230" class="axislabel">-4</text>
+                <text y="380" x="230" class="axislabel">-5</text>
+                <text y="405" x="230" class="axislabel">-6</text>
+                <text y="430" x="230" class="axislabel">-7</text>
+                <text y="455" x="230" class="axislabel">-8</text>
+                <text y="480" x="230" class="axislabel">-9</text>
+
+                <line x1="250" y1="250" x2="400" y2="130" stroke="#fc75db" stroke-width="4" id="line1"></line>
+                <circle cx="400" cy="130" r="10" fill="#fc75db" stroke="white" stroke-width="3" id="circle1"></circle>
+                <line x1="250" y1="250" x2="200" y2="120" stroke="#daab73" stroke-width="4" id="line2"></line>
+                <circle cx="200" cy="120" r="10" fill="#daab73" stroke="white" stroke-width="3" id="circle2"></circle>
+                <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line3"></line>
+                <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line4" stroke-dasharray="4"></line>
+                <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line5"></line>
+                <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line6"></line>
+
+                <path id="arc1" stroke="white", stroke-width="3" fill="transparent"></path>
+
+
+
+            </svg>
+
+        </div>
+        <div class="section" id="vectorinfo">
+            <div id="formulas" class="subsection">
+                <div id="formula1" class="formula">
+                    
+                    Multiply the scalar <span>
+                    <table class="tabfrom">
+                        
+                        <tr>
+                            <td rowspan="2" colspan="1">
+                                projection by
+                            </td>
+                            <td class="numerator" colspan="1">
+                                <span style="text-decoration: underline;">r</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            
+                            <td rowspan="1" colspan="1">
+                                |<span style="text-decoration: underline;">r</span>|
+                            </td>
+                        </tr>
+
+                    </table></span>
+                </div>
+                <div id="formula2" class="formula">
+                
+                    <table class="tabform">
+                        <tr>
+                            <td rowspan="1" class="numerator"> 
+                                <span style="text-decoration: underline;">r</span> • <span style="text-decoration: underline;">s</span></td>
+                            <td rowspan="2">=</td>
+                            <td rowspan="2">|<span style="text-decoration: underline;">s</span>| cos θ</td>
+                        </tr>
+                        <td rowspan="1">|<span style="text-decoration: underline;">r</span>|</td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="subsection" id="inputs">
+                <div id="formula3" class="formula">
+                
+                    <table class="tabform">
+                        <tr>
+                            <td rowspan="2"><span style="text-decoration: underline;">r</span></td>
+                            <td rowspan="2">=</td>
+                            <td rowspan="2" class="vectbracket">[</td>
+                            <td rowspan="1"><input type="number" value="3" id="v1x" step="0.1"></td>
+                            <td rowspan="2" class="vectbracket">]</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1"><input type="number" value="1" id="v1y" step="0.1"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="formula4" class="formula">
+                
+                    <table class="tabform">
+                        <tr>
+                            <td rowspan="2" style="text-decoration: underline;">s</td>
+                            <td rowspan="2"> =</td>
+                            <td rowspan="2" class="vectbracket"> [</td>
+                            <td rowspan="1"> <input type="number" value="1" id="v2x" step="0.1"></td>
+                            <td rowspan="2" class="vectbracket"> ]</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1"><input type="number" value="2" id="v2y" step="0.1"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="formula3" class="formula">
+                
+                    <table class="tabform">
+                        <tr>
+                            <td rowspan="1" class="numerator">
+                                <span style="text-decoration: underline;">r</span>
+                            </td>
+                            <td rowspan="2"> = </td>
+                            <td rowspan="2" class="vectbracket"> [ </td>
+                            <td rowspan="1"><input type="number" value="30" id="v3x" step="0.01"></td>
+                            <td rowspan="2" class="vectbracket">]</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1">
+                                |<span style="text-decoration: underline;">r</span>|
+                            </td>
+                                <td rowspan="1"><input type="number" value="30" id="v3y" step="0.01"></td>
+                                
+                            </td>
+                            
+                            <td><td rowspan="1">
+                        </tr>
+                    </table>
+                </div>
+                <a href="scalarprojection.html">
+                    <div class="prevnext" style="background: white; padding: 5%;width: 60px;text-align: center;">
+                        Previous
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="vectorprojection.js"></script>
+</html>
