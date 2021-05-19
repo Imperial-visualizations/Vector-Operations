@@ -1,6 +1,17 @@
+:root {
+    --background-colour: #15181d;
+    --bg-alternative: #22354b;
+    --hightlight-0: #7aaed7;
+    --highlight-1: #fc75db;
+    --highlight-2: #daab73;
+    --highlight-3: #afdb85;
+    --text-colour: #f0ffff;
+    --graph-lines: #f0ffff;
+}
+
 html {
     font-family: Cambria, serif;
-    background: linear-gradient(135deg,#7aaed7,#466589);
+    background: var(--background-colour);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: fixed;
@@ -8,27 +19,62 @@ html {
     width: 100%;
 }
 
+.select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+}
+
+select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    outline: none;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: 25px;
+    cursor: pointer;
+    line-height: inherit;
+    color: var(--text-colour);
+}
+
+select:focus {
+    box-shadow: 0px 0px 3pt 2pt var(--hightlight-0);
+}
+
+.container {
+    background: var(--bg-alternative);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    padding: 10px;
+    max-width: 1100px;
+    min-height: 600px;
+}
+
 .createbtn {
     padding: 5px;
     cursor: pointer;
-}
-#vectsect  {
-    float: left;
-   
 }
 .smallvect {
     width: 250px;
 }
 .component {
-    width: 50px;
+    width: 70px;
 }
 #smallvectors {
     display: flex;
     padding: 0px;
     
-} #vectordivsmall {
+} 
+
+#vectordivsmall {
     /*background: linear-gradient(135deg,#7aaed7,#466589);*/
-    background: #7aaed780;
+    background: inherit;
     padding: 5px;
 }
 .vector1div {
@@ -47,43 +93,44 @@ html {
 }
 #gridlines {
     stroke-dasharray: 1;
-    stroke: white;
+    stroke: var(--text-colour);
 }
 svg {
     /*background: linear-gradient(135deg,#7aaed7,#466589);*/
-    background: #7aafd733;
+    background: var(--background-colour);
 }
 #basislines {
-    stroke: white;
+    stroke: var(--text-colour);
     stroke-width: 3;
 }
 
 .vectbracket {
-    font-size: 100%;
+    font-size: 200%;
+    padding-bottom: 1%;
 }
 input {
     text-align: center;
     border: none;
-    size: 10;
+    font-size: 25px;
 }
 input {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-family: Cambria Light, serif;
     background: none;
-    color: white;
+    color: var(--text-colour);
 }
 .vectInput {
     /*background: linear-gradient(194deg,#466589,#7aaed7);*/
-    background: #46658980;
-    color: white;
+    background: var(--background-colour);
+    color: var(--text-colour);
     height: 70px;
     padding-left: 10px;
     padding-top: 3px;
 }
 .vectInput2 {
     /*background: linear-gradient(194deg,#466589,#7aaed7);*/
-    background: #7aaed780;
-    color: white;
+    background: var(--background-colour);
+    color: var(--text-colour);
     height: 80px;
     font-family: Cambria;
 }
@@ -99,7 +146,7 @@ input {
     
 }
 .vectOut3 {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -107,6 +154,11 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0%;
 }
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 input:active {
     border: none;
     outline: none;
@@ -124,7 +176,8 @@ input:checked {
     outline: none;
 }
 .bigvector {
-    margin-left: 440.5px;
+    float: left;
+    /* margin-left: 440.5px; */
 }
 
 #canvas3 {
@@ -133,6 +186,7 @@ input:checked {
 
 #v1output, #v2output, #v3output {
     text-align: center;
+    width: 70px;
 }
 .vectorlbls {
     display: none;
@@ -171,7 +225,7 @@ input:checked {
 }
 .equationsymbol {
     color: white;
-    font-size: 30px;
+    font-size: 25px;
     height: 200px;
 }
 .operationbuttons {
@@ -181,7 +235,9 @@ input:checked {
     cursor: pointer;
 }
 .operationbuttontext {
-    font-size: 20px;
+    font-size: 25px;
+    color: white;
+    text-align: center;
 }
 #btn2 {
     fill: #466589;

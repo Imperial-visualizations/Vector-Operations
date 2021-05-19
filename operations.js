@@ -1,6 +1,6 @@
 //Variables for operations
 let operation = "+";
-let operationArray = ["−", "+", "×"];
+// let operationArray = ["−", "+", "×"];
 let optionShow = true;
 
 // Numbers for svg elements
@@ -57,21 +57,21 @@ const v3Output = elID("v3output");
 const sfOutput = elID("sfOutput");
 const opsign = elID("opsign");
 
-const displayVector1 = elID("displayVector1");
-const displayVector2 = elID("displayVector2");
 const displayVector3 = elID("displayVector3");
 
 const btn1 = elID("btn1");
 const btn2 = elID("btn2");
 const btn3 = elID("btn3");
 
-const btntxt1 = elID("btntxt1");
-const btntxt2 = elID("btntxt2");
-const btntxt3 = elID("btntxt3");
+const operationSelect = elID("operation-select")
 
-const optioncanvas = elID("operationOptionSVG");
+//const btntxt1 = elID("btntxt1");
+//const btntxt2 = elID("btntxt2");
+//const btntxt3 = elID("btntxt3");
 
-const viewBtn = elID("viewbtn");
+// const optioncanvas = elID("operationOptionSVG");
+
+//const viewBtn = elID("viewbtn");
 
 const vect2div = elClass("v2div")[0];
 
@@ -83,6 +83,13 @@ const sliderSVG = elID("slidersvg");
 const slider = elID("slide");
 const sliderhandle = elID("sliderhandle");
 
+// Round to number of significant figures
+function toDecimalPlaces(value, sigfigs) {
+    return Math.round(value*10**sigfigs)/(10**sigfigs)
+    //return Number.parseFloat(value).toPrecision(sigfigs);
+}
+
+const toDecimalPlacesVector = (vector, sigfigs) => vector.map((value) => toDecimalPlaces(value, sigfigs));
 
 // Useful conversion functions
 function convertSliderBig(width) {
@@ -136,23 +143,22 @@ function arrowRefXBig(vector) {
 
 const vectorSum = (vec1, vec2) => vec1.map((element, i) => element + vec2[i]);
 
-//Changes type of operation
+// Changes type of operation
 function operate() {
     //console.log(operationArray[1]);
-    if (operationArray[1] == "+") {
-        vector2a[0] = vector2[0];
-        vector2a[1] = vector2[1];
-        vector3[0] = vector1[0] + vector2[0];
-        vector3[1] = vector1[1] + vector2[1];
-    } else if (operationArray[1] == "×") {
-        vector3[0] = vector1[0] * sf;
-        vector3[1] = vector1[1] * sf;
-
-    } else if (operationArray[1] == "−") {
-        vector2a[0] = 0 - vector2[0];
-        vector2a[1] = 0 - vector2[1];
-        vector3[0] = vector1[0] - vector2[0];
-        vector3[1] = vector1[1] - vector2[1];
+    if (operation === "+") {
+        vector2a[0] = toDecimalPlaces(vector2[0], 2);
+        vector2a[1] = toDecimalPlaces(vector2[1], 2);
+        vector3[0] = toDecimalPlaces(vector1[0] + vector2[0], 2);
+        vector3[1] = toDecimalPlaces(vector1[1] + vector2[1], 2);
+    } else if (operation === "×") {
+        vector3[0] = toDecimalPlaces(vector1[0] * sf, 2);
+        vector3[1] = toDecimalPlaces(vector1[1] * sf, 2);
+    } else if (operation === "−") {
+        vector2a[0] = toDecimalPlaces(-vector2[0], 2);
+        vector2a[1] = toDecimalPlaces(-vector2[1], 2);
+        vector3[0] = toDecimalPlaces(vector1[0] - vector2[0], 2);
+        vector3[1] = toDecimalPlaces(vector1[1] - vector2[1], 2);
     }
     //console.log(vector2a);
 }
@@ -243,15 +249,15 @@ function updateVectorInput() {
 
     //Updates Equation    
     v1Output.innerHTML = vector1[0].toString() + "<br>" + vector1[1].toString();
-    if (operationArray[1] == "×") {
-        v2Output.innerHTML = ((Math.round(sf * 10)) / 10).toString();
+    if (operation === "×") {
+        v2Output.innerHTML = toDecimalPlaces(sf, 2).toString();
     }
     else {
         v2Output.innerHTML = vector2[0].toString() + "<br>" + vector2[1].toString();
     }    
     
-    v3Output.innerHTML = (Math.round((vector3[0])*100000) / 100000).toString() + "<br>" + (Math.round((vector3[1])*100000) / 100000).toString();
-    sfOutput.innerHTML = ((Math.round(sf * 10))/10).toString();
+    v3Output.innerHTML = vector3[0].toString() + "<br>" + vector3[1].toString();
+    sfOutput.innerHTML = toDecimalPlaces(sf, 2).toString();
 }
 
 // Run the update functions when the page loads
@@ -262,7 +268,7 @@ updateVectorInput();
 v1x.oninput = function() {
 
     if(!isNaN(v1x.valueAsNumber)) {
-        vector1[0] = v1x.valueAsNumber;
+        vector1[0] = toDecimalPlaces(v1x.valueAsNumber, 2);
         operate();
         updateVectorSvg();
         updateVectorInput();
@@ -273,7 +279,7 @@ v1x.oninput = function() {
 v1y.oninput = function() {
 
     if(!isNaN(v1y.valueAsNumber)) {
-        vector1[1] = v1y.valueAsNumber;
+        vector1[1] = toDecimalPlaces(v1y.valueAsNumber, 2);
         operate();
         updateVectorSvg();
         updateVectorInput();
@@ -283,7 +289,7 @@ v1y.oninput = function() {
 v2x.oninput = function() {
 
     if(!isNaN(v2x.valueAsNumber)) {
-        vector2[0] = v2x.valueAsNumber;
+        vector2[0] = toDecimalPlaces(v2x.valueAsNumber, 2);
         operate();
         updateVectorSvg();
         updateVectorInput();
@@ -293,7 +299,7 @@ v2x.oninput = function() {
 v2y.oninput = function() {
 
     if(!isNaN(v2y.valueAsNumber)) {
-        vector2[1] = v2y.valueAsNumber;
+        vector2[1] = toDecimalPlaces(v2y.valueAsNumber, 2);
         operate();
         updateVectorSvg();
         updateVectorInput();
@@ -314,7 +320,7 @@ canvas1.onmousemove = function(event) {
         let mouseX = event.clientX;
         let mouseY = event.clientY;
 
-        vector1 = convertToVectorSmall([mouseX - canvas1X, mouseY - canvas1Y]);
+        vector1 = toDecimalPlacesVector(convertToVectorSmall([mouseX - canvas1X, mouseY - canvas1Y]),2);
 
         operate();
         updateVectorSvg();
@@ -352,9 +358,7 @@ canvas2.onmousemove = function (event) {
         let mouseX = event.clientX;
         let mouseY = event.clientY;
 
-        vector2 = convertToVectorSmall([mouseX - canvas2X, mouseY - canvas2Y]);
-        vector3[0] = vector1[0] + vector2[0];
-        vector3[1] = vector1[1] + vector2[1];
+        vector2 = toDecimalPlacesVector(convertToVectorSmall([mouseX - canvas2X, mouseY - canvas2Y]), 2);
 
         operate();
         updateVectorSvg();
@@ -387,28 +391,7 @@ window.onmouseup = function () {
     mousePressed = false;
 }
 
-displayVector1.checked = true;
-displayVector2.checked = true;
 displayVector3.checked = true;
-
-displayVector1.oninput = function () {   
-    if (displayVector1.checked) {
-        line3.style.display = "";
-        ptblue.style.display = "";
-    } else {
-        line3.style.display = "none";
-        ptblue.style.display = "none";
-    }
-}
-
-displayVector2.oninput = function () {   
-    if (displayVector2.checked) {
-        line4.style.display = "";
-    } else {
-        line4.style.display = "none";
-    }
-}
-
 
 displayVector3.oninput = function () {   
     if (displayVector3.checked) {
@@ -418,6 +401,7 @@ displayVector3.oninput = function () {
     }
 }
 
+/*
 optioncanvas.onmousedown = function(event) {
     let optioncanvasX = optioncanvas.getBoundingClientRect().x;
     let optioncanvasY = optioncanvas.getBoundingClientRect().y;
@@ -461,14 +445,12 @@ optioncanvas.onmousedown = function(event) {
         line4.style.display = "none";
         v2Bracket1.style.display = "none";
         v2Bracket2.style.display = "none";
-        displayVector2.display = "none";
         sfDiv.style.display = "inline";
 	line3.setAttribute("stroke-width", "2");
     } else {
         vect2div.style.display = "inline";
         line4.style.display = "inline";
         sfDiv.style.display = "none";
-        displayVector2.display = "block";
         v2Bracket1.style.display = "table-cell";
         v2Bracket2.style.display = "table-cell";
 	line3.setAttribute("stroke-width", "4");
@@ -498,10 +480,40 @@ optioncanvas.onmousedown = function(event) {
     }
 
     operate();
-
     updateVectorSvg();
     updateVectorInput();
 }
+*/
+
+operationSelect.oninput = function(event) {
+
+    operation = operationSelect.value;
+
+    // Set operation sign in lower equation
+    opsign.innerHTML = operation;
+
+    // Test if operation is multiplication
+    if (operation === "×") {
+        vect2div.style.display = "none";
+        line4.style.display = "none";
+        v2Bracket1.style.display = "none";
+        v2Bracket2.style.display = "none";
+        sfDiv.style.display = "inline";
+	line3.setAttribute("stroke-width", "2");
+    } else {
+        vect2div.style.display = "inline";
+        line4.style.display = "inline";
+        sfDiv.style.display = "none";
+        v2Bracket1.style.display = "table-cell";
+        v2Bracket2.style.display = "table-cell";
+	line3.setAttribute("stroke-width", "4");
+    }
+
+    operate();
+    updateVectorSvg();
+    updateVectorInput();
+}
+
 
 sliderSVG.onmousemove = function(event) {
     if (mousePressed) {
@@ -529,6 +541,7 @@ sliderSVG.onmouseup = function() {
     mousePressed= false;
 }
 
+/*
 viewBtn.onmousedown = function(event) {
     mousePressed = true;
     optioncanvas.style.display = "none";
@@ -538,3 +551,4 @@ viewBtn.onmousedown = function(event) {
 viewBtn.onmousedown = function(event) {
     mousePressed = false;
 }
+*/
