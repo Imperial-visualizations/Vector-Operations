@@ -70,7 +70,7 @@
                 <line x1="250" y1="250" x2="400" y2="130" stroke="#fc75db" stroke-width="4" id="line1"></line>
                 <circle cx="400" cy="130" r="10" fill="#fc75db" stroke="white" stroke-width="3" id="circle1"></circle>
                 <line x1="250" y1="250" x2="200" y2="120" stroke="#daab73" stroke-width="4" id="line2"></line>
-                <circle cx="200" cy="120" r="10" fill="#daab73" stroke="white" stroke-width="3" id="circle2"></circle>
+                
                 <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line3"></line>
                 <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line4" stroke-dasharray="4"></line>
                 <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line5"></line>
@@ -78,7 +78,18 @@
 
                 <path id="arc1" stroke="white", stroke-width="3" fill="transparent"></path>
 
+                <circle cx="200" cy="120" r="10" fill="#daab73" stroke="white" stroke-width="3" id="circle2"></circle>
 
+                <text y="480" x="230" class="vectorlbl" id="v1b1">[</text>
+                <text y="480" x="230" class="vectorlbl" id="v1xlbl">3</text>
+                <text y="480" x="230" class="vectorlbl" id="v1ylbl">3</text>
+                <text y="480" x="230" class="vectorlbl" id="v1b2">]</text>
+
+                <text y="480" x="230" class="vectorlbl" id="v2b1">[</text>
+                <text y="480" x="230" class="vectorlbl" id="v2xlbl">3</text>
+                <text y="480" x="230" class="vectorlbl" id="v2ylbl">3</text>
+                <text y="480" x="230" class="vectorlbl" id="v2b2">]</text>
+                
 
             </svg>
 
@@ -128,12 +139,12 @@
                         <tr>
                             <td rowspan="2"><span style="text-decoration: underline;">r</span></td>
                             <td rowspan="2">=</td>
-                            <td rowspan="2" class="vectbracket">[</td>
-                            <td rowspan="1"><input type="number" value="3" id="v1x" step="0.1"></td>
+                            <td rowspan="2" class="vectbracket">[ </td>
+                            <td rowspan="1"><span id="sign1">+</span><input type="number" value="3" id="v1x" step="0.1"></td>
                             <td rowspan="2" class="vectbracket">]</td>
                         </tr>
                         <tr>
-                            <td rowspan="1"><input type="number" value="1" id="v1y" step="0.1"></td>
+                            <td rowspan="1"><span id="sign2">+</span><input type="number" value="1" id="v1y" step="0.1"></td>
                         </tr>
                     </table>
                 </div>
@@ -143,12 +154,12 @@
                         <tr>
                             <td rowspan="2" style="text-decoration: underline;">s</td>
                             <td rowspan="2"> =</td>
-                            <td rowspan="2" class="vectbracket"> [</td>
-                            <td rowspan="1"> <input type="number" value="1" id="v2x" step="0.1"></td>
+                            <td rowspan="2" class="vectbracket"> [ </td>
+                            <td rowspan="1"><span id="sign3">+</span><input type="number" value="1" id="v2x" step="0.1"></td>
                             <td rowspan="2" class="vectbracket"> ]</td>
                         </tr>
                         <tr>
-                            <td rowspan="1"><input type="number" value="2" id="v2y" step="0.1"></td>
+                            <td rowspan="1"><span id="sign4">+</span><input type="number" value="2" id="v2y" step="0.1"></td>
                         </tr>
                     </table>
                 </div>
@@ -161,14 +172,14 @@
                             </td>
                             <td rowspan="2"> = </td>
                             <td rowspan="2" class="vectbracket"> [ </td>
-                            <td rowspan="1"><input type="number" value="30" id="v3x" step="0.01"></td>
+                            <td rowspan="1"><span id="sign5">+</span><input type="number" value="30" id="v3x" step="0.01"></td>
                             <td rowspan="2" class="vectbracket">]</td>
                         </tr>
                         <tr>
                             <td rowspan="1">
                                 |<span style="text-decoration: underline;">r</span>|
                             </td>
-                                <td rowspan="1"><input type="number" value="30" id="v3y" step="0.01"></td>
+                                <td rowspan="1"><span id="sign6">+</span><input type="number" value="30" id="v3y" step="0.01"></td>
                                 
                             </td>
                             

@@ -1,0 +1,107 @@
+html {
+    background: linear-gradient(135deg,#7aaed7,#466589);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    background-position: fixed;
+    font-family: sans-serif;
+}
+
+
+#diagramandinfo {
+    display: inline;
+}
+#section {
+    height: 500px;
+    display: inline;
+}
+#vectorgraphdiv {
+    float: left;
+}
+
+#vectorgraphdiv, #vectorgraph {
+    width: 500px;
+    height: 500px;
+}
+#vectorgraph {
+    background: transparent;
+}
+.gridlines {
+    stroke: white;
+    stroke-dasharray: 1;
+    
+}
+.axislines {
+    stroke-width: 4px;
+}
+.axislabel {
+    font-family: Cambria, serif;
+    font-weight: bold;
+    fill: white;
+}
+#vectorinfo {
+    width: 200px;
+    height: 480px;
+    background: linear-gradient(135deg,#7aaed7,#466589);
+    display: inline-block;
+    margin-left: 25px;
+    padding: 10px;
+}
+.tabform {
+    text-align: center;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+.numerator {
+    border-bottom: 2px solid;
+}
+.formula {
+    width: 200px;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: white;
+    font-family: Cambria, serif;
+}
+.tabform input {
+    width: 100px;
+    font-family: Cambria,  serif;
+    font-size: 20px;
+    border: none;
+    background: none;
+    text-align: center;
+    color: white;
+}
+#vectbracket {
+    font-size: 200%;
+}
+#prevnext {
+    background: white; 
+    padding: 5%;
+    width: 60px;
+    text-align: center;
+    
+}
+.tabform input:hover {
+    background: #7aaed7;
+}
+
+#vectorinfo #formulas {
+    border-radius: 2px solid white;
+}
+#vectun {
+    text-decoration: underline;
+}
+#subsection {
+    width: 200px;
+}
+#sign1, #sign2, #sign3, #sign4, #sign5, #sign6 {
+    display: none;
+}
+
+#v1b1, #v1b2, #v2b1, #v2b2 {
+    font-size: 200%;
+    font-weight: 200;
+}

@@ -8,29 +8,33 @@ const displace = 250;
 modroverr = [0.6, 0.8];
 
 // Store our vectors
-let vector1 = [6, 2];
-let vector2 = [1, 5];
-let vector3 = [3, 3];
+let vectorR = [6, 2];
+let vectorS = [1, 5];
+let vectorProjection = [3, 3];
 let theta = 30;
 let sp = 1;
 let T1 = 0;
 let T2 = 0;
+
+//Start and end points for the arc showing the angle between the vectors
+let start = [0, 0];
+let end = [0, 0];
 
 //Gets elements
 const rx = elID("v1x");
 const ry = elID("v1y");
 const sx = elID("v2x");
 const sy = elID("v2y");
-const v3x = elID("v3x");
-const v3y = elID("v3y");
+const modroverrx = elID("v3x");
+const modroverry = elID("v3y");
 const modroverrInput = elID("modroverrInput");
 
-const line1 = elID("line1");
-const line2 = elID("line2");
-const line3 = elID("line3");
-const line4 = elID("line4");
-const line5 = elID("line5");
-const line6 = elID("line6");
+const lineR = elID("line1");
+const lineS = elID("line2");
+const vpLine = elID("line3");
+const vplinedotted = elID("line4");
+const rightAngleLine1 = elID("line5");
+const rightAngleLine2 = elID("line6");
 
 const arc1 = elID("arc1");
 
@@ -39,29 +43,48 @@ const circle2 = elID("circle2");
 
 const vectorGraph = elID("vectorgraphdiv");
 
+const vRxlbl = elID("v1xlbl");
+const vRylbl = elID("v1ylbl");
+const vSxlbl = elID("v2xlbl");
+const vSylbl = elID("v2ylbl");
+
+//Brackets for the label of the 2 vectors
+//Brackets for vector 1
+//Left bracket
+const vRbracket1 = elID("v1b1");
+//Right bracket
+const vRbracket2 = elID("v1b2");
+//Brackets for vector 2
+//Left bracket
+const vSbracket1 = elID("v2b1");
+//Right bracket
+const vSbracket2 = elID("v2b2");
+
+//Function returning an element given its id
 function elID(id) {
     return document.getElementById(id);
 }
 
+//Function returning the dot product of 2 vectors
 function dotProduct(v1, v2) {
     return (v1[0] * v2[0]) + (v1[1] * v2[1]);
 }
 
+//Function returning the modulus of a vector
 function mod(v1) {
     return ( ( (v1[0]) ** 2 ) + ( (v1[1]) ** 2 ) ) ** 0.5
 }
 
-
+//Converts angles from degrees to radians
 function toRad(deg) {
     return ( Math.PI / 180) * deg;
 }
-
+//Converts angles from raidans to degrees
 function toDeg(rad) {
     return (180 / Math.PI) * rad;
 }
 
-
-
+//Function to find the SVG coordinates of a vector
 function convertToSVGBig(vector) {
     const svgVector = [];
 
@@ -71,7 +94,7 @@ function convertToSVGBig(vector) {
     return svgVector;
 }
 
-
+//Function to convert SVG coordinates into normal vectors
 function convertToVectorBig(vector) {
     const realVector = [];
 
@@ -81,89 +104,115 @@ function convertToVectorBig(vector) {
     return realVector;
 }
 
+//Function which changes values and calculates vector projection
 function operate(change) {
     
-    let cv1 = vector1[0] / mod(vector1);
-    theta = Math.cos()
-    T1 = Math.acos(cv1);
-    T2 = T1 + toRad(theta);
-    let ctheta = dotProduct(vector1, vector2) / (mod(vector1) * mod(vector2));
+    //Updates the angle between the vectors - useful for drawing 
+    //   the arc showing the angle between vector r and vector 
+    let ctheta = dotProduct(vectorR, vectorS) / (mod(vectorR) * mod(vectorS));
     theta = toDeg(Math.acos(ctheta));
     
-    if (change == "r" || change == "s") {
-        modroverr[0] = vector1[0] / mod(vector1);
-        modroverr[1] = vector1[1] / mod(vector1);
+    if (change === "r" || change === "s") {
+        modroverr[0] = vectorR[0] / mod(vectorR);
+        modroverr[1] = vectorR[1] / mod(vectorR);
     } else {
-        vector1[0] = mod(vector1) * modroverr[0];
-        vector1[1] = mod(vector1) * modroverr[1];
+        vectorR[0] = mod(vectorR) * modroverr[0];
+        vectorR[1] = mod(vectorR) * modroverr[1];
     }
 
+    //CALCULATES VECTOR PROJECTION (R dot S) times by (R divided by |R|)
+    //Finds the scalar projection - (R dot S) divided by |R|
+    sp = dotProduct(vectorR, vectorS) / mod(vectorR);
+    //Divides the scalar projection by the modulus of R
+    let spsf = dotProduct(vectorR, vectorS) / ( mod(vectorR) * mod(vectorR));
+    console.log(spsf);
+    
+    //Mutiplies (scalar projection divided by |R|) by R to get the vector projection
+    vectorProjection[0] = spsf * vectorR[0];
+    vectorProjection[1] = spsf * vectorR[1];
 
-    sp = dotProduct(vector1, vector2) / mod(vector1);
-    let spsf = sp / mod(vector1);
-    vector3[0] = spsf * vector1[0];
-    vector3[1] = spsf * vector1[1];
+    console.log((vectorProjection[0] / mod(vectorProjection)) - (vectorR[0] / mod(vectorR))   );
+    console.log((vectorProjection[1] / mod(vectorProjection)) - (vectorR[1] / mod(vectorR))   );
 
 }
 
 function updateVectorInput() {
-    rx.value = Math.round(vector1[0]*10)/10;
-    ry.value = Math.round(vector1[1]*10)/10;
-    sx.value = Math.round(vector2[0]*10)/10;
-    sy.value = Math.round(vector2[1]*10)/10;
-    v3x.value = Math.round(modroverr[0]*100)/100;
-    v3y.value = Math.round(modroverr[1]*100)/100;
+    //Updates input values for vector R
+    rx.value = Math.round(vectorR[0]*10)/10;
+    ry.value = Math.round(vectorR[1]*10)/10;
+    //Updates input values for vector S
+    sx.value = Math.round(vectorS[0]*10)/10;
+    sy.value = Math.round(vectorS[1]*10)/10;
+
+    //Updates values for vector projection
+    modroverrx.value = Math.round(modroverr[0]*100)/100;
+    modroverry.value = Math.round(modroverr[1]*100)/100;
+
+    //Updates the values for the label for vector R
+    vRxlbl.innerHTML = Math.round(vectorR[0]*10)/10;
+    vRylbl.innerHTML = Math.round(vectorR[1]*10)/10;
+
+    //Updates the values for the label for vector S
+    vSxlbl.innerHTML = Math.round(vectorS[0]*10)/10;
+    vSylbl.innerHTML = Math.round(vectorS[1]*10)/10;
+
 }
 
 function updateVectorSVG() {
-    ra1 = [-1, 1];
-    ra2 = [-1, 0];
-    ra3 = [0, 1];
+    //CREATING THE LINES THAT FORM THE RIGHT ANGLE
+    //Coordinates of the right angle in the basis of vector 1 and
+    //  the vector projection
 
+    
     let R1 = [0,0];
-    R1[0] = vector3[0] / mod(vector3) / 1.5;
-    R1[1] = vector3[1] / mod(vector3) / 1.5;
+    R1[0] = vectorProjection[0] / mod(vectorProjection) / 1.5;
+    R1[1] = vectorProjection[1] / mod(vectorProjection) / 1.5;
 
     let R2 = [0, 0];
-    R2[0] = vector2[0] - vector3[0];
-    R2[1] = vector2[1] - vector3[1];
+    R2[0] = vectorS[0] - vectorProjection[0];
+    R2[1] = vectorS[1] - vectorProjection[1];
+
+
+    console.log(vectorProjection);
 
     let mr2 = mod(R2);
     R2[0] = R2[0] / mr2 / 1.5;
     R2[1] = R2[1] / mr2 / 1.5;
 
+    //Vectors of the points for the arc of the angle
     let R3 = [0, 0];
-    let mr3 = mod(vector2);
-    R3[0] = vector2[0] / mr3;
-    R3[1] = vector2[1] / mr3;
+    let mr3 = mod(vectorS);
+    R3[0] = vectorS[0] / mr3;
+    R3[1] = vectorS[1] / mr3;
 
     let R4 = [0,0];
-    R4[0] = vector1[0] / mod(vector1) / 1.5;
-    R4[1] = vector1[1] / mod(vector1) / 1.5;    
+    R4[0] = vectorR[0] / mod(vectorR) / 1.5;
+    R4[1] = vectorR[1] / mod(vectorR) / 1.5;    
 
-    let vector4 = [0,0];
-    let vector5 = [0,0];
-    let vector6 = [0,0];
+    //Creates array variables for the points where the right angle symbol will show
+    let rightAngleP1 = [0,0];
+    let rightAngleP2 = [0,0];
+    let rightAngleP3 = [0,0];
 
-    vector4[0] = vector3[0] + R2[0];
-    vector4[1] = vector3[1] + R2[1];
+    //Points of the lines used to draw the right angle
+    rightAngleP1[0] = vectorProjection[0] + R2[0];
+    rightAngleP1[1] = vectorProjection[1] + R2[1];
 
-    vector5[0] = vector3[0] - R1[0] + R2[0];
-    vector5[1] = vector3[1] - R1[1] + R2[1];
+    rightAngleP2[0] = vectorProjection[0] - R1[0] + R2[0];
+    rightAngleP2[1] = vectorProjection[1] - R1[1] + R2[1];
 
-    vector6[0] = vector3[0] - R1[0];
-    vector6[1] = vector3[1] - R1[1];
+    rightAngleP3[0] = vectorProjection[0] - R1[0];
+    rightAngleP3[1] = vectorProjection[1] - R1[1];
 
-    BV1 = convertToSVGBig(R1);
-    BV2 = convertToSVGBig(R3);
-    BV3 = convertToSVGBig(R2);
-    BV4 = convertToSVGBig(R4);
+    //Calculates the endpoint and start points of  
+    arcStart = convertToSVGBig(R4);
+    arcEnd = convertToSVGBig(R3);
 
     T1D = toDeg(T1) + 360;
     T2D = toDeg(T2) + 360;
 
-    T3 = toDeg(Math.atan(vector1[1] / vector1[0]));
-    T4 = toDeg(Math.atan(vector2[1] / vector2[0]));
+    T3 = toDeg(Math.atan(vectorR[1] / vectorR[0]));
+    T4 = toDeg(Math.atan(vectorS[1] / vectorS[0]));
 
     if (T3 < 0 ) {
         T3 = T3 + 360;
@@ -172,21 +221,12 @@ function updateVectorSVG() {
         T4 = T4 + 360;
     }    
 
-    let start = [0, 0];
-    let end = [BV1[0], BV1[1]];
-    end[0] = BV2[0];
-    end[1] = BV2[1];
+    start = [arcStart[0], arcStart[1]];
+    end = [arcEnd[0], arcEnd[1]];
 
-    //if  (theta >= 180 && theta <= 270) {
-        start = [BV4[0], BV4[1]];
-        end = [BV2[0], BV2[1]];
-//    } else {
-  //      start = [BV4[0], BV4[1]];
-    ///    end = [BV2[0], BV2[1]];
-   // }
-
+    //Sets up parameter of the path of the arc
     let lAF = ""
-    console.log(T4 , T3, T4-T3);
+
 
     if (T4 - T3 > 180 ) {
         lAF = "1";
@@ -194,113 +234,195 @@ function updateVectorSVG() {
         lAF = "0";
     }
 
-    //let lAF = theta <= 180 ? "0" : "1";
 
     let path = "M " + start[0].toString() + " " + start[1].toString()
      + "\nA 25 25 0 0 " + lAF + " " + end[0].toString() +
     " " + end[1].toString();
      
+    //Calculates the SVG coordinates of the vectors R and S
+    bigvectorR = convertToSVGBig(vectorR);
+    bigvectorS = convertToSVGBig(vectorS);
+    
+    //Calculates the SVG coordinates of the points of the lines 
+    //  of the right angle
+    bigrightAngleP1 = convertToSVGBig(rightAngleP1);
+    bigrightAngleP2 = convertToSVGBig(rightAngleP2);
+    bigrightAngleP3 = convertToSVGBig(rightAngleP3);
 
-    bigVector1 = convertToSVGBig(vector1);
-    bigVector2 = convertToSVGBig(vector2);
-    bigVector3 = convertToSVGBig(vector3);
+    bigVectorRx = convertToSVGBig([vectorR[0]+1, vectorR[1]+2 ]);
+    bigVectorRy = convertToSVGBig([vectorR[0]+1, vectorR[1]+1 ]);
+    bigVectorSx = convertToSVGBig([vectorS[0]+1, vectorS[1]+2 ]);
+    bigvectorSy = convertToSVGBig([vectorS[0]+1, vectorS[1]+1 ]);
 
-    bigVector4 = convertToSVGBig(vector4);
-    bigVector5 = convertToSVGBig(vector5);
-    bigVector6 = convertToSVGBig(vector6);
+    //Calculates the SVG coordinates of the brackets of the label for vector R
+    bigvectorR1 = convertToSVGBig([vectorR[0], vectorR[1]+1.5]);
+    bigvectorR2 = convertToSVGBig([vectorR[0]+2, vectorR[1]+1.5 ]);
 
-    line1.setAttribute("x1", displace.toString());
-    line1.setAttribute("y1", displace.toString());
-    line1.setAttribute("x2", bigVector1[0].toString());
-    line1.setAttribute("y2", bigVector1[1].toString());
+    //Calculates the SVG coordinates of the brackets of the label for vector S
+    bigvectorS1 = convertToSVGBig([vectorS[0], vectorS[1]+1.5]);
+    bigvectorS2 = convertToSVGBig([vectorS[0]+2, vectorS[1]+1.5 ]);
 
-    line2.setAttribute("x1", displace.toString());
-    line2.setAttribute("y1", displace.toString());
-    line2.setAttribute("x2", bigVector2[0].toString());
-    line2.setAttribute("y2", bigVector2[1].toString());
+    //Calculates the SVG coordinates of the vector projection
+    bigvectorProjection = convertToSVGBig(vectorProjection);
 
-    line3.setAttribute("x1", displace.toString());
-    line3.setAttribute("y1", displace.toString());
-    line3.setAttribute("x2", bigVector3[0].toString());
-    line3.setAttribute("y2", bigVector3[1].toString());
+    //Displays the vector R on the graph
+    lineR.setAttribute("x1", displace.toString());
+    lineR.setAttribute("y1", displace.toString());
+    lineR.setAttribute("x2", bigvectorR[0].toString());
+    lineR.setAttribute("y2", bigvectorR[1].toString());
 
-    line4.setAttribute("x1", bigVector2[0].toString());
-    line4.setAttribute("y1", bigVector2[1].toString());
-    line4.setAttribute("x2", bigVector3[0].toString());
-    line4.setAttribute("y2", bigVector3[1].toString());
-    //
-    line5.setAttribute("x1", bigVector4[0].toString());
-    line5.setAttribute("y1", bigVector4[1].toString());
-    line5.setAttribute("x2", bigVector5[0].toString());
-    line5.setAttribute("y2", bigVector5[1].toString());
+    //Displays the vector S on the graph
+    lineS.setAttribute("x1", displace.toString());
+    lineS.setAttribute("y1", displace.toString());
+    lineS.setAttribute("x2", bigvectorS[0].toString());
+    lineS.setAttribute("y2", bigvectorS[1].toString());
 
-    line6.setAttribute("x1", bigVector5[0].toString());
-    line6.setAttribute("y1", bigVector5[1].toString());
-    line6.setAttribute("x2", bigVector6[0].toString());
-    line6.setAttribute("y2", bigVector6[1].toString());
+    //Updates the line of the vector Projection
+    vpLine.setAttribute("x1", displace.toString());
+    vpLine.setAttribute("y1", displace.toString());
+    vpLine.setAttribute("x2", bigvectorProjection[0].toString());
+    vpLine.setAttribute("y2", bigvectorProjection[1].toString());
 
-    circle1.setAttribute("cx", bigVector1[0]);
-    circle1.setAttribute("cy", bigVector1[1]);
+    //Updates the dotted line
+    vplinedotted.setAttribute("x1", bigvectorS[0].toString());
+    vplinedotted.setAttribute("y1", bigvectorS[1].toString());
+    vplinedotted.setAttribute("x2", bigvectorProjection[0].toString());
+    vplinedotted.setAttribute("y2", bigvectorProjection[1].toString());
+    
+    //Updates lines for the right angle mark on diagram
+    rightAngleLine1.setAttribute("x1", bigrightAngleP1[0].toString());
+    rightAngleLine1.setAttribute("y1", bigrightAngleP1[1].toString());
+    rightAngleLine1.setAttribute("x2", bigrightAngleP2[0].toString());
+    rightAngleLine1.setAttribute("y2", bigrightAngleP2[1].toString());
 
-    circle2.setAttribute("cx", bigVector2[0]);
-    circle2.setAttribute("cy", bigVector2[1]);
+    rightAngleLine2.setAttribute("x1", bigrightAngleP2[0].toString());
+    rightAngleLine2.setAttribute("y1", bigrightAngleP2[1].toString());
+    rightAngleLine2.setAttribute("x2", bigrightAngleP3[0].toString());
+    rightAngleLine2.setAttribute("y2", bigrightAngleP3[1].toString());
 
+    //Updates the position of the circles used to move the vectors around
+    circle1.setAttribute("cx", bigvectorR[0]);
+    circle1.setAttribute("cy", bigvectorR[1]);
+
+    circle2.setAttribute("cx", bigvectorS[0]);
+    circle2.setAttribute("cy", bigvectorS[1]);
+
+    //Updates the arc marking the angle between vector R and vector S
     arc1.setAttribute("d", path);
+
+    //Update the position of the ables of the vectors
+    // VectorR Label
+    vRxlbl.setAttribute("x", bigVectorRx[0]);
+    vRxlbl.setAttribute("y", bigVectorRx[1]);
+    vRylbl.setAttribute("x", bigVectorRy[0]);
+    vRylbl.setAttribute("y", bigVectorRy[1]);
+
+    // VectorS Label
+    vSxlbl.setAttribute("x", bigVectorSx[0]);
+    vSxlbl.setAttribute("y", bigVectorSx[1]);
+    vSylbl.setAttribute("x", bigvectorSy[0]);
+    vSylbl.setAttribute("y", bigvectorSy[1]);
+
+    // Vector R bracket
+    //  Left Bracket
+    vRbracket1.setAttribute("x", bigvectorR1[0]);
+    vRbracket1.setAttribute("y", bigvectorR1[1]);
+
+    //  Right Bracket
+    vRbracket2.setAttribute("x", bigvectorR2[0]);
+    vRbracket2.setAttribute("y", bigvectorR2[1]);
 }
 
+//Checks if the user has changed the input of the x-component of vector R
 rx.oninput = function() {
+    //Checks if input is valid
     try {
-        vector1[0] = rx.valueAsNumber;
+        //Changes array for vector R if valid
+        vectorR[0] = rx.valueAsNumber;
+        //Calculates the new vector projection and the new angle between vector R and vector S
         operate("r");
+        //Updates the input values and the value in the labels
         updateVectorInput();
+        //Updates the postion of the vectors, labels and the arc
         updateVectorSVG();
     } catch (error) {
         console.log(error);
     }
 }
 
+//Checks if the user has changed the input of the y-component of vector R
 ry.oninput = function() {
     try {
-        vector1[1] = ry.valueAsNumber;
+        //Changes array for vector R if valid
+        vectorR[1] = ry.valueAsNumber;
+        //Calculates the new vector projection and the new angle between vector R and vector S
         operate("r");
+        //Updates the input values and the value in the labels
         updateVectorInput();
+        //Updates the postion of the vectors, labels and the arc
         updateVectorSVG();
     } catch (error) {
         console.log(error);
     }
 }
 
+//Checks if the user has changed the input of the x-component of vector S
 sx.oninput = function() {
     try {
-        vector2[0] = sx.valueAsNumber;
+        //Changes array for vector S if valid
+        vectorS[0] = sx.valueAsNumber;
+        //Calculates the new vector projection and the new angle between vector R and vector S
         operate("s");
+        //Updates the input values and the value in the labels
         updateVectorInput();
+        //Updates the postion of the vectors, labels and the arc
         updateVectorSVG();
     } catch (error) {
         console.log(error);
     }
 }
 
+//Checks if the user has changed the input of the y-component of vector S
 sy.oninput = function() {
     try {
-        vector2[1] = sy.valueAsNumber;
+        //Changes value in array for vector S if valid
+        vectorS[1] = sy.valueAsNumber;
+        //Calculates the new vector projection and the new angle between vector R and vector S
         operate("s");
+        //Updates the input values and the value in the labels
         updateVectorInput();
+        //Updates the postion of the vectors, labels and the arc
         updateVectorSVG();
     } catch (error) {
         console.log(error);
     }
 }
 
-v3x.oninput = function() {
+//Checks if the input for the x-component of the vector R over |R| 
+modroverrx.oninput = function() {
     try {
-        if (v3x.valueAsNumber < 0 || v3x.valueAsNumber > 1) {
-            v3x.value = modroverr[0];
+        //Checks if input is valid
+        if (modroverrx.valueAsNumber < -1 || modroverrx.valueAsNumber > 1) {
+            //If not reverts the input value back to the previous value
+            modroverrx.valueAsNumber = modroverr[0];
         } else {
-            modroverr[0] = v3x.valueAsNumber;
-            modroverr[1] = (1 - (modroverr[0] ** 2)) ** 0.5;
+            //Changes value in array for the vector R over |R|
+            modroverr[0] = modroverrx.valueAsNumber;
+            //Because the modulus of the vector R over |R| has to be a unit vector, it calculates the 
+            // new value for the y-component of the vector R over |R|
+            //If the y-component was positive, it will remain positive
+            if (modroverr[1] >= 0) {
+                modroverr[1] = (1 - (modroverr[0] ** 2)) ** 0.5;
+            }
+            //If the y-component is negative it will remain negative
+            else {
+                modroverr[1] = -1 * ((1 - (modroverr[0] ** 2)) ** 0.5);
+            }
+            //Updates vector R with the new value
             operate("modr/r");
+            //Updates the input values and the value in the labels
             updateVectorInput();
+            //Updates the postion of the vectors, labels and the arc
             updateVectorSVG();
         }
         
@@ -310,15 +432,32 @@ v3x.oninput = function() {
     }
 }
 
-v3y.oninput = function() {
+//Checks if the input for the x-component of the vector R over |R| 
+modroverry.oninput = function() {
     try {
-        if (v3y.valueAsNumber < 0 || v3x.valueAsNumber > 1) {
-            v3y.value = modroverr[1];
+        //Checks if input is valid
+        if (modroverry.valueAsNumber < -1 || modroverrx.valueAsNumber > 1) {
+            //If not reverts the input value back to the previous value
+            modroverry.valueAsNumber = modroverr[1];
         } else {
-            modroverr[1] = v3y.valueAsNumber;
-            modroverr[0] = (1 - (modroverr[1] ** 2)) ** 0.5;
+            //Changes value in array for the vector R over |R|
+            modroverr[1] = modroverry.valueAsNumber;
+            //Because the modulus of the vector R over |R| has to be a unit vector, it calculates the 
+            // new value for the y-component of the vector R over |R|
+            //If the y-component was positive, it will remain positive
+            if (modroverr[0] >= 0) {
+                modroverr[0] = (1 - (modroverr[1] ** 2)) ** 0.5;
+            } 
+            //If the y-component is negative it will remain negative
+            else {
+                modroverr[0] = -1 * ((1 - (modroverr[1] ** 2)) ** 0.5);
+            }
+            
+            //Updates vector R with the new value
             operate("modr");
+            //Updates the input values and the value in the labels
             updateVectorInput();
+            //Updates the postion of the vectors, labels and the arc
             updateVectorSVG();
         }
 
@@ -328,44 +467,55 @@ v3y.oninput = function() {
 }
 
 
-
+//Checks if the user has clicked on the circle used to move vector R around
 circle1.onmousedown = function(event) {
     mousePressed = true;
     chosenV = 1;
+    //Changes the cursor to a pointer
     vectorGraph.style.cursor = "pointer";
+    //Calls function that handles the position the user has clicked on 
     vectorGraph.onmousemove(event);
     
 }
 
+//Checks if the user has stopped clicking on the ccircle used to move vector R
 circle1.onmouseup = function() {
     mousePressed = false;
     
 }
 
+//Changes the cursor back to normal
 circle1.onmouseleave = function() {
     vectorGraph.style.cursor = "auto";    
 }
 
-
+//Checks if the user has clicked on the circle used to move vector R around
 circle2.onmousedown = function(event) {
     mousePressed = true;
     chosenV = 2;
+    //Changes the cursor to a pointer
     vectorGraph.style.cursor = "pointer";
+    //Calls function that handles the position the user has clicked on 
     vectorGraph.onmousemove(event);
     
 }
 
+//Checks if the user has stopped clicking on the ccircle used to move vector S
 circle2.onmouseup = function() {
     mousePressed = false;
     chosenV = 0;
 }
 
+//Changes the cursor back to normal
 circle2.onmouseleave = function() {
     vectorGraph.style.cursor = "auto";    
 }
 
+//Function that handles the position the user has clicked on 
 vectorGraph.onmousemove = function(event) {
+    //Checks if the mouse is pressed
     if (mousePressed) {
+        //Calculates the SVG coordinates of where the mouse is
         let optioncanvasX = vectorGraph.getBoundingClientRect().x;
         let optioncanvasY = vectorGraph.getBoundingClientRect().y;
         let mouseX = event.clientX;
@@ -373,22 +523,31 @@ vectorGraph.onmousemove = function(event) {
     
         let xCoord = mouseX - optioncanvasX;
         let yCoord = mouseY - optioncanvasY;
-        
+
+        //Checks what circle the user pressed 
         if (chosenV == 1) {
-            vector1 = convertToVectorBig([xCoord, yCoord]);
+            //Updates the vectorR array 
+            vectorR = convertToVectorBig([xCoord, yCoord]);
+            //Calculates the vector projection and the angle between vector R and vector S
             operate("r");
         } 
         if (chosenV == 2) {
-            vector2 = convertToVectorBig([xCoord, yCoord]);
+            //Updates the vectorS array 
+            vectorS = convertToVectorBig([xCoord, yCoord]);
+            //Calculates the vector projection and the angle between vector R and vector S
             operate("s");
         }
         
-        
+        //Updates inputs and labels of vectors
         updateVectorInput();
+        //Updates positons of vectors, right angles, arcs and lines
         updateVectorSVG();
     }
 }
 
+//Calculates the vector projection and the angle between vector R and vector S
 operate("r");
+//Updates inputs and labels of vectors
 updateVectorInput();
+//Updates positons of vectors, right angles, arcs and lines
 updateVectorSVG();
