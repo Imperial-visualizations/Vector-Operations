@@ -104,6 +104,25 @@ function convertToVectorBig(vector) {
     return realVector;
 }
 
+/* Function to find the angle of a vector from the positive
+   x-axis 0 to 2pi
+*/
+function angleOfVector (vector) {
+
+    let output = Math.atan(vector[1] / vector[0]);
+
+    if (vector[0] < 0) {
+        output += Math.PI;
+    }
+
+    if (vector[0] > 0 && vector[1] < 0) {
+        output += 2*Math.PI;
+    }
+
+    return output
+
+}
+
 //Function which changes values and calculates vector projection
 function operate(change) {
     
@@ -211,25 +230,8 @@ function updateVectorSVG() {
     T1D = toDeg(T1) + 360;
     T2D = toDeg(T2) + 360;
 
-    function angleOfVector (vector) {
-
-        if (vector[0] >= 0) {
-            return Math.atan(vector[1] / vector[0]);
-        } else {
-            return Math.atan(vector[1] / vector[0]) + Math.PI;
-        }
-
-    }
-
     T3 = toDeg(angleOfVector(vectorR));
     T4 = toDeg(angleOfVector(vectorS));
-
-    if (T3 < 0) {
-        T3 = T3 + 360;
-    }
-    if (T4 < 0) {
-        T4 = T4 + 360;
-    }    
 
     start = [arcStart[0], arcStart[1]];
     end = [arcEnd[0], arcEnd[1]];
@@ -237,13 +239,11 @@ function updateVectorSVG() {
     //Sets up parameter of the path of the arc
     let lAF = ""
 
-
     if (T4 - T3 >= 180 || (T4 - T3 < 0 && T4 - T3 >= -180)) {
         lAF = "1";
     } else {
         lAF = "0";
     }
-
 
     let path = "M " + start[0].toString() + " " + start[1].toString()
      + "\nA 16.7 16.7 0 0 " + lAF + " " + end[0].toString() +
