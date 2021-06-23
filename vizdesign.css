@@ -46,7 +46,7 @@ select:focus {
 }
 
 .container {
-    background: var(--bg-alternative);
+    background: var(--background-colour);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -136,7 +136,7 @@ input {
 }
 .vectInput3 {
     /*background: linear-gradient(194deg,#466589,#7aaed7);*/
-    background: #46658980;
+    background: var(--background-colour);
     color: white;
     height: 200px;
     font-family: Cambria;
@@ -231,7 +231,7 @@ input:checked {
 .operationbuttons {
     width: 50px;
     height: 50px;
-    fill: #46658980;
+    fill: var(--bg-alternative);;
     cursor: pointer;
 }
 .operationbuttontext {
