@@ -125,14 +125,14 @@ function operate(change) {
     sp = dotProduct(vectorR, vectorS) / mod(vectorR);
     //Divides the scalar projection by the modulus of R
     let spsf = dotProduct(vectorR, vectorS) / ( mod(vectorR) * mod(vectorR));
-    console.log(spsf);
+    //console.log(spsf);
     
     //Mutiplies (scalar projection divided by |R|) by R to get the vector projection
     vectorProjection[0] = spsf * vectorR[0];
     vectorProjection[1] = spsf * vectorR[1];
 
-    console.log((vectorProjection[0] / mod(vectorProjection)) - (vectorR[0] / mod(vectorR))   );
-    console.log((vectorProjection[1] / mod(vectorProjection)) - (vectorR[1] / mod(vectorR))   );
+    //console.log((vectorProjection[0] / mod(vectorProjection)) - (vectorR[0] / mod(vectorR))   );
+    //console.log((vectorProjection[1] / mod(vectorProjection)) - (vectorR[1] / mod(vectorR))   );
 
 }
 
@@ -173,7 +173,7 @@ function updateVectorSVG() {
     R2[1] = vectorS[1] - vectorProjection[1];
 
 
-    console.log(vectorProjection);
+    //console.log(vectorProjection);
 
     let mr2 = mod(R2);
     R2[0] = R2[0] / mr2 / 1.5;
@@ -182,8 +182,8 @@ function updateVectorSVG() {
     //Vectors of the points for the arc of the angle
     let R3 = [0, 0];
     let mr3 = mod(vectorS);
-    R3[0] = vectorS[0] / mr3;
-    R3[1] = vectorS[1] / mr3;
+    R3[0] = vectorS[0] / mr3 / 1.5;
+    R3[1] = vectorS[1] / mr3 / 1.5;
 
     let R4 = [0,0];
     R4[0] = vectorR[0] / mod(vectorR) / 1.5;
@@ -211,13 +211,23 @@ function updateVectorSVG() {
     T1D = toDeg(T1) + 360;
     T2D = toDeg(T2) + 360;
 
-    T3 = toDeg(Math.atan(vectorR[1] / vectorR[0]));
-    T4 = toDeg(Math.atan(vectorS[1] / vectorS[0]));
+    function angleOfVector (vector) {
 
-    if (T3 < 0 ) {
+        if (vector[0] >= 0) {
+            return Math.atan(vector[1] / vector[0]);
+        } else {
+            return Math.atan(vector[1] / vector[0]) + Math.PI;
+        }
+
+    }
+
+    T3 = toDeg(angleOfVector(vectorR));
+    T4 = toDeg(angleOfVector(vectorS));
+
+    if (T3 < 0) {
         T3 = T3 + 360;
     }
-    if (T4 < 0 ) {
+    if (T4 < 0) {
         T4 = T4 + 360;
     }    
 
@@ -228,7 +238,7 @@ function updateVectorSVG() {
     let lAF = ""
 
 
-    if (T4 - T3 > 180 ) {
+    if (T4 - T3 >= 180 || (T4 - T3 < 0 && T4 - T3 >= -180)) {
         lAF = "1";
     } else {
         lAF = "0";
@@ -236,7 +246,7 @@ function updateVectorSVG() {
 
 
     let path = "M " + start[0].toString() + " " + start[1].toString()
-     + "\nA 25 25 0 0 " + lAF + " " + end[0].toString() +
+     + "\nA 16.7 16.7 0 0 " + lAF + " " + end[0].toString() +
     " " + end[1].toString();
      
     //Calculates the SVG coordinates of the vectors R and S
