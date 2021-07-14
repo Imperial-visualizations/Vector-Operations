@@ -341,6 +341,17 @@ function updateVectorSVG() {
     //  Right Bracket
     vRbracket2.setAttribute("x", bigvectorR2[0]);
     vRbracket2.setAttribute("y", bigvectorR2[1]);
+
+
+    // Vector S bracket
+    console.log(bigvectorS1, bigvectorS2);
+    //  Left Bracket
+    vSbracket1.setAttribute("x", bigvectorS1[0]);
+    vSbracket1.setAttribute("y", bigvectorS1[1]);
+
+    //  Right Bracket
+    vSbracket2.setAttribute("x", bigvectorS2[0]);
+    vSbracket2.setAttribute("y", bigvectorS2[1]);
 }
 
 //Checks if the user has changed the input of the x-component of vector R

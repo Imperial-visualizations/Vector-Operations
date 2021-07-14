@@ -7,9 +7,9 @@ const scale2 = 25;
 const displace = 250;
 
 // Store our vectors
-let vector1 = [6, 2];
-let vector2 = [1, 5];
-let vector3 = [3, 3];
+let vectorR = [6, 2];
+let vectorS = [1, 5];
+let vectorProjection = [3, 3];
 let theta = 30;
 let sp = 1;
 let T1 = 0;
@@ -22,12 +22,12 @@ const sx = elID("v2x");
 const sy = elID("v2y");
 const thetaInput = elID("thetaInput");
 
-const line1 = elID("line1");
-const line2 = elID("line2");
-const line3 = elID("line3");
-const line4 = elID("line4");
-const line5 = elID("line5");
-const line6 = elID("line6");
+const lineR = elID("line1");
+const lineS = elID("line2");
+const vpLine = elID("line3");
+const vplinedotted = elID("line4");
+const rightAngleLine1 = elID("line5");
+const rightAngleLine2 = elID("line6");
 
 const arc1 = elID("arc1");
 
@@ -36,29 +36,49 @@ const circle2 = elID("circle2");
 
 const vectorGraph = elID("vectorgraphdiv");
 
+const vRxlbl = elID("v1xlbl");
+const vRylbl = elID("v1ylbl");
+const vSxlbl = elID("v2xlbl");
+const vSylbl = elID("v2ylbl");
+
+
+//Brackets for the label of the 2 vectors
+//Brackets for vector 1
+//Left bracket
+const vRbracket1 = elID("v1b1");
+//Right bracket
+const vRbracket2 = elID("v1b2");
+//Brackets for vector 2
+//Left bracket
+const vSbracket1 = elID("v2b1");
+//Right bracket
+const vSbracket2 = elID("v2b2");
+
+//Function returning an element given its id
 function elID(id) {
     return document.getElementById(id);
 }
 
+//Function returning the dot product of 2 vectors
 function dotProduct(v1, v2) {
     return (v1[0] * v2[0]) + (v1[1] * v2[1]);
 }
 
+//Function returning the modulus of a vector
 function mod(v1) {
     return ( ( (v1[0]) ** 2 ) + ( (v1[1]) ** 2 ) ) ** 0.5
 }
 
-
+//Converts angles from degrees to radians
 function toRad(deg) {
     return ( Math.PI / 180) * deg;
 }
-
+//Converts angles from raidans to degrees
 function toDeg(rad) {
     return (180 / Math.PI) * rad;
 }
 
-
-
+//Function to find the SVG coordinates of a vector
 function convertToSVGBig(vector) {
     const svgVector = [];
 
@@ -68,6 +88,7 @@ function convertToSVGBig(vector) {
     return svgVector;
 }
 
+//Function to convert SVG coordinates into normal vectors
 
 function convertToVectorBig(vector) {
     const realVector = [];
@@ -79,31 +100,40 @@ function convertToVectorBig(vector) {
 }
 
 function operate(change) {
-    let cv1 = vector1[0] / mod(vector1);
+    let cv1 = vectorR[0] / mod(vectorR);
     T1 = Math.acos(cv1);
     T2 = T1 + toRad(theta);
     if (change == "r" || change == "s") {
-        let ctheta = dotProduct(vector1, vector2) / (mod(vector1) * mod(vector2));
+        let ctheta = dotProduct(vectorR, vectorS) / (mod(lineR) * mod(lineS));
         theta = toDeg(Math.acos(ctheta));
     } else {
-        vector2[0] = mod(vector2) * Math.cos(T2);
-        vector2[1] = mod(vector2) * Math.sin(T2);
+        vectorS[0] = mod(vectorS) * Math.cos(T2);
+        vectorS[1] = mod(vectorS) * Math.sin(T2);
     }
 
 
-    sp = dotProduct(vector1, vector2) / mod(vector1);
-    let spsf = sp / mod(vector1);
-    vector3[0] = spsf * vector1[0];
-    vector3[1] = spsf * vector1[1];
+    sp = dotProduct(vectorR, vectorS) / mod(vectorR);
+    let spsf = sp / mod(vectorR);
+    vectorProjection[0] = spsf * vectorR[0];
+    vectorProjection[1] = spsf * vectorR[1];
 
 }
 
 function updateVectorInput() {
-    rx.value = Math.round(vector1[0]*10)/10;
-    ry.value = Math.round(vector1[1]*10)/10;
-    sx.value = Math.round(vector2[0]*10)/10;
-    sy.value = Math.round(vector2[1]*10)/10;
+    rx.value = Math.round(lineR[0]*10)/10;
+    ry.value = Math.round(lineR[1]*10)/10;
+    sx.value = Math.round(lineS[0]*10)/10;
+    sy.value = Math.round(lineS[1]*10)/10;
     thetaInput.value = Math.round(theta * 10) /10;
+
+    
+    //Updates the values for the label for vector R
+    vRxlbl.innerHTML = Math.round(vectorR[0]*10)/10;
+    vRylbl.innerHTML = Math.round(vectorR[1]*10)/10;
+
+    //Updates the values for the label for vector S
+    vSxlbl.innerHTML = Math.round(vectorS[0]*10)/10;
+    vSylbl.innerHTML = Math.round(vectorS[1]*10)/10;
 }
 
 function updateVectorSVG() {
@@ -112,38 +142,38 @@ function updateVectorSVG() {
     ra3 = [0, 1];
 
     let R1 = [0,0];
-    R1[0] = vector3[0] / mod(vector3) / 1.5;
-    R1[1] = vector3[1] / mod(vector3) / 1.5;
+    R1[0] = vectorProjection[0] / mod(vectorProjection) / 1.5;
+    R1[1] = vectorProjection[1] / mod(vectorProjection) / 1.5;
 
     let R2 = [0, 0];
-    R2[0] = vector2[0] - vector3[0];
-    R2[1] = vector2[1] - vector3[1];
+    R2[0] = vectorS[0] - vectorProjection[0];
+    R2[1] = vectorS[1] - vectorProjection[1];
 
     let mr2 = mod(R2);
     R2[0] = R2[0] / mr2 / 1.5;
     R2[1] = R2[1] / mr2 / 1.5;
 
     let R3 = [0, 0];
-    let mr3 = mod(vector2);
-    R3[0] = vector2[0] / mr3;
-    R3[1] = vector2[1] / mr3;
+    let mr3 = mod(vectorS);
+    R3[0] = vectorS[0] / mr3;
+    R3[1] = vectorS[1] / mr3;
 
     let R4 = [0,0];
-    R4[0] = vector1[0] / mod(vector1) / 1.5;
-    R4[1] = vector1[1] / mod(vector1) / 1.5;    
+    R4[0] = lineR[0] / mod(lineR) / 1.5;
+    R4[1] = lineR[1] / mod(lineR) / 1.5;    
 
-    let vector4 = [0,0];
-    let vector5 = [0,0];
-    let vector6 = [0,0];
+    let rightAngleP1 = [0,0];
+    let rightAngleP2 = [0,0];
+    let rightAngleP3 = [0,0];
 
-    vector4[0] = vector3[0] + R2[0];
-    vector4[1] = vector3[1] + R2[1];
+    rightAngleP1[0] = vectorProjection[0] + R2[0];
+    rightAngleP1[1] = vectorProjection[1] + R2[1];
 
-    vector5[0] = vector3[0] - R1[0] + R2[0];
-    vector5[1] = vector3[1] - R1[1] + R2[1];
+    rightAngleP2[0] = vectorProjection[0] - R1[0] + R2[0];
+    rightAngleP2[1] = vectorProjection[1] - R1[1] + R2[1];
 
-    vector6[0] = vector3[0] - R1[0];
-    vector6[1] = vector3[1] - R1[1];
+    rightAngleP3[0] = vectorProjection[0] - R1[0];
+    rightAngleP3[1] = vectorProjection[1] - R1[1];
 
     BV1 = convertToSVGBig(R1);
     BV2 = convertToSVGBig(R3);
@@ -153,8 +183,8 @@ function updateVectorSVG() {
     T1D = toDeg(T1) + 360;
     T2D = toDeg(T2) + 360;
 
-    T3 = toDeg(Math.atan(vector1[1] / vector1[0]));
-    T4 = toDeg(Math.atan(vector2[1] / vector2[0]));
+    T3 = toDeg(Math.atan(vectorR[1] / vectorR[0]));
+    T4 = toDeg(Math.atan(vectorS[1] / vectorS[0]));
 
     if (T3 < 0 ) {
         T3 = T3 + 360;
@@ -192,56 +222,89 @@ function updateVectorSVG() {
     " " + end[1].toString();
      
 
-    bigVector1 = convertToSVGBig(vector1);
-    bigVector2 = convertToSVGBig(vector2);
-    bigVector3 = convertToSVGBig(vector3);
+    bigvectorR = convertToSVGBig(vectorR);
+    bigvectorS = convertToSVGBig(vectorS);
+    bigvectorProjection = convertToSVGBig(vectorProjection);
 
-    bigVector4 = convertToSVGBig(vector4);
-    bigVector5 = convertToSVGBig(vector5);
-    bigVector6 = convertToSVGBig(vector6);
+    bigrightAngleP1 = convertToSVGBig(rightAngleP1);
+    bigrightAngleP2 = convertToSVGBig(rightAngleP2);
+    bigrightAngleP3 = convertToSVGBig(rightAngleP3);
 
-    line1.setAttribute("x1", displace.toString());
-    line1.setAttribute("y1", displace.toString());
-    line1.setAttribute("x2", bigVector1[0].toString());
-    line1.setAttribute("y2", bigVector1[1].toString());
+    lineR.setAttribute("x1", displace.toString());
+    lineR.setAttribute("y1", displace.toString());
+    lineR.setAttribute("x2", bigvectorR[0].toString());
+    lineR.setAttribute("y2", bigvectorR[1].toString());
 
-    line2.setAttribute("x1", displace.toString());
-    line2.setAttribute("y1", displace.toString());
-    line2.setAttribute("x2", bigVector2[0].toString());
-    line2.setAttribute("y2", bigVector2[1].toString());
+    lineS.setAttribute("x1", displace.toString());
+    lineS.setAttribute("y1", displace.toString());
+    lineS.setAttribute("x2", bigvectorS[0].toString());
+    lineS.setAttribute("y2", bigvectorS[1].toString());
 
-    line3.setAttribute("x1", displace.toString());
-    line3.setAttribute("y1", displace.toString());
-    line3.setAttribute("x2", bigVector3[0].toString());
-    line3.setAttribute("y2", bigVector3[1].toString());
+    vpLine.setAttribute("x1", displace.toString());
+    vpLine.setAttribute("y1", displace.toString());
+    vpLine.setAttribute("x2", bigvectorProjection[0].toString());
+    vpLine.setAttribute("y2", bigvectorProjection[1].toString());
 
-    line4.setAttribute("x1", bigVector2[0].toString());
-    line4.setAttribute("y1", bigVector2[1].toString());
-    line4.setAttribute("x2", bigVector3[0].toString());
-    line4.setAttribute("y2", bigVector3[1].toString());
+    vplinedotted.setAttribute("x1", bigvectorS[0].toString());
+    vplinedotted.setAttribute("y1", bigvectorS[1].toString());
+    vplinedotted.setAttribute("x2", bigvectorProjection[0].toString());
+    vplinedotted.setAttribute("y2", bigvectorProjection[1].toString());
     //
-    line5.setAttribute("x1", bigVector4[0].toString());
-    line5.setAttribute("y1", bigVector4[1].toString());
-    line5.setAttribute("x2", bigVector5[0].toString());
-    line5.setAttribute("y2", bigVector5[1].toString());
+    rightAngleLine1.setAttribute("x1", bigrightAngleP1[0].toString());
+    rightAngleLine1.setAttribute("y1", bigrightAngleP1[1].toString());
+    rightAngleLine1.setAttribute("x2", bigrightAngleP2[0].toString());
+    rightAngleLine1.setAttribute("y2", bigrightAngleP2[1].toString());
 
-    line6.setAttribute("x1", bigVector5[0].toString());
-    line6.setAttribute("y1", bigVector5[1].toString());
-    line6.setAttribute("x2", bigVector6[0].toString());
-    line6.setAttribute("y2", bigVector6[1].toString());
+    rightAngleLine2.setAttribute("x1", bigrightAngleP2[0].toString());
+    rightAngleLine2.setAttribute("y1", bigrightAngleP2[1].toString());
+    rightAngleLine2.setAttribute("x2", bigrightAngleP3[0].toString());
+    rightAngleLine2.setAttribute("y2", bigrightAngleP3[1].toString());
 
-    circle1.setAttribute("cx", bigVector1[0]);
-    circle1.setAttribute("cy", bigVector1[1]);
+    circle1.setAttribute("cx", bigvectorR[0]);
+    circle1.setAttribute("cy", bigvectorR[1]);
 
-    circle2.setAttribute("cx", bigVector2[0]);
-    circle2.setAttribute("cy", bigVector2[1]);
+    circle2.setAttribute("cx", bigvectorS[0]);
+    circle2.setAttribute("cy", bigvectorS[1]);
 
     arc1.setAttribute("d", path);
+
+        //Update the position of the ables of the vectors
+    // VectorR Label
+    vRxlbl.setAttribute("x", bigVectorRx[0]);
+    vRxlbl.setAttribute("y", bigVectorRx[1]);
+    vRylbl.setAttribute("x", bigVectorRy[0]);
+    vRylbl.setAttribute("y", bigVectorRy[1]);
+
+    // VectorS Label
+    vSxlbl.setAttribute("x", bigVectorSx[0]);
+    vSxlbl.setAttribute("y", bigVectorSx[1]);
+    vSylbl.setAttribute("x", bigvectorSy[0]);
+    vSylbl.setAttribute("y", bigvectorSy[1]);
+
+    // Vector R bracket
+    //  Left Bracket
+    vRbracket1.setAttribute("x", bigvectorR1[0]);
+    vRbracket1.setAttribute("y", bigvectorR1[1]);
+
+    //  Right Bracket
+    vRbracket2.setAttribute("x", bigvectorR2[0]);
+    vRbracket2.setAttribute("y", bigvectorR2[1]);
+
+
+    // Vector S bracket
+    console.log(bigvectorS1, bigvectorS2);
+    //  Left Bracket
+    vSbracket1.setAttribute("x", bigvectorS1[0]);
+    vSbracket1.setAttribute("y", bigvectorS1[1]);
+
+    //  Right Bracket
+    vSbracket2.setAttribute("x", bigvectorS2[0]);
+    vSbracket2.setAttribute("y", bigvectorS2[1]);
 }
 
 rx.oninput = function() {
     try {
-        vector1[0] = rx.valueAsNumber;
+        lineR[0] = rx.valueAsNumber;
         operate("r");
         updateVectorInput();
         updateVectorSVG();
@@ -252,7 +315,7 @@ rx.oninput = function() {
 
 ry.oninput = function() {
     try {
-        vector1[1] = ry.valueAsNumber;
+        lineR[1] = ry.valueAsNumber;
         operate("r");
         updateVectorInput();
         updateVectorSVG();
@@ -263,7 +326,7 @@ ry.oninput = function() {
 
 sx.oninput = function() {
     try {
-        vector2[0] = sx.valueAsNumber;
+        lineS[0] = sx.valueAsNumber;
         operate("s");
         updateVectorInput();
         updateVectorSVG();
@@ -274,7 +337,7 @@ sx.oninput = function() {
 
 sy.oninput = function() {
     try {
-        vector2[1] = sy.valueAsNumber;
+        lineS[1] = sy.valueAsNumber;
         operate("s");
         updateVectorInput();
         updateVectorSVG();
@@ -341,11 +404,11 @@ vectorGraph.onmousemove = function(event) {
         let yCoord = mouseY - optioncanvasY;
         
         if (chosenV == 1) {
-            vector1 = convertToVectorBig([xCoord, yCoord]);
+            lineR = convertToVectorBig([xCoord, yCoord]);
             operate("r");
         } 
         if (chosenV == 2) {
-            vector2 = convertToVectorBig([xCoord, yCoord]);
+            lineS = convertToVectorBig([xCoord, yCoord]);
             operate("s");
         }
         
