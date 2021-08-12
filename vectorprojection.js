@@ -34,9 +34,10 @@ const lineS = elID("line2");
 const vpLine = elID("line3");
 const vplinedotted = elID("line4");
 const rightAngleLine1 = elID("line5");
-const rightAngleLine2 = elID("line6");
 
 const arc1 = elID("arc1");
+
+const thetaLabel = elID("thetaLabel");
 
 const circle1 = elID("circle1");
 const circle2 = elID("circle2");
@@ -82,6 +83,12 @@ function toRad(deg) {
 //Converts angles from raidans to degrees
 function toDeg(rad) {
     return (180 / Math.PI) * rad;
+}
+
+function midPoint(p1, p2) {
+    return [0.5 * (p1[0] + p2[0]),
+    0.5 * (p1[1] + p2[1])
+    ]
 }
 
 //Function to find the SVG coordinates of a vector
@@ -181,7 +188,6 @@ function updateVectorSVG() {
     //CREATING THE LINES THAT FORM THE RIGHT ANGLE
     //Coordinates of the right angle in the basis of vector 1 and
     //  the vector projection
-
     
     let R1 = [0,0];
     R1[0] = vectorProjection[0] / mod(vectorProjection) / 1.5;
@@ -236,6 +242,17 @@ function updateVectorSVG() {
     start = [arcStart[0], arcStart[1]];
     end = [arcEnd[0], arcEnd[1]];
 
+    console.log(T4, T3, T4-T3);
+    if (T4-T3 <= 180) {
+        midAngle = toRad(0.5*(T4+T3)); 
+    } else {
+        console.log(T4, T3+360, T3+360+T4)
+        midAngle = toRad((0.5*(T3+T4+360)) ); 
+    }
+        
+    MI = [Math.cos(midAngle),  Math.sin(midAngle)] ;
+    bigMID = convertToSVGBig(MI);
+
     //Sets up parameter of the path of the arc
     let lAF = ""
 
@@ -248,6 +265,9 @@ function updateVectorSVG() {
     let path = "M " + start[0].toString() + " " + start[1].toString()
      + "\nA 16.7 16.7 0 0 " + lAF + " " + end[0].toString() +
     " " + end[1].toString();
+
+    thetaLabel.setAttribute("x", bigMID[0].toString());
+    thetaLabel.setAttribute("y", bigMID[1].toString());
      
     //Calculates the SVG coordinates of the vectors R and S
     bigvectorR = convertToSVGBig(vectorR);
@@ -259,17 +279,19 @@ function updateVectorSVG() {
     bigrightAngleP2 = convertToSVGBig(rightAngleP2);
     bigrightAngleP3 = convertToSVGBig(rightAngleP3);
 
-    bigVectorRx = convertToSVGBig([vectorR[0]+1, vectorR[1]+2 ]);
-    bigVectorRy = convertToSVGBig([vectorR[0]+1, vectorR[1]+1 ]);
-    bigVectorSx = convertToSVGBig([vectorS[0]+1, vectorS[1]+2 ]);
-    bigvectorSy = convertToSVGBig([vectorS[0]+1, vectorS[1]+1 ]);
+    let rightAnglePath = 'M ' + bigrightAngleP1[0].toString() + ' ' + bigrightAngleP1[1].toString() + ' L ' + bigrightAngleP2[0].toString() + ' ' + bigrightAngleP2[1].toString() + ' L ' + bigrightAngleP3[0].toString() + ' ' + bigrightAngleP3[1].toString()
+
+    bigVectorRx = convertToSVGBig([vectorR[0]+1.1, vectorR[1]+2 ]);
+    bigVectorRy = convertToSVGBig([vectorR[0]+1.1, vectorR[1]+1 ]);
+    bigVectorSx = convertToSVGBig([vectorS[0]+1.1, vectorS[1]+2 ]);
+    bigvectorSy = convertToSVGBig([vectorS[0]+1.1, vectorS[1]+1 ]);
 
     //Calculates the SVG coordinates of the brackets of the label for vector R
     bigvectorR1 = convertToSVGBig([vectorR[0], vectorR[1]+1.5]);
     bigvectorR2 = convertToSVGBig([vectorR[0]+2, vectorR[1]+1.5 ]);
 
     //Calculates the SVG coordinates of the brackets of the label for vector S
-    bigvectorS1 = convertToSVGBig([vectorS[0], vectorS[1]+1.5]);
+    bigvectorS1 = convertToSVGBig([vectorS[0]+0, vectorS[1]+1.5]);
     bigvectorS2 = convertToSVGBig([vectorS[0]+2, vectorS[1]+1.5 ]);
 
     //Calculates the SVG coordinates of the vector projection
@@ -300,15 +322,8 @@ function updateVectorSVG() {
     vplinedotted.setAttribute("y2", bigvectorProjection[1].toString());
     
     //Updates lines for the right angle mark on diagram
-    rightAngleLine1.setAttribute("x1", bigrightAngleP1[0].toString());
-    rightAngleLine1.setAttribute("y1", bigrightAngleP1[1].toString());
-    rightAngleLine1.setAttribute("x2", bigrightAngleP2[0].toString());
-    rightAngleLine1.setAttribute("y2", bigrightAngleP2[1].toString());
+    rightAngleLine1.setAttribute("d", rightAnglePath);
 
-    rightAngleLine2.setAttribute("x1", bigrightAngleP2[0].toString());
-    rightAngleLine2.setAttribute("y1", bigrightAngleP2[1].toString());
-    rightAngleLine2.setAttribute("x2", bigrightAngleP3[0].toString());
-    rightAngleLine2.setAttribute("y2", bigrightAngleP3[1].toString());
 
     //Updates the position of the circles used to move the vectors around
     circle1.setAttribute("cx", bigvectorR[0]);
@@ -536,6 +551,7 @@ circle2.onmouseleave = function() {
 vectorGraph.onmousemove = function(event) {
     //Checks if the mouse is pressed
     if (mousePressed) {
+        
         //Calculates the SVG coordinates of where the mouse is
         let optioncanvasX = vectorGraph.getBoundingClientRect().x;
         let optioncanvasY = vectorGraph.getBoundingClientRect().y;

@@ -1,13 +1,37 @@
-html {
-    background: linear-gradient(135deg,#7aaed7,#466589);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 100%;
-    width: 100%;
-    background-position: fixed;
-    font-family: sans-serif;
+:root {
+    --background-colour: #15181d;
+    --bg-alternative: #22354b;
+    --hightlight-0: #7aaed7;
+    --highlight-1: #fc75db;
+    --highlight-2: #daab73;
+    --highlight-3: #afdb85;
+    --highlight-4: #5e9ccc;
+    --text-colour: #f0ffff;
+    --graph-lines: #f0ffff;
 }
 
+html {
+    font-family: Cambria, serif;
+    background: var(--background-colour);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: fixed;
+    height: 100%;
+    width: 100%;
+    color: var(--text-colour);
+}
+
+
+.container {
+    background: var(--background-colour);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    padding: 10px;
+    max-width: 1100px;
+    min-height: 600px;
+}
 
 #diagramandinfo {
     display: inline;
@@ -33,7 +57,7 @@ html {
     
 }
 .axislines {
-    stroke-width: 4px;
+    stroke-width: 2px;
 }
 .axislabel {
     font-family: Cambria, serif;
@@ -43,10 +67,12 @@ html {
 #vectorinfo {
     width: 200px;
     height: 480px;
-    background: linear-gradient(135deg,#7aaed7,#466589);
+    background: #7aafd757;
     display: inline-block;
     margin-left: 25px;
     padding: 10px;
+    border-radius: 9px;
+    font-weight: bold;
 }
 .tabform {
     text-align: center;
@@ -67,23 +93,36 @@ html {
 }
 .tabform input {
     width: 100px;
-    font-family: Cambria,  serif;
+    font-family: Cambria, serif;
     font-size: 20px;
     border: none;
     background: none;
     text-align: center;
     color: white;
 }
-#vectbracket {
+.vectbracket {
     font-size: 200%;
+    font-weight: lighter;
+    font-family: 'Arial-Narrow', sans-serif;
 }
-#prevnext {
+
+.prevnext {
     background: white; 
+    border-radius: 5px;
     padding: 5%;
     width: 60px;
     text-align: center;
+    color:black;
+    text-decoration:none;
+    bottom: 2px;
     
 }
+
+.prevnext::after {
+    color: black;
+    text-decoration: none;
+}
+
 .tabform input:hover {
     background: #7aaed7;
 }
@@ -104,4 +143,140 @@ html {
 #v1b1, #v1b2, #v2b1, #v2b2 {
     font-size: 200%;
     font-weight: 200;
+}
+.vectorlbl1 {
+    fill: #fc75db;
+    filter: drop-shadow(0px 0px 3px black);
+    stroke-width: 0.6px;
+}
+
+.vectorlbl2 {
+    fill: #daab73;
+    stroke-width: 0.6px;
+    filter: drop-shadow(0px 0px 3px black);
+}
+
+#v1xlbl, #v1ylbl, #v2xlbl, #v2ylbl {
+    font-weight: bold;
+    text-anchor: middle;
+}
+
+#line5 {
+    fill: transparent;
+}
+
+#line6 {
+    display: none;
+}
+
+svg {
+    /*background: linear-gradient(135deg,#7aaed7,#466589);*/
+    background: var(--background-colour);
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+#thetaLabel {
+    font-size: 20px;
+    fill: white;
+    filter: drop-shadow(0px 0px 3px black);
+}
+
+input {
+    font-weight: bold;
+    size: 10;
+    width: 60px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0%;
+}
+
+td input {
+    max-width: 60px;
+}
+
+a  {
+    text-align: center;
+    text-decoration: none;
+}
+
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 0px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+}
+
+#vect1O {
+    color: #fc75db;
+}
+#vect2O {
+    color: #daab73;
+}
+#vect3O {
+    color: #afdb85;
+}
+
+#vect1O input {
+    color: #fc75db;
+}
+
+#vect2O input {
+    color: #daab73;
+}
+
+#vect3O input {
+    color:#afdb85;
+}
+
+
+.navigation {
+    width: 200px;
+    margin-bottom: 2%;
+}
+.navigation td {
+    width: 100px;
+    font-size: 80%;
+    text-align: center;
+}
+
+#pages {
+    width: 100%;
+    color: white;
+    font-size: 80%;
+}
+
+#pagestable {   
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+}
+.navbuttons {
+    height: 50px;
+    width: 50px;
+    background-color: var(--bg-alternative);
+    padding-right: 4px;
+    border-radius: 50%;
+    color: var(--text-colour);
+}
+a {
+    color: var(--text-colour);
+    text-decoration: none;
+}
+.navbuttons:hover {
+    background-color: var(--hightlight-0);
+}
+.prevnext {
+    display: none;
+}
+.selected {
+    background-color: var(--highlight-4);
 }
