@@ -49,7 +49,7 @@ html {
     height: 500px;
 }
 #vectorgraph {
-    background: transparent;
+    background: linear-gradient(135deg,#7aaed7,#466589);
 }
 .gridlines {
     stroke: white;
@@ -169,15 +169,7 @@ html {
     display: none;
 }
 
-svg {
-    /*background: linear-gradient(135deg,#7aaed7,#466589);*/
-    background: var(--background-colour);
-    -webkit-touch-callout: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 
-}
 
 #thetaLabel {
     font-size: 20px;
@@ -266,6 +258,8 @@ table {
     padding-right: 4px;
     border-radius: 50%;
     color: var(--text-colour);
+    margin-left: auto;
+    margin-right: auto;
 }
 a {
     color: var(--text-colour);
@@ -279,4 +273,15 @@ a {
 }
 .selected {
     background-color: var(--highlight-4);
+}
+
+svg {
+    background: linear-gradient(135deg,#7aaed7,#466589);
+    /*background: var(--background-colour);*/
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 10px;
+
 }

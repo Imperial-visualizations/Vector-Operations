@@ -5,8 +5,42 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="projection.css">
     </head>
-    <h1>Vector Operations - Scalar Projection</h1>
+    <div id="pages">
+        <table id="pagestable">
+            <tr>
+                <td class="navbuttons">
+                    <a href="threeOperations.html">
+                        <div class="navbutton">
+                            1
+                        </div>
+                    </a>
+                </td>
+                <td> </td>
+                <td class="navbuttons selected">                    
+                    <a>
+                        <div class="navbutton">
+                            2
+                        </div>
+                    </a>
+                </td>
+                <td> </td>
+                <td class="navbuttons" class="navbutton">                    
+                    <a href="vectorprojection.html">
+                        <div>
+                            3
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="container">
 
+
+    <body>
+
+      
+            <h1>Vector Operations - Scalar Projection</h1>
     <div id="diagramandinfo">
 
         <div class="section" id="vectorgraphdiv">
@@ -68,25 +102,29 @@
                 <text y="480" x="230" class="axislabel">-9</text>
 
                 <line x1="250" y1="250" x2="400" y2="130" stroke="#fc75db" stroke-width="4" id="line1"></line>
-                <circle cx="400" cy="130" r="10" fill="#fc75db" stroke="white" stroke-width="3" id="circle1"></circle>
+                
                 <line x1="250" y1="250" x2="200" y2="120" stroke="#daab73" stroke-width="4" id="line2"></line>
-                <circle cx="200" cy="120" r="10" fill="#daab73" stroke="white" stroke-width="3" id="circle2"></circle>
+                
                 <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line3"></line>
                 <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line4" stroke-dasharray="4"></line>
-                <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line5"></line>
+                <path x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line5"/>
                 <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="line6"></line>
+                <circle cx="400" cy="130" r="10" fill="#fc75db" stroke="white" stroke-width="3" id="circle1"></circle>
+                <circle cx="200" cy="120" r="10" fill="#daab73" stroke="white" stroke-width="3" id="circle2"></circle>
 
                 <path id="arc1" stroke="white", stroke-width="3" fill="transparent"></path>
 
-                <text y="480" x="230" class="vectorlbl" id="v1b1">[</text>
-                <text y="480" x="230" class="vectorlbl" id="v1xlbl">3</text>
-                <text y="480" x="230" class="vectorlbl" id="v1ylbl">3</text>
-                <text y="480" x="230" class="vectorlbl" id="v1b2">]</text>
+                <text y="480" x="230" class="vectorlbl1" id="v1b1">[</text>
+                <text y="480" x="230" class="vectorlbl1" id="v1xlbl">3</text>
+                <text y="480" x="230" class="vectorlbl1" id="v1ylbl">3</text>
+                <text y="480" x="230" class="vectorlbl1" id="v1b2">]</text>
 
-                <text y="480" x="230" class="vectorlbl" id="v2b1">[</text>
-                <text y="480" x="230" class="vectorlbl" id="v2xlbl">3</text>
-                <text y="480" x="230" class="vectorlbl" id="v2ylbl">3</text>
-                <text y="480" x="210" class="vectorlbl" id="v2b2">]</text>
+                <text y="480" x="230" class="vectorlbl2" id="v2b1">[</text>
+                <text y="480" x="230" class="vectorlbl2" id="v2xlbl">3</text>
+                <text y="480" x="230" class="vectorlbl2" id="v2ylbl">3</text>
+                <text y="480" x="210" class="vectorlbl2" id="v2b2">]</text>
+
+                <text x="20" y="20" id="thetaLabel" >θ</text>
 
             </svg>
 
@@ -104,7 +142,7 @@
                         <tr>
                             <td rowspan="1" class="numerator"> 
                                 <span style="text-decoration: underline;">r</span> • <span style="text-decoration: underline;">s</span></td>
-                            <td rowspan="2">=</td>
+                            <td rowspan="2"> = </td>
                             <td rowspan="2">|<span style="text-decoration: underline;">s</span>| cos θ</td>
                         </tr>
                         <td rowspan="1">|<span style="text-decoration: underline;">r</span>|</td>
@@ -115,10 +153,10 @@
             <div class="subsection" id="inputs">
                 <div id="formula3" class="formula">
                 
-                    <table class="tabform">
+                    <table class="tabform" id="vect1O">
                         <tr>
                             <td rowspan="2"><span style="text-decoration: underline;">r</span></td>
-                            <td rowspan="2">=</td>
+                            <td rowspan="2"> = </td>
                             <td rowspan="2" class="vectbracket"> [</td>
                             <td rowspan="1"><input type="number" value="3" id="v1x"></td>
                             <td rowspan="2" class="vectbracket"> ]</td>
@@ -130,7 +168,7 @@
                 </div>
                 <div id="formula4" class="formula">
                 
-                    <table class="tabform">
+                    <table class="tabform" id="vect2O">
                         <tr>
                             <td rowspan="2" style="text-decoration: underline;">s</td>
                             <td rowspan="2"> =</td>
@@ -148,18 +186,23 @@
                     <table class="tabform">
                         <tr>
                             <td rowspan="2">θ</td>
-                            <td rowspan="2">=</td>
+                            <td rowspan="2"> = </td>
                             <td rowspan="1"><input type="number" value="30" id="thetaInput"></td>
                             <td rowspan="2"><sup>o</sup></td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <a href="vectorprojection.html" id="next">
-                <div class="prevnext" style="background: white; padding: 5%;width: 60px;text-align: center;">
-                    Next
-                </div>
-            </a>
+            <table class="navigation">
+                <tr>
+                    <td></td>                    
+                    <td><a href="vectorprojection.html">
+                        <div class="prevnext" style="background: white; padding: 5%;width: 60px;text-align: center;">
+                            Next
+                        </div>
+                    </a></td>                    
+                </tr>
+            </table>
 
             </div>
         </div>
@@ -167,6 +210,8 @@
 
 
     </div>
+</div>
+</body>
 
     <script src="scalarprojection.js"></script>
 </html>
