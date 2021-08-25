@@ -1,6 +1,6 @@
 //Variables for operations
 let operation = "+";
-let operationArray = ["−", "+", "×"];
+const operationArray = ["+", "−", "×"];
 let optionShow = true;
 
 // Numbers for svg elements
@@ -19,6 +19,10 @@ let sf = 2;
 // Helper functions for getting elements
 function elClass(className) {
     return document.getElementsByClassName(className);
+}
+
+function elName(name) {
+    return document.getElementsByName(name);
 }
 
 function elID(id) {
@@ -57,8 +61,8 @@ const v3Output = elID("v3output");
 const sfOutput = elID("sfOutput");
 const opsign = elID("opsign");
 
-const displayVector1 = elID("displayVector1");
-const displayVector2 = elID("displayVector2");
+const scalarBlock = elID("scalar-block");
+
 const displayVector3 = elID("displayVector3");
 
 const btn1 = elID("btn1");
@@ -71,12 +75,13 @@ const btntxt3 = elID("btntxt3");
 
 const optioncanvas = elID("operationOptionSVG");
 
-const viewBtn = elID("viewbtn");
-
 const vect2div = elClass("v2div")[0];
 
 const v2Bracket1 = elClass("v2bracket")[0];
 const v2Bracket2 = elClass("v2bracket")[1];
+
+const operationDisplay = elID("operation-display");
+const operationSelect = elName("operation-select");
 
 //Sliders
 const sliderSVG = elID("slidersvg");
@@ -139,16 +144,16 @@ const vectorSum = (vec1, vec2) => vec1.map((element, i) => element + vec2[i]);
 //Changes type of operation
 function operate() {
     //console.log(operationArray[1]);
-    if (operationArray[1] == "+") {
+    if (operation === "+") {
         vector2a[0] = vector2[0];
         vector2a[1] = vector2[1];
         vector3[0] = vector1[0] + vector2[0];
         vector3[1] = vector1[1] + vector2[1];
-    } else if (operationArray[1] == "×") {
+    } else if (operation === "×") {
         vector3[0] = vector1[0] * sf;
         vector3[1] = vector1[1] * sf;
 
-    } else if (operationArray[1] == "−") {
+    } else if (operation === "−") {
         vector2a[0] = 0 - vector2[0];
         vector2a[1] = 0 - vector2[1];
         vector3[0] = vector1[0] - vector2[0];
@@ -243,7 +248,7 @@ function updateVectorInput() {
 
     //Updates Equation    
     v1Output.innerHTML = vector1[0].toString() + "<br>" + vector1[1].toString();
-    if (operationArray[1] == "×") {
+    if (operation === "×") {
         v2Output.innerHTML = ((Math.round(sf * 10)) / 10).toString();
     }
     else {
@@ -253,6 +258,47 @@ function updateVectorInput() {
     v3Output.innerHTML = (Math.round((vector3[0])*100000) / 100000).toString() + "<br>" + (Math.round((vector3[1])*100000) / 100000).toString();
     sfOutput.innerHTML = ((Math.round(sf * 10))/10).toString();
 }
+
+// Allow operation selection
+
+operationSelect.forEach(function(operationButton, i) {
+    operationButton.onclick = function (event) {
+
+        event.preventDefault;
+
+        operationSelect.forEach((operation, j) => j !== i ? operation.classList.remove("selected") : operation.classList.add("selected"));
+
+        operation = operationArray[i];
+        console.log(operation);
+
+        operationDisplay.textContent = operation;
+
+        if (operation === "×") {
+            scalarBlock.style.display = "";
+            vect2div.style.display = "none";
+            line4.style.display = "none";
+            v2Bracket1.style.display = "none";
+            v2Bracket2.style.display = "none";
+            sfDiv.style.display = "inline";
+        line3.setAttribute("stroke-width", "2");
+        } else {
+            scalarBlock.style.display = "none";
+            vect2div.style.display = "inline";
+            line4.style.display = "inline";
+            sfDiv.style.display = "none";
+            v2Bracket1.style.display = "table-cell";
+            v2Bracket2.style.display = "table-cell";
+        line3.setAttribute("stroke-width", "4");
+        }
+
+        opsign.textContent = operation;
+
+        operate();
+        updateVectorSvg();
+        updateVectorInput();
+
+    }
+});
 
 // Run the update functions when the page loads
 updateVectorSvg();
@@ -387,28 +433,7 @@ window.onmouseup = function () {
     mousePressed = false;
 }
 
-displayVector1.checked = true;
-displayVector2.checked = true;
 displayVector3.checked = true;
-
-displayVector1.oninput = function () {   
-    if (displayVector1.checked) {
-        line3.style.display = "";
-        ptblue.style.display = "";
-    } else {
-        line3.style.display = "none";
-        ptblue.style.display = "none";
-    }
-}
-
-displayVector2.oninput = function () {   
-    if (displayVector2.checked) {
-        line4.style.display = "";
-    } else {
-        line4.style.display = "none";
-    }
-}
-
 
 displayVector3.oninput = function () {   
     if (displayVector3.checked) {
@@ -416,91 +441,6 @@ displayVector3.oninput = function () {
     } else {
         line5.style.display = "none";
     }
-}
-
-optioncanvas.onmousedown = function(event) {
-    let optioncanvasX = optioncanvas.getBoundingClientRect().x;
-    let optioncanvasY = optioncanvas.getBoundingClientRect().y;
-    let mouseX = event.clientX;
-    let mouseY = event.clientY;
-
-    let xCoord = mouseX - optioncanvasX;
-    let yCoord = mouseY - optioncanvasY;
-    let newvectopparr = ["a", "b", "c"];
-    if (yCoord >= 50 && yCoord <= 100) {
-        
-        newvectopparr[1] = operationArray[0];
-        newvectopparr[2] = operationArray[1];
-        newvectopparr[0] = operationArray[2];
-        //console.log(newvectopparr);
-
-    } else if (yCoord >=170 && yCoord <= 220) {       
-        newvectopparr[1] = operationArray[2];
-        newvectopparr[0] = operationArray[1];
-        newvectopparr[2] = operationArray[0];
-
-    } else {
-        newvectopparr[1] = operationArray[1];
-        newvectopparr[0] = operationArray[0];
-        newvectopparr[2] = operationArray[2];  
-    }
-    operationArray[0] = newvectopparr[0];
-    operationArray[1] = newvectopparr[1];
-    operationArray[2] = newvectopparr[2];
-    operation = operationArray[1];
-    btntxt1.textContent = operationArray[0];
-    btntxt2.textContent = operationArray[1];
-    btntxt3.textContent = operationArray[2];
-
-    //console.log(operationArray);
-
-    opsign.innerHTML = operationArray[1];
-
-    if (operationArray[1] == "×") {
-        vect2div.style.display = "none";
-        line4.style.display = "none";
-        v2Bracket1.style.display = "none";
-        v2Bracket2.style.display = "none";
-        displayVector2.display = "none";
-        sfDiv.style.display = "inline";
-	line3.setAttribute("stroke-width", "2");
-    } else {
-        vect2div.style.display = "inline";
-        line4.style.display = "inline";
-        sfDiv.style.display = "none";
-        displayVector2.display = "block";
-        v2Bracket1.style.display = "table-cell";
-        v2Bracket2.style.display = "table-cell";
-	line3.setAttribute("stroke-width", "4");
-    }
-
-    if (yCoord >= 220 && yCoord <= 270) {
-        console.log("Clicked");
-        if (optionShow == true) {
-            optionShow = false;
-            btn1.style.display = "none";
-            btn3.style.display = "none";
-            btntxt1.style.display = "none";
-            
-            btntxt3.style.display = "none";
-            optionShow = false;
-
-        } else {
-            optionShow = false;
-            btn1.style.display = "block";
-            btn3.style.display = "block";
-            btntxt1.style.display = "block";
-            
-            btntxt3.style.display = "block";
-            optionShow = true;
-
-        }
-    }
-
-    operate();
-
-    updateVectorSvg();
-    updateVectorInput();
 }
 
 sliderSVG.onmousemove = function(event) {
@@ -527,14 +467,4 @@ sliderSVG.onmousedown = function(event) {
 
 sliderSVG.onmouseup = function() {
     mousePressed= false;
-}
-
-viewBtn.onmousedown = function(event) {
-    mousePressed = true;
-    optioncanvas.style.display = "none";
-    optionShow = False;
-}
-
-viewBtn.onmousedown = function(event) {
-    mousePressed = false;
 }

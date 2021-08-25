@@ -21,36 +21,6 @@ html {
     color: var(--text-colour);
 }
 
-.select {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    
-}
-
-select {
-    appearance: none;
-    background-color: var(--background-colour);
-    border: none;
-    padding: 5px;
-    outline: none;
-    margin: 0;
-    width: 100%;
-    font-family: inherit;
-    font-size: 25px;
-    cursor: pointer;
-    line-height: inherit;
-    color: var(--text-colour);
-    text-align: center;
-    
-    
-}
-
-select:focus {
-    box-shadow: 0px 0px 3pt 2pt var(--hightlight-0);
-}
-
 .container {
     background: var(--background-colour);
     display: flex;
@@ -74,9 +44,16 @@ select:focus {
 }
 #smallvectors {
     display: flex;
+    flex-direction: row;
     padding: 0px;
-    
 } 
+
+#operation-display {
+    text-align: center;
+    padding-top: 155px;
+    font-size: 30px;
+    width: 40px;
+}
 
 #vectordivsmall {
     /*background: linear-gradient(135deg,#7aaed7,#466589);*/
@@ -93,6 +70,7 @@ select:focus {
     margin-right: 2.5px;
     
 }
+
 #equatesTo, .equatiosTo {
     margin-left: 2.5px;
     margin-right: 2.5px;
@@ -131,8 +109,8 @@ input {
     background: var(--background-colour);
     color: var(--text-colour);
     height: 70px;
-    padding-left: 10px;
-    padding-top: 3px;
+    display: flex;
+    justify-content: center;
 }
 .vectInput2 {
     /*background: linear-gradient(194deg,#466589,#7aaed7);*/
@@ -143,6 +121,9 @@ input {
 }
 .vectInput3 {
     /*background: linear-gradient(194deg,#466589,#7aaed7);*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background: var(--background-colour);
     color: white;
     height: 200px;
@@ -173,8 +154,8 @@ input[type=number] {
 input:active {
     border: none;
     outline: none;
-    
 }
+
 input:focus {
     border: none;
     outline: none;
@@ -239,6 +220,42 @@ input:checked {
     font-size: 25px;
     height: 200px;
 }
+
+#operations-panel {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.operation-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 30%;
+    color: var(--text-colour);
+    font-size: 20px;
+    border: 0;
+    background: var(--bg-alternative);
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.operation-button:hover,
+.operation-button:focus {
+    background: var(--hightlight-0);
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
+.scalar-block {
+    width: 200px;
+}
+
 .operationbuttons {
     width: 50px;
     height: 50px;
@@ -315,7 +332,9 @@ a {
     margin-left: auto;
     margin-right: auto;
 }
-.navbuttons:hover {
+.navbuttons:hover,
+.navbuttons:focus
+{
     background-color: var(--hightlight-0);
 }
 .prevnext {
@@ -325,7 +344,8 @@ a {
     background-color: var(--highlight-4);
     
 }
-.selected:hover {
+.selected:hover,
+.selected:focus {
     background-color: var(--highlight-4);
 }
 #canvas3 {
