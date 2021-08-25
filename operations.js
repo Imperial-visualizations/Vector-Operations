@@ -229,34 +229,37 @@ function updateVectorSvg() {
     line4.setAttribute("y2", bigVector3[1].toString());
 
     arrowHead4.setAttribute("refX", arrowRefXBig(vector2).toString());
+}
 
+function toDP(number, decimals) {
 
+    return Math.round(number*(10**(decimals-1)))/(10**(decimals-1));
 
 }
 
 // Updates the numerical representations of the vectors
 function updateVectorInput() {
-    sfE.value = Math.round(sf * 10) / 10;
+    sfE.value = toDP(sf, 2);
 
     // update vector 1 input
-    v1x.value = vector1[0].toString();
-    v1y.value = vector1[1].toString();
+    v1x.value = toDP(vector1[0], 2).toString();
+    v1y.value = toDP(vector1[1], 2).toString();
 
     // update vector 2 input
-    v2x.value = vector2[0].toString();
-    v2y.value = vector2[1].toString();
+    v2x.value = toDP(vector2[0], 2).toString();
+    v2y.value = toDP(vector2[1], 2).toString();
 
     //Updates Equation    
-    v1Output.innerHTML = vector1[0].toString() + "<br>" + vector1[1].toString();
+    v1Output.innerHTML = toDP(vector1[0], 2).toString() + "<br>" + toDP(vector1[1], 2).toString();
     if (operation === "×") {
-        v2Output.innerHTML = ((Math.round(sf * 10)) / 10).toString();
+        v2Output.innerHTML = toDP(sf, 2).toString();
     }
     else {
-        v2Output.innerHTML = vector2[0].toString() + "<br>" + vector2[1].toString();
-    }    
+        v2Output.innerHTML = toDP(vector2[0],2).toString() + "<br>" + toDP(vector2[1], 2).toString();
+    } 
     
-    v3Output.innerHTML = (Math.round((vector3[0])*100000) / 100000).toString() + "<br>" + (Math.round((vector3[1])*100000) / 100000).toString();
-    sfOutput.innerHTML = ((Math.round(sf * 10))/10).toString();
+    v3Output.innerHTML = toDP(vector3[0], 2).toString() + "<br>" + toDP(vector3[1], 2).toString();
+    sfOutput.innerHTML = toDP(sf, 2).toString();
 }
 
 // Allow operation selection
@@ -269,7 +272,6 @@ operationSelect.forEach(function(operationButton, i) {
         operationSelect.forEach((operation, j) => j !== i ? operation.classList.remove("selected") : operation.classList.add("selected"));
 
         operation = operationArray[i];
-        console.log(operation);
 
         operationDisplay.textContent = operation;
 

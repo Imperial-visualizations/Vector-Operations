@@ -228,11 +228,9 @@ function updateVectorSVG() {
         console.log(T4, T3+360, T3+360+T4)
         midAngle = toRad((0.5*(T3+T4+360)) ); 
     }
-        
 
     MI = [Math.cos(midAngle),  Math.sin(midAngle)] ;
     bigMID = convertToSVGBig(MI);
-
 
     //Sets up parameter of the path of the arc
     let lAF = ""
