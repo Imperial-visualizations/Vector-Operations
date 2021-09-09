@@ -285,3 +285,13 @@ svg {
     border-radius: 10px;
 
 }
+.operationbuttons {
+    cursor: auto;
+}
+select:hover {
+    background-color: var(--bg-alternative);
+}
+option {
+    margin-left: auto;
+    margin-right: auto;
+}
