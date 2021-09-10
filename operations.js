@@ -480,3 +480,4 @@ sliderSVG.onmousedown = function(event) {
 
 sliderSVG.onmouseup = function() {
     mousePressed= false;
+}
