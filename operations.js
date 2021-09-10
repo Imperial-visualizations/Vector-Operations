@@ -24,7 +24,7 @@ function elClass(className) {
 function elName(name) {
     return document.getElementsByName(name);
 }
-
+  
 function elID(id) {
     return document.getElementById(id);
 }
@@ -75,10 +75,14 @@ const btntxt3 = elID("btntxt3");
 
 const optioncanvas = elID("operationOptionSVG");
 
+
+const viewBtn = elID("viewbtn");
+
 const vect2div = elClass("v2div")[0];
 
 const v2Bracket1 = elClass("v2bracket")[0];
 const v2Bracket2 = elClass("v2bracket")[1];
+
 
 const operationDisplay = elID("operation-display");
 const operationSelect = elName("operation-select");
@@ -142,13 +146,13 @@ function arrowRefXBig(vector) {
 const vectorSum = (vec1, vec2) => vec1.map((element, i) => element + vec2[i]);
 
 //Changes type of operation
-function operate() {
-    //console.log(operationArray[1]);
+function operate() {    
     if (operation === "+") {
         vector2a[0] = vector2[0];
         vector2a[1] = vector2[1];
         vector3[0] = vector1[0] + vector2[0];
         vector3[1] = vector1[1] + vector2[1];
+
     } else if (operation === "×") {
         vector3[0] = vector1[0] * sf;
         vector3[1] = vector1[1] * sf;
@@ -229,6 +233,7 @@ function updateVectorSvg() {
     line4.setAttribute("y2", bigVector3[1].toString());
 
     arrowHead4.setAttribute("refX", arrowRefXBig(vector2).toString());
+
 }
 
 function toDP(number, decimals) {
@@ -239,6 +244,7 @@ function toDP(number, decimals) {
 
 // Updates the numerical representations of the vectors
 function updateVectorInput() {
+
     sfE.value = toDP(sf, 2);
 
     // update vector 1 input
@@ -295,11 +301,12 @@ operationSelect.forEach(function(operationButton, i) {
 
         opsign.textContent = operation;
 
+
         operate();
         updateVectorSvg();
         updateVectorInput();
-
     }
+
 });
 
 // Run the update functions when the page loads
@@ -435,7 +442,9 @@ window.onmouseup = function () {
     mousePressed = false;
 }
 
+
 displayVector3.checked = true;
+
 
 displayVector3.oninput = function () {   
     if (displayVector3.checked) {
@@ -444,6 +453,8 @@ displayVector3.oninput = function () {
         line5.style.display = "none";
     }
 }
+
+
 
 sliderSVG.onmousemove = function(event) {
     if (mousePressed) {
@@ -469,4 +480,3 @@ sliderSVG.onmousedown = function(event) {
 
 sliderSVG.onmouseup = function() {
     mousePressed= false;
-}

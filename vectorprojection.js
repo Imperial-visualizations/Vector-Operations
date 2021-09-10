@@ -505,6 +505,10 @@ modroverry.oninput = function() {
 
 //Checks if the user has clicked on the circle used to move vector R around
 circle1.onmousedown = function(event) {
+    vRbracket1.style.display = "block";
+    vRbracket2.style.display = "block";
+    vRxlbl.style.display = "block";
+    vRylbl.style.display = "block";
     mousePressed = true;
     chosenV = 1;
     //Changes the cursor to a pointer
@@ -516,6 +520,10 @@ circle1.onmousedown = function(event) {
 
 //Checks if the user has stopped clicking on the ccircle used to move vector R
 circle1.onmouseup = function() {
+    vRbracket1.style.display = "none";
+    vRbracket2.style.display = "none";
+    vRxlbl.style.display = "none";
+    vRylbl.style.display = "none";
     mousePressed = false;
     
 }
@@ -527,6 +535,10 @@ circle1.onmouseleave = function() {
 
 //Checks if the user has clicked on the circle used to move vector R around
 circle2.onmousedown = function(event) {
+    vSbracket1.style.display = "block";
+    vSbracket2.style.display = "block";
+    vSxlbl.style.display = "block";
+    vSylbl.style.display = "block";
     mousePressed = true;
     chosenV = 2;
     //Changes the cursor to a pointer
@@ -538,6 +550,10 @@ circle2.onmousedown = function(event) {
 
 //Checks if the user has stopped clicking on the ccircle used to move vector S
 circle2.onmouseup = function() {
+    vSbracket1.style.display = "none";
+    vSbracket2.style.display = "none";
+    vSxlbl.style.display = "none";
+    vSylbl.style.display = "none";
     mousePressed = false;
     chosenV = 0;
 }
@@ -581,6 +597,16 @@ vectorGraph.onmousemove = function(event) {
         updateVectorSVG();
     }
 }
+
+vRbracket1.style.display = "none";
+vRbracket2.style.display = "none";
+vRxlbl.style.display = "none";
+vRylbl.style.display = "none";
+
+vSbracket1.style.display = "none";
+vSbracket2.style.display = "none";
+vSxlbl.style.display = "none";
+vSylbl.style.display = "none";
 
 //Calculates the vector projection and the angle between vector R and vector S
 operate("r");
