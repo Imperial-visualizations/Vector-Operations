@@ -21,7 +21,6 @@ html {
     color: var(--text-colour);
 }
 
-
 .container {
     background: var(--background-colour);
     display: flex;
@@ -44,9 +43,24 @@ html {
     float: left;
 }
 
-#vectorgraphdiv, #vectorgraph {
-    width: 500px;
-    height: 500px;
+#smallvectors {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+} 
+
+#operation-display {
+    text-align: center;
+    padding-top: 155px;
+    font-size: 30px;
+    width: 40px;
+}
+
+#vectordivsmall {
+    /*background: linear-gradient(135deg,#7aaed7,#466589);*/
+    background: inherit;
+    padding: 5px;
+
 }
 #vectorgraph {
     background: linear-gradient(135deg,#7aaed7,#466589);
@@ -56,8 +70,15 @@ html {
     stroke-dasharray: 1;
     
 }
+
+
+#equatesTo, .equatiosTo {
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+}
 .axislines {
     stroke-width: 2px;
+
 }
 .axislabel {
     font-family: Cambria, serif;
@@ -97,7 +118,31 @@ html {
     font-size: 20px;
     border: none;
     background: none;
-    text-align: center;
+
+    color: var(--text-colour);
+}
+.vectInput {
+    /*background: linear-gradient(194deg,#466589,#7aaed7);*/
+    background: var(--background-colour);
+    color: var(--text-colour);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+.vectInput2 {
+    /*background: linear-gradient(194deg,#466589,#7aaed7);*/
+    background: var(--background-colour);
+    color: var(--text-colour);
+    height: 80px;
+    font-family: Cambria;
+}
+.vectInput3 {
+    /*background: linear-gradient(194deg,#466589,#7aaed7);*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--background-colour);
+
     color: white;
 }
 .vectbracket {
@@ -127,11 +172,19 @@ html {
     background: #7aaed7;
 }
 
-#vectorinfo #formulas {
-    border-radius: 2px solid white;
+input:active {
+    border: none;
+    outline: none;
 }
-#vectun {
-    text-decoration: underline;
+
+input:focus {
+    border: none;
+    outline: none;
+    background: #7aaed780;
+}
+input:hover {
+    background: #7aaed780;
+
 }
 #subsection {
     width: 200px;
@@ -189,8 +242,46 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0%;
 }
 
-td input {
-    max-width: 60px;
+#operations-panel {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.operation-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 30%;
+    color: var(--text-colour);
+    font-size: 20px;
+    border: 0;
+    background: var(--bg-alternative);
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.operation-button:hover,
+.operation-button:focus {
+    background: var(--hightlight-0);
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
+.scalar-block {
+    width: 200px;
+}
+
+.operationbuttons {
+    width: 50px;
+    height: 50px;
+    fill: var(--background-colour);    
+    cursor: pointer;
 }
 
 a  {
@@ -233,12 +324,6 @@ table {
     width: 200px;
     margin-bottom: 2%;
 }
-.navigation td {
-    width: 100px;
-    font-size: 80%;
-    text-align: center;
-}
-
 #pages {
     width: 200px;    
     margin-left: auto;
@@ -267,13 +352,20 @@ a {
     margin-left: auto;
     margin-right: auto;
 }
-.navbuttons:hover {
+.navbuttons:hover,
+.navbuttons:focus
+{
     background-color: var(--hightlight-0);
 }
 .prevnext {
     display: none;
 }
 .selected {
+    background-color: var(--highlight-4);
+    
+}
+.selected:hover,
+.selected:focus {
     background-color: var(--highlight-4);
 }
 
