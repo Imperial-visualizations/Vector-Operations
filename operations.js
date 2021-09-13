@@ -454,8 +454,6 @@ displayVector3.oninput = function () {
     }
 }
 
-
-
 sliderSVG.onmousemove = function(event) {
     if (mousePressed) {
         let sliderX = sliderSVG.getBoundingClientRect().x;
@@ -480,3 +478,4 @@ sliderSVG.onmousedown = function(event) {
 
 sliderSVG.onmouseup = function() {
     mousePressed= false;
+}
