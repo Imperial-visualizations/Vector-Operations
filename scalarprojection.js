@@ -399,10 +399,6 @@ thetaInput.oninput = function() {
 }
 
 circle1.onmousedown = function(event) {
-    vRbracket1.style.display = "block";
-    vRbracket2.style.display = "block";
-    vRxlbl.style.display = "block";
-    vRylbl.style.display = "block";
     mousePressed = true;
     chosenV = 1;
     vectorGraph.style.cursor = "pointer";
@@ -411,10 +407,6 @@ circle1.onmousedown = function(event) {
 }
 
 circle1.onmouseup = function() {
-    vRbracket1.style.display = "none";
-    vRbracket2.style.display = "none";
-    vRxlbl.style.display = "none";
-    vRylbl.style.display = "none";
     mousePressed = false;
     chosenV = 0;
     
@@ -426,10 +418,6 @@ circle1.onmouseleave = function() {
 
 
 circle2.onmousedown = function(event) {
-    vSbracket1.style.display = "block";
-    vSbracket2.style.display = "block";
-    vSxlbl.style.display = "block";
-    vSylbl.style.display = "block";
     mousePressed = true;
     chosenV = 2;
     vectorGraph.style.cursor = "pointer";
@@ -438,10 +426,6 @@ circle2.onmousedown = function(event) {
 }
 
 circle2.onmouseup = function() {
-    vSbracket1.style.display = "none";
-    vSbracket2.style.display = "none";
-    vSxlbl.style.display = "none";
-    vSylbl.style.display = "none";
     mousePressed = false;
     chosenV = 0;
 }
@@ -474,16 +458,6 @@ vectorGraph.onmousemove = function(event) {
         updateVectorSVG();
     }
 }
-
-vRbracket1.style.display = "none";
-vRbracket2.style.display = "none";
-vRxlbl.style.display = "none";
-vRylbl.style.display = "none";
-
-vSbracket1.style.display = "none";
-vSbracket2.style.display = "none";
-vSxlbl.style.display = "none";
-vSylbl.style.display = "none";
 
 operate("r");
 updateVectorInput();

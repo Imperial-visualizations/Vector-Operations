@@ -1,11 +1,11 @@
-:root {
+    :root {
     --background-colour: #15181d;
     --bg-alternative: #22354b;
     --hightlight-0: #7aaed7;
     --highlight-1: #fc75db;
     --highlight-2: #daab73;
     --highlight-3: #afdb85;
-    --highlight-4: #5e9ccc;
+    --highlight-4: #5e9ccc;    
     --text-colour: #f0ffff;
     --graph-lines: #f0ffff;
 }
@@ -32,17 +32,16 @@ html {
     min-height: 600px;
 }
 
-#diagramandinfo {
-    display: inline;
+.createbtn {
+    padding: 5px;
+    cursor: pointer;
 }
-#section {
-    height: 500px;
-    display: inline;
+.smallvect {
+    width: 250px;
 }
-#vectorgraphdiv {
-    float: left;
+.component {
+    width: 70px;
 }
-
 #smallvectors {
     display: flex;
     flex-direction: row;
@@ -60,65 +59,49 @@ html {
     /*background: linear-gradient(135deg,#7aaed7,#466589);*/
     background: inherit;
     padding: 5px;
-
 }
-#vectorgraph {
-    background: linear-gradient(135deg,#7aaed7,#466589);
+.vector1div {
+    margin:0;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
 }
-.gridlines {
-    stroke: white;
-    stroke-dasharray: 1;
+.vector2div {
+    margin-left: 2.5px;
+    margin-right: 2.5px;
     
 }
-
 
 #equatesTo, .equatiosTo {
     margin-left: 2.5px;
     margin-right: 2.5px;
 }
-.axislines {
-    stroke-width: 2px;
+#gridlines {
+    stroke-dasharray: 1;
+    stroke: var(--text-colour);
+}
+svg {
+    /*background: linear-gradient(135deg,#7aaed7,#466589);*/
+    background: var(--background-colour);
+    border-radius: 5px;
+}
+#basislines {
+    stroke: var(--text-colour);
+    stroke-width: 3;
+}
 
+.vectbracket {
+    font-size: 200%;
+    padding-bottom: 1%;
 }
-.axislabel {
-    font-family: Cambria, serif;
-    font-weight: bold;
-    fill: white;
-}
-#vectorinfo {
-    width: 200px;
-    height: 480px;
-    background: #7aafd757;
-    display: inline-block;
-    margin-left: 25px;
-    padding: 10px;
-    border-radius: 9px;
-    font-weight: bold;
-}
-.tabform {
+input {
     text-align: center;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-.numerator {
-    border-bottom: 2px solid;
-}
-.formula {
-    width: 200px;
-    text-align: center;
-    font-size: 20px;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    color: white;
-    font-family: Cambria, serif;
-}
-.tabform input {
-    width: 100px;
-    font-family: Cambria, serif;
-    font-size: 20px;
     border: none;
+    font-size: 25px;
+}
+input {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria Light, serif;
     background: none;
-
     color: var(--text-colour);
 }
 .vectInput {
@@ -142,34 +125,30 @@ html {
     flex-direction: column;
     justify-content: center;
     background: var(--background-colour);
-
     color: white;
-}
-.vectbracket {
-    font-size: 200%;
-    font-weight: lighter;
-    font-family: 'Arial-Narrow', sans-serif;
-}
-
-.prevnext {
-    background: white; 
-    border-radius: 5px;
-    padding: 5%;
-    width: 60px;
-    text-align: center;
-    color:black;
-    text-decoration:none;
-    bottom: 2px;
+    height: 200px;
+    font-family: Cambria;
+    width: 460px;
+    margin-left: 2.5px;
+    font-size: 20px;
     
 }
-
-.prevnext::after {
-    color: black;
-    text-decoration: none;
+.vectOut3 {
+    font-size: 25px;
 }
 
-.tabform input:hover {
-    background: #7aaed7;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0%;
+}
+
+.axislabel {
+    fill: var(--text-colour);
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 input:active {
@@ -184,62 +163,62 @@ input:focus {
 }
 input:hover {
     background: #7aaed780;
-
 }
-#subsection {
+input:checked {
+    outline: none;
+}
+.bigvector {
+    float: left;
+    /* margin-left: 440.5px; */
+}
+
+#canvas3 {
+    margin-left: 0px;
+}
+
+#v1output, #v2output, #v3output {
+    text-align: center;
+    width: 70px;
+}
+.vectorlbls {
+    display: none;
+}
+.slider {
+    background: none;
+    cursor: pointer;
+}
+.vectInput2A {
+    background: linear-gradient(194deg,#466589,#7aaed7);
+    color: white;
+    height: 120px;
+    font-family: Cambria;
     width: 200px;
 }
-#sign1, #sign2, #sign3, #sign4, #sign5, #sign6 {
-    display: none;
+#sliderN {
+    background: none;
+    width: 180px;
 }
-
-#v1b1, #v1b2, #v2b1, #v2b2 {
-    font-size: 200%;
-    font-weight: 200;
-}
-.vectorlbl1 {
-    fill: #fc75db;
-    filter: drop-shadow(0px 0px 3px black);
-    stroke-width: 0.6px;
-}
-
-.vectorlbl2 {
-    fill: #daab73;
-    stroke-width: 0.6px;
-    filter: drop-shadow(0px 0px 3px black);
-}
-
-#v1xlbl, #v1ylbl, #v2xlbl, #v2ylbl {
-    font-weight: bold;
-    text-anchor: middle;
-}
-
-#line5 {
-    fill: transparent;
-}
-
-#line6 {
-    display: none;
-}
-
-
-
-#thetaLabel {
-    font-size: 20px;
+.svgvaluelabel {
+    font-family: 15px;
     fill: white;
-    filter: drop-shadow(0px 0px 3px black);
 }
-
-input {
-    font-weight: bold;
-    size: 10;
-    width: 60px;
+#slide {
+    fill: #466589;
+    rx: 50%;
 }
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0%;
+#sliderhandle {
+    fill: none;
+    
+}
+#slider2 {
+    fill: #7aaed780;
+    rx: 3;
+    width: 180px;
+}
+.equationsymbol {
+    color: white;
+    font-size: 25px;
+    height: 200px;
 }
 
 #operations-panel {
@@ -283,46 +262,47 @@ button:active {
     fill: var(--background-colour);    
     cursor: pointer;
 }
-
-a  {
+.operationbuttontext {
+    font-size: 25px;
+    fill: var(--text-colour);
     text-align: center;
-    text-decoration: none;
 }
-
-table {
-    border-collapse: separate;
-    text-indent: initial;
-    border-spacing: 0px;
-    -webkit-border-horizontal-spacing: 0px;
-    -webkit-border-vertical-spacing: 0px;
+#btn2 {
+    fill: #466589;
 }
-
-#vect1O {
+.sfvectOpt {
+    height: 200px;
+}
+#sfSpan {
+    width: 180px;
+}
+#sfOutput {
+    font-size: 40px;
+    width: 180px;
+    text-align: center;
+}
+.sfvectOpt {
+    display: none;
+}
+.v1O {
     color: #fc75db;
 }
-#vect2O {
+.v2O {
     color: #daab73;
 }
-#vect3O {
+.v3O {
     color: #afdb85;
 }
-
-#vect1O input {
-    color: #fc75db;
+.view {
+    fill: #4574aa;
 }
 
-#vect2O input {
-    color: #daab73;
-}
+svg {
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
-#vect3O input {
-    color:#afdb85;
-}
-
-
-.navigation {
-    width: 200px;
-    margin-bottom: 2%;
 }
 #pages {
     width: 200px;    
@@ -368,14 +348,17 @@ a {
 .selected:focus {
     background-color: var(--highlight-4);
 }
+#canvas3 {
+    background: linear-gradient(135deg,var(--hightlight-0), var(--bg-alternative));
 
-svg {
-    background: linear-gradient(135deg,#7aaed7,#466589);
-    /*background: var(--background-colour);*/
-    -webkit-touch-callout: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border-radius: 10px;
-
+}
+.operationbuttons {
+    cursor: auto;
+}
+select:hover {
+    background-color: var(--bg-alternative);
+}
+option {
+    margin-left: auto;
+    margin-right: auto;
 }
