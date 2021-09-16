@@ -409,7 +409,12 @@ circle1.onmousedown = function(event) {
     chosenV = 1;
     vectorGraph.style.cursor = "pointer";
     vectorGraph.onmousemove(event);
-    
+
+    vRbracket1.style.display = 'block';
+    vRxlbl.style.display = 'block';
+    vRylbl.style.display = 'block';
+    vRbracket2.style.display = 'block';
+
 }
 
 circle1.onmouseup = function() {
@@ -419,6 +424,11 @@ circle1.onmouseup = function() {
     vRylbl.style.display = "none";
     mousePressed = false;
     chosenV = 0;
+
+    vRbracket1.style.display = 'none';
+    vRxlbl.style.display = 'none';
+    vRylbl.style.display = 'none';
+    vRbracket2.style.display = 'none';
     
 }
 
@@ -436,6 +446,12 @@ circle2.onmousedown = function(event) {
     chosenV = 2;
     vectorGraph.style.cursor = "pointer";
     vectorGraph.onmousemove(event);
+
+
+    vSbracket1.style.display = 'block';
+    vSxlbl.style.display = 'block';
+    vSylbl.style.display = 'block';
+    vSbracket2.style.display = 'block';
     
 }
 
@@ -446,6 +462,11 @@ circle2.onmouseup = function() {
     vSylbl.style.display = "none";
     mousePressed = false;
     chosenV = 0;
+
+    vSbracket1.style.display = 'none';
+    vSxlbl.style.display = 'none';
+    vSylbl.style.display = 'none';
+    vSbracket2.style.display = 'none';
 }
 
 circle2.onmouseleave = function() {
@@ -490,3 +511,13 @@ vSylbl.style.display = "none";
 operate("r");
 updateVectorInput();
 updateVectorSVG();
+
+vRbracket1.style.display = 'none';
+vRxlbl.style.display = 'none';
+vRylbl.style.display = 'none';
+vRbracket2.style.display = 'none';
+
+vSbracket1.style.display = 'none';
+vSxlbl.style.display = 'none';
+vSylbl.style.display = 'none';
+vSbracket2.style.display = 'none';

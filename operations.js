@@ -83,6 +83,7 @@ const sliderSVG = elID("slidersvg");
 const slider = elID("slide");
 const sliderhandle = elID("sliderhandle");
 
+const circlel5 = elID("circlel5");
 
 // Useful conversion functions
 function convertSliderBig(width) {
@@ -191,6 +192,9 @@ function updateVectorSvg() {
     line5.setAttribute("y1", bigDisplace.toString());
     line5.setAttribute("x2", bigVector3[0].toString());
     line5.setAttribute("y2", bigVector3[1].toString());
+
+    circlel5.setAttribute("cx", bigVector3[0].toString());
+    circlel5.setAttribute("cy", bigVector3[1].toString());
     
     arrowHead5.setAttribute("refX", arrowRefXBig(vector3).toString());
 
@@ -222,6 +226,7 @@ function updateVectorSvg() {
     line4.setAttribute("y1", bigVector1[1].toString());
     line4.setAttribute("x2", bigVector3[0].toString());
     line4.setAttribute("y2", bigVector3[1].toString());
+    line4.setAttribute("stroke-width", "4");
 
     arrowHead4.setAttribute("refX", arrowRefXBig(vector2).toString());
 
@@ -254,6 +259,55 @@ function updateVectorInput() {
     sfOutput.innerHTML = ((Math.round(sf * 10))/10).toString();
 }
 
+<<<<<<< Updated upstream
+=======
+// Allow operation selection
+
+operationSelect.forEach(function(operationButton, i) {
+    operationButton.onclick = function (event) {
+
+        event.preventDefault;
+
+        operationSelect.forEach((operation, j) => j !== i ? operation.classList.remove("selected") : operation.classList.add("selected"));
+
+        operation = operationArray[i];
+
+        operationDisplay.textContent = operation;
+
+        if (operation === "×") {
+            scalarBlock.style.display = "";
+            vect2div.style.display = "none";
+            line4.style.display = "none";
+            v2Bracket1.style.display = "none";
+            v2Bracket2.style.display = "none";
+            sfDiv.style.display = "inline";
+            line3.setAttribute("stroke-width", "4");
+            circlel5.setAttribute("r", "5");
+        } else {
+            scalarBlock.style.display = "none";
+            vect2div.style.display = "inline";
+            line4.style.display = "inline";
+            sfDiv.style.display = "none";
+            v2Bracket1.style.display = "table-cell";
+            v2Bracket2.style.display = "table-cell";
+            line3.setAttribute("stroke-width", "4");
+            line5.setAttribute("stroke-width", "4");
+            circlel5.setAttribute("r", "3");
+        }
+
+        line5.setAttribute("stroke-width", "6");
+        
+
+        opsign.textContent = operation;
+
+        operate();
+        updateVectorSvg();
+        updateVectorInput();
+
+    }
+});
+
+>>>>>>> Stashed changes
 // Run the update functions when the page loads
 updateVectorSvg();
 updateVectorInput();
