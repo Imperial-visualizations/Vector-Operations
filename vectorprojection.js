@@ -511,23 +511,12 @@ circle1.onmousedown = function(event) {
     vectorGraph.style.cursor = "pointer";
     //Calls function that handles the position the user has clicked on 
     vectorGraph.onmousemove(event);
-
-    vRbracket1.style.display = 'block';
-    vRxlbl.style.display = 'block';
-    vRylbl.style.display = 'block';
-    vRbracket2.style.display = 'block';
-
     
 }
 
 //Checks if the user has stopped clicking on the ccircle used to move vector R
 circle1.onmouseup = function() {
     mousePressed = false;
-
-    vRbracket1.style.display = 'none';
-    vRxlbl.style.display = 'none';
-    vRylbl.style.display = 'none';
-    vRbracket2.style.display = 'none';
     
 }
 
@@ -544,11 +533,6 @@ circle2.onmousedown = function(event) {
     vectorGraph.style.cursor = "pointer";
     //Calls function that handles the position the user has clicked on 
     vectorGraph.onmousemove(event);
-
-    vSbracket1.style.display = 'block';
-    vSxlbl.style.display = 'block';
-    vSylbl.style.display = 'block';
-    vSbracket2.style.display = 'block';
     
 }
 
@@ -556,11 +540,6 @@ circle2.onmousedown = function(event) {
 circle2.onmouseup = function() {
     mousePressed = false;
     chosenV = 0;
-
-    vSbracket1.style.display = 'none';
-    vSxlbl.style.display = 'none';
-    vSylbl.style.display = 'none';
-    vSbracket2.style.display = 'none';
 }
 
 //Changes the cursor back to normal
@@ -609,13 +588,3 @@ operate("r");
 updateVectorInput();
 //Updates positons of vectors, right angles, arcs and lines
 updateVectorSVG();
-
-vRbracket1.style.display = 'none';
-vRxlbl.style.display = 'none';
-vRylbl.style.display = 'none';
-vRbracket2.style.display = 'none';
-
-vSbracket1.style.display = 'none';
-vSxlbl.style.display = 'none';
-vSylbl.style.display = 'none';
-vSbracket2.style.display = 'none';

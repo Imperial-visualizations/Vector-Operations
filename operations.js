@@ -1,6 +1,6 @@
 //Variables for operations
 let operation = "+";
-let operationArray = ["−", "+", "×"];
+const operationArray = ["+", "−", "×"];
 let optionShow = true;
 
 // Numbers for svg elements
@@ -19,6 +19,10 @@ let sf = 2;
 // Helper functions for getting elements
 function elClass(className) {
     return document.getElementsByClassName(className);
+}
+
+function elName(name) {
+    return document.getElementsByName(name);
 }
 
 function elID(id) {
@@ -57,8 +61,8 @@ const v3Output = elID("v3output");
 const sfOutput = elID("sfOutput");
 const opsign = elID("opsign");
 
-const displayVector1 = elID("displayVector1");
-const displayVector2 = elID("displayVector2");
+const scalarBlock = elID("scalar-block");
+
 const displayVector3 = elID("displayVector3");
 
 const btn1 = elID("btn1");
@@ -71,19 +75,19 @@ const btntxt3 = elID("btntxt3");
 
 const optioncanvas = elID("operationOptionSVG");
 
-const viewBtn = elID("viewbtn");
-
 const vect2div = elClass("v2div")[0];
 
 const v2Bracket1 = elClass("v2bracket")[0];
 const v2Bracket2 = elClass("v2bracket")[1];
+
+const operationDisplay = elID("operation-display");
+const operationSelect = elName("operation-select");
 
 //Sliders
 const sliderSVG = elID("slidersvg");
 const slider = elID("slide");
 const sliderhandle = elID("sliderhandle");
 
-const circlel5 = elID("circlel5");
 
 // Useful conversion functions
 function convertSliderBig(width) {
@@ -140,16 +144,16 @@ const vectorSum = (vec1, vec2) => vec1.map((element, i) => element + vec2[i]);
 //Changes type of operation
 function operate() {
     //console.log(operationArray[1]);
-    if (operationArray[1] == "+") {
+    if (operation === "+") {
         vector2a[0] = vector2[0];
         vector2a[1] = vector2[1];
         vector3[0] = vector1[0] + vector2[0];
         vector3[1] = vector1[1] + vector2[1];
-    } else if (operationArray[1] == "×") {
+    } else if (operation === "×") {
         vector3[0] = vector1[0] * sf;
         vector3[1] = vector1[1] * sf;
 
-    } else if (operationArray[1] == "−") {
+    } else if (operation === "−") {
         vector2a[0] = 0 - vector2[0];
         vector2a[1] = 0 - vector2[1];
         vector3[0] = vector1[0] - vector2[0];
@@ -192,9 +196,6 @@ function updateVectorSvg() {
     line5.setAttribute("y1", bigDisplace.toString());
     line5.setAttribute("x2", bigVector3[0].toString());
     line5.setAttribute("y2", bigVector3[1].toString());
-
-    circlel5.setAttribute("cx", bigVector3[0].toString());
-    circlel5.setAttribute("cy", bigVector3[1].toString());
     
     arrowHead5.setAttribute("refX", arrowRefXBig(vector3).toString());
 
@@ -226,37 +227,39 @@ function updateVectorSvg() {
     line4.setAttribute("y1", bigVector1[1].toString());
     line4.setAttribute("x2", bigVector3[0].toString());
     line4.setAttribute("y2", bigVector3[1].toString());
-    line4.setAttribute("stroke-width", "4");
 
     arrowHead4.setAttribute("refX", arrowRefXBig(vector2).toString());
+}
 
+function toDP(number, decimals) {
 
+    return Math.round(number*(10**(decimals-1)))/(10**(decimals-1));
 
 }
 
 // Updates the numerical representations of the vectors
 function updateVectorInput() {
-    sfE.value = Math.round(sf * 10) / 10;
+    sfE.value = toDP(sf, 2);
 
     // update vector 1 input
-    v1x.value = vector1[0].toString();
-    v1y.value = vector1[1].toString();
+    v1x.value = toDP(vector1[0], 2).toString();
+    v1y.value = toDP(vector1[1], 2).toString();
 
     // update vector 2 input
-    v2x.value = vector2[0].toString();
-    v2y.value = vector2[1].toString();
+    v2x.value = toDP(vector2[0], 2).toString();
+    v2y.value = toDP(vector2[1], 2).toString();
 
     //Updates Equation    
-    v1Output.innerHTML = vector1[0].toString() + "<br>" + vector1[1].toString();
-    if (operationArray[1] == "×") {
-        v2Output.innerHTML = ((Math.round(sf * 10)) / 10).toString();
+    v1Output.innerHTML = toDP(vector1[0], 2).toString() + "<br>" + toDP(vector1[1], 2).toString();
+    if (operation === "×") {
+        v2Output.innerHTML = toDP(sf, 2).toString();
     }
     else {
-        v2Output.innerHTML = vector2[0].toString() + "<br>" + vector2[1].toString();
-    }    
+        v2Output.innerHTML = toDP(vector2[0],2).toString() + "<br>" + toDP(vector2[1], 2).toString();
+    } 
     
-    v3Output.innerHTML = (Math.round((vector3[0])*100000) / 100000).toString() + "<br>" + (Math.round((vector3[1])*100000) / 100000).toString();
-    sfOutput.innerHTML = ((Math.round(sf * 10))/10).toString();
+    v3Output.innerHTML = toDP(vector3[0], 2).toString() + "<br>" + toDP(vector3[1], 2).toString();
+    sfOutput.innerHTML = toDP(sf, 2).toString();
 }
 
 // Allow operation selection
@@ -279,8 +282,7 @@ operationSelect.forEach(function(operationButton, i) {
             v2Bracket1.style.display = "none";
             v2Bracket2.style.display = "none";
             sfDiv.style.display = "inline";
-            line3.setAttribute("stroke-width", "4");
-            circlel5.setAttribute("r", "5");
+        line3.setAttribute("stroke-width", "2");
         } else {
             scalarBlock.style.display = "none";
             vect2div.style.display = "inline";
@@ -288,13 +290,8 @@ operationSelect.forEach(function(operationButton, i) {
             sfDiv.style.display = "none";
             v2Bracket1.style.display = "table-cell";
             v2Bracket2.style.display = "table-cell";
-            line3.setAttribute("stroke-width", "4");
-            line5.setAttribute("stroke-width", "4");
-            circlel5.setAttribute("r", "3");
+        line3.setAttribute("stroke-width", "4");
         }
-
-        line5.setAttribute("stroke-width", "6");
-        
 
         opsign.textContent = operation;
 
@@ -304,7 +301,6 @@ operationSelect.forEach(function(operationButton, i) {
 
     }
 });
-
 
 // Run the update functions when the page loads
 updateVectorSvg();
@@ -439,28 +435,7 @@ window.onmouseup = function () {
     mousePressed = false;
 }
 
-displayVector1.checked = true;
-displayVector2.checked = true;
 displayVector3.checked = true;
-
-displayVector1.oninput = function () {   
-    if (displayVector1.checked) {
-        line3.style.display = "";
-        ptblue.style.display = "";
-    } else {
-        line3.style.display = "none";
-        ptblue.style.display = "none";
-    }
-}
-
-displayVector2.oninput = function () {   
-    if (displayVector2.checked) {
-        line4.style.display = "";
-    } else {
-        line4.style.display = "none";
-    }
-}
-
 
 displayVector3.oninput = function () {   
     if (displayVector3.checked) {
@@ -468,91 +443,6 @@ displayVector3.oninput = function () {
     } else {
         line5.style.display = "none";
     }
-}
-
-optioncanvas.onmousedown = function(event) {
-    let optioncanvasX = optioncanvas.getBoundingClientRect().x;
-    let optioncanvasY = optioncanvas.getBoundingClientRect().y;
-    let mouseX = event.clientX;
-    let mouseY = event.clientY;
-
-    let xCoord = mouseX - optioncanvasX;
-    let yCoord = mouseY - optioncanvasY;
-    let newvectopparr = ["a", "b", "c"];
-    if (yCoord >= 50 && yCoord <= 100) {
-        
-        newvectopparr[1] = operationArray[0];
-        newvectopparr[2] = operationArray[1];
-        newvectopparr[0] = operationArray[2];
-        //console.log(newvectopparr);
-
-    } else if (yCoord >=170 && yCoord <= 220) {       
-        newvectopparr[1] = operationArray[2];
-        newvectopparr[0] = operationArray[1];
-        newvectopparr[2] = operationArray[0];
-
-    } else {
-        newvectopparr[1] = operationArray[1];
-        newvectopparr[0] = operationArray[0];
-        newvectopparr[2] = operationArray[2];  
-    }
-    operationArray[0] = newvectopparr[0];
-    operationArray[1] = newvectopparr[1];
-    operationArray[2] = newvectopparr[2];
-    operation = operationArray[1];
-    btntxt1.textContent = operationArray[0];
-    btntxt2.textContent = operationArray[1];
-    btntxt3.textContent = operationArray[2];
-
-    //console.log(operationArray);
-
-    opsign.innerHTML = operationArray[1];
-
-    if (operationArray[1] == "×") {
-        vect2div.style.display = "none";
-        line4.style.display = "none";
-        v2Bracket1.style.display = "none";
-        v2Bracket2.style.display = "none";
-        displayVector2.display = "none";
-        sfDiv.style.display = "inline";
-	line3.setAttribute("stroke-width", "2");
-    } else {
-        vect2div.style.display = "inline";
-        line4.style.display = "inline";
-        sfDiv.style.display = "none";
-        displayVector2.display = "block";
-        v2Bracket1.style.display = "table-cell";
-        v2Bracket2.style.display = "table-cell";
-	line3.setAttribute("stroke-width", "4");
-    }
-
-    if (yCoord >= 220 && yCoord <= 270) {
-        console.log("Clicked");
-        if (optionShow == true) {
-            optionShow = false;
-            btn1.style.display = "none";
-            btn3.style.display = "none";
-            btntxt1.style.display = "none";
-            
-            btntxt3.style.display = "none";
-            optionShow = false;
-
-        } else {
-            optionShow = false;
-            btn1.style.display = "block";
-            btn3.style.display = "block";
-            btntxt1.style.display = "block";
-            
-            btntxt3.style.display = "block";
-            optionShow = true;
-
-        }
-    }
-
-    operate();
-
-    updateVectorSvg();
-    updateVectorInput();
 }
 
 sliderSVG.onmousemove = function(event) {
@@ -579,14 +469,4 @@ sliderSVG.onmousedown = function(event) {
 
 sliderSVG.onmouseup = function() {
     mousePressed= false;
-}
-
-viewBtn.onmousedown = function(event) {
-    mousePressed = true;
-    optioncanvas.style.display = "none";
-    optionShow = False;
-}
-
-viewBtn.onmousedown = function(event) {
-    mousePressed = false;
 }
