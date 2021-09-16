@@ -262,7 +262,6 @@ function updateVectorInput() {
     sfOutput.innerHTML = toDP(sf, 2).toString();
 }
 
-<<<<<<< HEAD
 // Allow operation selection
 
 operationSelect.forEach(function(operationButton, i) {
@@ -303,8 +302,6 @@ operationSelect.forEach(function(operationButton, i) {
     }
 });
 
-=======
->>>>>>> parent of bbed982 (Updates)
 // Run the update functions when the page loads
 updateVectorSvg();
 updateVectorInput();
