@@ -259,8 +259,6 @@ function updateVectorInput() {
     sfOutput.innerHTML = ((Math.round(sf * 10))/10).toString();
 }
 
-<<<<<<< Updated upstream
-=======
 // Allow operation selection
 
 operationSelect.forEach(function(operationButton, i) {
@@ -307,7 +305,7 @@ operationSelect.forEach(function(operationButton, i) {
     }
 });
 
->>>>>>> Stashed changes
+
 // Run the update functions when the page loads
 updateVectorSvg();
 updateVectorInput();

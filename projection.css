@@ -240,30 +240,32 @@ table {
 }
 
 #pages {
-    width: 100%;
-    color: white;
-    font-size: 80%;
-}
-
-#pagestable {   
-    text-align: center;
+    width: 200px;    
     margin-left: auto;
     margin-right: auto;
-    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
+
 .navbuttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 50px;
     width: 50px;
     background-color: var(--bg-alternative);
-    padding-right: 4px;
+    text-align: center;
+    margin-right: 4px;
     border-radius: 50%;
     color: var(--text-colour);
-    margin-left: auto;
-    margin-right: auto;
 }
+
 a {
     color: var(--text-colour);
     text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 .navbuttons:hover {
     background-color: var(--hightlight-0);
@@ -284,14 +286,4 @@ svg {
     user-select: none;
     border-radius: 10px;
 
-}
-.operationbuttons {
-    cursor: auto;
-}
-select:hover {
-    background-color: var(--bg-alternative);
-}
-option {
-    margin-left: auto;
-    margin-right: auto;
 }
