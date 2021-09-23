@@ -46,6 +46,7 @@ const line5 = elID("line5");
 const arrowHead5 = elID("arrowHead5");
 
 const ptblue = elID("ptblue");
+const ptgreen = elID("ptgreen");
 
 const v1x = elID("v1x");
 const v1y = elID("v1y");
@@ -92,7 +93,7 @@ const sliderhandle = elID("sliderhandle");
 // Useful conversion functions
 function convertSliderBig(width) {
     let nw = sf + 5;
-    return ((nw / 10) * 170) + 5;
+    return ((nw / 10) * 154);
 }
 
 function convertToSVGSmall(vector) {
@@ -176,6 +177,19 @@ function updateVectorSvg() {
     // draw vector 1
     const smallVector1 = convertToSVGSmall(vector1);
 
+    if (operation === "×" && sf >= 0 && sf <= 1) {
+            line3.setAttribute("stroke-opacity", 0.5);
+            ptblue.setAttribute("opacity", 0.5);
+            arrowHead3.setAttribute("opacity", 0.5);
+
+    } else {
+        line3.setAttribute("stroke-opacity", 1);
+        ptblue.setAttribute("opacity", 1);
+        arrowHead3.setAttribute("opacity", 1);
+
+
+    }
+
     line1.setAttribute("x1", smallDisplace.toString());
     line1.setAttribute("y1", smallDisplace.toString());
     line1.setAttribute("x2", smallVector1[0].toString());
@@ -191,13 +205,16 @@ function updateVectorSvg() {
     ptblue.setAttribute("cx", bigVector1[0].toString());
     ptblue.setAttribute("cy", bigVector1[1].toString());
 
+    ptgreen.setAttribute("cx", bigVector3[0].toString());
+    ptgreen.setAttribute("cy", bigVector3[1 ].toString());
+
         // draw vector 3
     line5.setAttribute("x1", bigDisplace.toString());
     line5.setAttribute("y1", bigDisplace.toString());
     line5.setAttribute("x2", bigVector3[0].toString());
     line5.setAttribute("y2", bigVector3[1].toString());
     
-    arrowHead5.setAttribute("refX", arrowRefXBig(vector3).toString());
+    arrowHead5.setAttribute("refX", (arrowRefXBig(vector3)).toString());
 
     line3.setAttribute("x1", bigDisplace.toString());
     line3.setAttribute("y1", bigDisplace.toString());
@@ -282,7 +299,11 @@ operationSelect.forEach(function(operationButton, i) {
             v2Bracket1.style.display = "none";
             v2Bracket2.style.display = "none";
             sfDiv.style.display = "inline";
-        line3.setAttribute("stroke-width", "2");
+        line3.setAttribute("stroke-width", "4");
+        line5.setAttribute("stroke-width", "4");
+        ptgreen.setAttribute("r", "6");
+
+
         } else {
             scalarBlock.style.display = "none";
             vect2div.style.display = "inline";
@@ -291,6 +312,8 @@ operationSelect.forEach(function(operationButton, i) {
             v2Bracket1.style.display = "table-cell";
             v2Bracket2.style.display = "table-cell";
         line3.setAttribute("stroke-width", "4");
+        line5.setAttribute("stroke-width", "4");
+        ptgreen.setAttribute("r", "3");
         }
 
         opsign.textContent = operation;
@@ -469,4 +492,14 @@ sliderSVG.onmousedown = function(event) {
 
 sliderSVG.onmouseup = function() {
     mousePressed= false;
+}
+
+sfE.oninput = function(event) {
+    if (sfE.valueAsNumber) {
+        sf = sfE.valueAsNumber;
+    };
+    operate();
+    updateVectorSvg();
+    updateVectorInput();
+
 }

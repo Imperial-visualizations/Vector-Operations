@@ -297,7 +297,7 @@ button:active {
     fill: #4574aa;
 }
 
-svg {
+svg, p, br, button, nav a {
     -webkit-touch-callout: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -361,4 +361,7 @@ select:hover {
 option {
     margin-left: auto;
     margin-right: auto;
+}
+td {
+    text-align: center;
 }

@@ -86,6 +86,10 @@ function angleOfVector (vector) {
 
 }
 
+function midPoint(coord1, coord2) {
+    return [0.5*(coord1[0]+coord2[0]), 0.5*(coord1[1]+coord2[1])];
+}
+
 //Converts angles from degrees to radians
 function toRad(deg) {
     return ( Math.PI / 180) * deg;
@@ -229,7 +233,12 @@ function updateVectorSVG() {
         midAngle = toRad((0.5*(T3+T4+360)) ); 
     }
 
+    MI = midPoint(vectorR, vectorS);
+    MI[0] = MI[0] / mod(MI) / 1.5;
+    MI[1] = MI[1] / mod(MI) / 1.5;
+
     MI = [Math.cos(midAngle),  Math.sin(midAngle)] ;
+
     bigMID = convertToSVGBig(MI);
 
     //Sets up parameter of the path of the arc
@@ -403,12 +412,23 @@ circle1.onmousedown = function(event) {
     chosenV = 1;
     vectorGraph.style.cursor = "pointer";
     vectorGraph.onmousemove(event);
+
+    vRbracket1.style.display = 'block';
+    vRxlbl.style.display = 'block';
+    vRylbl.style.display = 'block';
+    vRbracket2.style.display = 'block';    
     
 }
 
 circle1.onmouseup = function() {
     mousePressed = false;
     chosenV = 0;
+
+    vRbracket1.style.display = 'none';
+    vRxlbl.style.display = 'none';
+    vRylbl.style.display = 'none';
+    vRbracket2.style.display = 'none';
+
     
 }
 
@@ -422,12 +442,23 @@ circle2.onmousedown = function(event) {
     chosenV = 2;
     vectorGraph.style.cursor = "pointer";
     vectorGraph.onmousemove(event);
+
+    vSbracket1.style.display = 'block';
+    vSxlbl.style.display = 'block';
+    vSylbl.style.display = 'block';
+    vSbracket2.style.display = 'block';
+
     
 }
 
 circle2.onmouseup = function() {
     mousePressed = false;
     chosenV = 0;
+
+    vSbracket1.style.display = 'none';
+    vSxlbl.style.display = 'none';
+    vSylbl.style.display = 'none';
+    vSbracket2.style.display = 'none';    
 }
 
 circle2.onmouseleave = function() {
@@ -462,3 +493,13 @@ vectorGraph.onmousemove = function(event) {
 operate("r");
 updateVectorInput();
 updateVectorSVG();
+
+vRbracket1.style.display = 'none';
+vRxlbl.style.display = 'none';
+vRylbl.style.display = 'none';
+vRbracket2.style.display = 'none';
+
+vSbracket1.style.display = 'none';
+vSxlbl.style.display = 'none';
+vSylbl.style.display = 'none';
+vSbracket2.style.display = 'none';

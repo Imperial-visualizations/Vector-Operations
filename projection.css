@@ -287,3 +287,11 @@ svg {
     border-radius: 10px;
 
 }
+
+svg, p, br, button, nav a {
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
