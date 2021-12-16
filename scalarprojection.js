@@ -1,5 +1,5 @@
-mousePressed = false;
-chosenV = 1;
+let mousePressed = false;
+let chosenV = 1;
 
 // Numbers for svg elements
 const scale = 10;

@@ -21,7 +21,6 @@ html {
     color: var(--text-colour);
 }
 
-
 .container {
     background: var(--background-colour);
     display: flex;
@@ -36,10 +35,12 @@ html {
 #diagramandinfo {
     display: inline;
 }
+
 #section {
     height: 500px;
     display: inline;
 }
+
 #vectorgraphdiv {
     float: left;
 }
@@ -53,9 +54,9 @@ html {
 }
 .gridlines {
     stroke: white;
-    stroke-dasharray: 1;
-    
+    stroke-dasharray: 1;   
 }
+
 .axislines {
     stroke-width: 2px;
 }
@@ -168,8 +169,6 @@ html {
 #line6 {
     display: none;
 }
-
-
 
 #thetaLabel {
     font-size: 20px;

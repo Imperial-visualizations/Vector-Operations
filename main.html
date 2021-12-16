@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Vector Operations</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+
+<nav id="navigation">
+    <button class="navbuttons" href="threeOperations.html">Simple Operations</button>
+    <button class="navbuttons selected">Projections</button>
+</nav>
+
+<body>
+
+    <div class="container">
+        <div class="section" id="vector-graph-container">
+            <svg id="vector-graph">
+
+                <path d="M 0 25 H 500 M 0 50 H 500 M 0 75 H 500
+                    M 0 100 H 500 M 0 125 H 500 M 0 150 H 500 M 0 175 H 500
+                    M 0 200 H 500 M 0 225 H 500 M 0 275 H 500
+                    M 0 300 H 500 M 0 325 H 500 M 0 350 H 500 M 0 375 H 500
+                    M 0 400 H 500 M 0 425 H 500 M 0 450 H 500 M 0 475 H 500" stroke="white" stroke-dasharray="1">
+                </path>
+                <path d="M 25 0 V 500 M 50 0 V 500 M 75 0 V 500 M 100 0 V 500
+                    M 125 0 V 500 M 150 0 V 500 M 175 0 V 500 M 200 0 V 500
+                    M 225 0 V 500  M 275 0 V 500 M 300 0 V 500
+                    M 325 0 V 500 M 350 0 V 500 M 375 0 V 500 M 400 0 V 500
+                    M 425 0 V 500 M 450 0 V 500 M 475 0 V 500" stroke="white" stroke-dasharray="1">
+                </path>
+
+                <circle cx="250" cy="250" r="5" fill="white" stroke-width="3"></circle>
+
+                <line x1="0" y1="250" x2="500" y2="250" stroke="white" class="axis-lines" stroke-width="4"></line>
+                <line x1="250" y1="0" x2="250" y2="500" stroke="white" class="axis-lines" stroke-width="4"></line>
+
+                <text x="12" y="270" class="axis-label">-9</text>
+                <text x="40" y="270" class="axis-label">-8</text>
+                <text x="65" y="270" class="axis-label">-7</text>
+                <text x="90" y="270" class="axis-label">-6</text>
+                <text x="115" y="270" class="axis-label">-5</text>
+                <text x="140" y="270" class="axis-label">-4</text>
+                <text x="165" y="270" class="axis-label">-3</text>
+                <text x="190" y="270" class="axis-label">-2</text>
+                <text x="215" y="270" class="axis-label">-1</text>
+                <text x="270" y="270" class="axis-label">1</text>
+                <text x="295" y="270" class="axis-label">2</text>
+                <text x="320" y="270" class="axis-label">3</text>
+                <text x="345" y="270" class="axis-label">4</text>
+                <text x="370" y="270" class="axis-label">5</text>
+                <text x="395" y="270" class="axis-label">6</text>
+                <text x="420" y="270" class="axis-label">7</text>
+                <text x="445" y="270" class="axis-label">8</text>
+                <text x="470" y="270" class="axis-label">9</text>
+
+                <text y="30" x="235" class="axis-label">9</text>
+                <text y="55" x="235" class="axis-label">8</text>
+                <text y="80" x="235" class="axis-label">7</text>
+                <text y="105" x="235" class="axis-label">6</text>
+                <text y="130" x="235" class="axis-label">5</text>
+                <text y="155" x="235" class="axis-label">4</text>
+                <text y="180" x="235" class="axis-label">3</text>
+                <text y="205" x="235" class="axis-label">2</text>
+                <text y="230" x="235" class="axis-label">1</text>
+                <text y="280" x="230" class="axis-label">-1</text>
+                <text y="305" x="230" class="axis-label">-2</text>
+                <text y="330" x="230" class="axis-label">-3</text>
+                <text y="355" x="230" class="axis-label">-4</text>
+                <text y="380" x="230" class="axis-label">-5</text>
+                <text y="405" x="230" class="axis-label">-6</text>
+                <text y="430" x="230" class="axis-label">-7</text>
+                <text y="455" x="230" class="axis-label">-8</text>
+                <text y="480" x="230" class="axis-label">-9</text>
+
+                <path id="arc" stroke="white" stroke-width="3" fill="transparent" d="path"></path>
+
+                <line x1="250" y1="250" x2="400" y2="130" stroke="#fc75db" stroke-width="4" id="r-line"></line>
+
+                <line x1="250" y1="250" x2="200" y2="120" stroke="#daab73" stroke-width="4" id="s-line"></line>
+
+                <marker id="arrow-head-1" markerWidth="4" markerHeight="4" refX=3 refY=2 orient="auto">
+                    <polygon points="0,0 4,2 0,4" fill="#afdb85" />
+                </marker>
+                <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="projected-line"
+                    marker-end="url(#arrow-head-1)"></line>
+                <line x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" id="projection-perp"
+                    stroke-dasharray="4"></line>
+                <path x1="250" y1="250" x2="300" y2="220" stroke="#afdb85" stroke-width="4" fill-opacity="0"
+                    id="right-angle-path" />
+                <circle cx="400" cy="130" r="10" fill="#fc75db" stroke="white" stroke-width="3" id="r-handle"></circle>
+                <circle cx="200" cy="120" r="10" fill="#daab73" stroke="white" stroke-width="3" id="s-handle"></circle>
+
+                <path
+                    style="fill:none;stroke:#afdb85;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+                    d="M 0, 0 c 0,-20 35,0 35,-20 0,20 35,0 35,20" id="curly-brace"></path>
+
+                <g id="r-bracket-group" style="display:none;">
+                    <text y="6" x="-20" name="vector-label-1" class="vector-label-1 bracket"
+                        id="v1-left-bracket">[</text>
+                    <text y="-12.5" x="0" name="vector-label-1" class="vector-label-1" id="v1x-label">3</text>
+                    <text y="12.5" x="0" name="vector-label-1" class="vector-label-1" id="v1y-label">3</text>
+                    <text y="6" x="20" name="vector-label-1" class="vector-label-1 bracket"
+                        id="v1-right-bracket">]</text>
+                </g>
+
+                <g id="s-bracket-group" style="display:none;">
+                    <text y="6" x="-20" name="vector-label-2" class="vector-label-2 bracket"
+                        id="v2-left-bracket">[</text>
+                    <text y="-12.5" x="0" name="vector-label-2" class="vector-label-2" id="v2x-label">3</text>
+                    <text y="12.5" x="0" name="vector-label-2" class="vector-label-2" id="v2y-label">3</text>
+                    <text y="6" x="20" name="vector-label-2" class="vector-label-2 bracket"
+                        id="v2-right-bracket">]</text>
+                </g>
+
+                <text x="0" y="0" id="theta-label">θ</text>
+
+            </svg>
+
+        </div>
+
+        <div class="section info">
+
+            <!-- DISPLAY ONLY IN SCALAR MODE -->
+            <div id="scalar-panel">
+                <div class="subsection">
+                    <div id="panel-title" class="formula">Scalar Projection</div>
+                    <div id="formula1" class="formula">
+                        <span style="text-decoration: underline;">r</span> • <span
+                            style="text-decoration: underline;">s</span> =
+                        |<span style="text-decoration: underline;">r</span>|
+                        |<span style="text-decoration: underline;">s</span>| cos θ
+                    </div>
+                    <div class="formula">
+                        <table class="tabform">
+                            <tr>
+                                <td rowspan="1" class="numerator">
+                                    <span style="text-decoration: underline;">r</span> • <span
+                                        style="text-decoration: underline;">s</span>
+                                </td>
+                                <td rowspan="2"> = </td>
+                                <td class="vector-2-colour" rowspan="2">|<span style="text-decoration: underline;">s</span>| cos θ</td>
+                            </tr>
+                            <td rowspan="1">|<span style="text-decoration: underline;">r</span>|</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="subsection">
+                    <div class="formula">
+
+                        <table class="tabform output-vector-colour" id="vect1O">
+                            <tr>
+                                <td rowspan="2"><span style="text-decoration: underline;">r</span></td>
+                                <td rowspan="2"> = </td>
+                                <td rowspan="2" class="bracket"> [</td>
+                                <td rowspan="1"><input type="number" value="3" id="v1x-input-scalar" max="10" min="-10"></td>
+                                <td rowspan="2" class="bracket"> ]</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1"><input type="number" value="1" id="v1y-input-scalar" max="10" min="-10"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="formula">
+
+                        <table class="tabform vector-1-colour" id="vect2O">
+                            <tr>
+                                <td rowspan="2" style="text-decoration: underline;">s</td>
+                                <td rowspan="2"> =</td>
+                                <td rowspan="2" class="bracket"> [</td>
+                                <td rowspan="1"> <input type="number" value="1" id="v2x-input-scalar" max="10" min="-10"></td>
+                                <td rowspan="2" class="bracket"> ]</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1"><input type="number" value="2" id="v2y-input-scalar" max="10" min="-10"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="formula3" class="formula">
+
+                        <table class="tabform">
+                            <tr>
+                                <td rowspan="2">θ</td>
+                                <td rowspan="2"> = </td>
+                                <td rowspan="1"><input type="number" value="30" id="theta-input"></td>
+                                <td rowspan="2"><sup>o</sup></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="subsection">
+                    <button id="vector-button" class="toggle-button">Vector</button>
+                </div>
+            </div>
+
+            <!-- DISPLAY ONLY IN VECTOR MODE -->
+            <div id="vector-panel">
+                <div id="formulas" class="subsection">
+                <div id="formula1" class="formula">
+                    Multiply the scalar 
+                    <table class="tabform">
+                        <tr>
+                            <td rowspan="2" colspan="1">projection by </td>
+                            <td rowspan="2" colspan="1"> </td>
+                            <td class="numerator" rowspan="1" colspan="1">
+                                <span style="text-decoration: underline;">r</span>
+                            </td>                            
+                        </tr>
+                        <tr>
+                            
+                            <td rowspan="1" colspan="1">
+                                |<span style="text-decoration: underline;">r</span>|
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="formula2" class="formula">
+                
+                    <table class="tabform">
+                        <tr>
+                            <td rowspan="1" class="numerator"> 
+                                <span style="text-decoration: underline;">r</span> • <span style="text-decoration: underline;">s</span></td>
+                            <td rowspan="2"> = </td>
+                            <td rowspan="2">|<span style="text-decoration: underline;">s</span>| cos θ</td>
+                        </tr>
+                        <td rowspan="1">|<span style="text-decoration: underline;">r</span>|</td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="subsection" id="inputs">
+                <div id="formula3" class="formula">
+                
+                    <table class="tabform output-vector-colour" id="vect1O">
+                        <tr>
+                            <td rowspan="2"><span style="text-decoration: underline;">r</span></td>
+                            <td rowspan="2"> = </td>
+                            <td rowspan="2" class="bracket"> [</td>
+                            <td rowspan="1"><input type="number" value="3" id="v1x-input-vector" max="10" min="-10"></td>
+                            <td rowspan="2" class="bracket"> ]</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1"><input type="number" value="1" id="v1y-input-vector" max="10" min="-10"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="formula4" class="formula">
+                
+                    <table class="tabform vector-1-colour" id="vect2O">
+                        <tr>
+                            <td rowspan="2" style="text-decoration: underline;">s</td>
+                            <td rowspan="2"> =</td>
+                            <td rowspan="2" class="bracket"> [</td>
+                            <td rowspan="1"> <input type="number" value="1" id="v2x-input-vector" max="10" min="-10"></td>
+                            <td rowspan="2" class="bracket"> ]</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1"><input type="number" value="2" id="v2y-input-vector" max="10" min="-10"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="formula3" class="formula">
+                
+                    <table class="tabform" id="vect3O">
+                        <tr>
+                            <td rowspan="1" class="numerator">
+                                <span style="text-decoration: underline;">r</span>
+                            </td>
+                            <td rowspan="2"> = </td>
+                            <td rowspan="2" class="bracket"> [ </td>
+                            <td rowspan="1"><span id="sign5">+</span><input type="number" value="30" id="v3x" step="0.01"></td>
+                            <td rowspan="2" class="bracket">]</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1">
+                                |<span style="text-decoration: underline;">r</span>|
+                            </td>
+                                <td rowspan="1"><span id="sign6">+</span><input type="number" value="30" id="v3y" step="0.01"></td>
+                                
+                            </td>
+                            
+                            <td><td rowspan="1">
+                        </tr>
+                    </table>
+                </div>
+                <div class="subsection">
+                    <button id="scalar-button" class="toggle-button">Scalar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script src="main.js"></script>

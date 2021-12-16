@@ -1,0 +1,187 @@
+:root {
+    --background-colour: #15181d;
+    --bg-alternative: #22354b;
+    --hightlight-0: #7aaed7;
+    --highlight-1: #fc75db;
+    --highlight-2: #daab73;
+    --highlight-3: #afdb85;
+    --highlight-4: #5e9ccc;
+    --text-colour: #f0ffff;
+    --graph-lines: #f0ffff;
+}
+
+html {
+    font-family: Cambria, serif;
+    background: var(--background-colour);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: fixed;
+    height: 100%;
+    width: 100%;
+    color: var(--text-colour);
+}
+
+.container {
+    background: var(--background-colour);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    padding: 10px;
+    max-width: 1100px;
+    min-height: 600px;
+}
+
+#vector-graph-container, #vector-graph {
+    width: 500px;
+    height: 500px;
+}
+
+#vector-graph {
+    background: linear-gradient(135deg,#6997b9,#354d68);
+    border-radius: 10px;
+}
+
+.axis-lines {
+    stroke-width: 2px;
+}
+
+.axis-label {
+    font-family: Cambria, serif;
+    font-weight: bold;
+    fill: white;
+}
+
+svg {
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.vector-label-1 {
+    fill: var(--highlight-1);
+    font-weight: bold;
+    filter: drop-shadow(0px 0px 3px black);
+    stroke-width: 0.6px;
+    text-anchor: middle;
+}
+
+.vector-label-2 {
+    fill: var(--highlight-2);
+    font-weight: bold;
+    stroke-width: 0.6px;
+    filter: drop-shadow(0px 0px 3px black);
+    text-anchor: middle;
+}
+
+.bracket {
+    font-size: 250%;
+    font-weight: lighter;
+}
+
+#theta-label {
+    font-size: 20px;
+    font-weight: bold;
+    text-anchor: middle;
+    fill: white;
+    filter: drop-shadow(0px 0px 3px black);
+}
+
+.info {
+    width: 200px;
+    height: 480px;
+    background: #7aafd757;
+    display: inline-block;
+    margin-left: 25px;
+    padding: 10px;
+    border-radius: 9px;
+    font-weight: bold;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+input {
+    font-weight: bold;
+    size: 10;
+    width: 60px;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0%;
+}
+
+.formula {
+    width: 200px;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: white;
+    font-family: Cambria, serif;
+}
+
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 0px;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+}
+
+.numerator {
+    border-bottom: 2px solid;
+}
+
+.tabform {
+    text-align: center;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.tabform input {
+    width: 60px;
+    font-family: Cambria, serif;
+    font-size: 20px;
+    border: none;
+    background: none;
+    text-align: center;
+}
+
+.vector-1-colour {
+    color: var(--highlight-2);
+}
+
+.vector-2-colour {
+    color: var(--highlight-3);
+}
+
+.output-vector-colour {
+    color: var(--highlight-1);
+}
+
+input {
+    color: inherit
+}
+
+#scalar-panel {
+    transition: margin-left 400ms ease-in-out;
+    margin-left: 0px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#scalar-panel.moved {
+    margin-left: -200px;
+}
+
+#vector-panel {
+    display: inline-block;
+    vertical-align: top;
+}
